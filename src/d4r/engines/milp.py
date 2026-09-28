@@ -279,8 +279,8 @@ class DeepSeekLPEngine:
         self.model = model
         self.thinking = thinking
         self.max_attempts = max_attempts
-        self.cache = cache or ResponseCache(None)
-        self.chat = chat or DeepSeekChat()
+        self.cache = cache if cache is not None else ResponseCache(None)
+        self.chat = chat if chat is not None else DeepSeekChat()
         self.name = f"{model}+lp[{'think' if thinking else 'fast'}]"
 
     def _first_messages(self, card: DecisionCard) -> list[dict[str, str]]:

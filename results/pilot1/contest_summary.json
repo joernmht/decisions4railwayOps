@@ -1,0 +1,145 @@
+{
+ "deepseek-fast": {
+  "episodes": 20,
+  "arrival_share": 0.735,
+  "normalized_reward": 0.892245,
+  "total_arrival_delay": 16.95,
+  "deadlocked_trains": 0.0,
+  "decisions": 7.8,
+  "fallbacks": 0,
+  "latency_s_per_episode": 7.944575,
+  "cost_usd_per_episode": 0.00050055,
+  "reward_gain_vs_dla": 6.6,
+  "wins_ties_losses": [
+   6,
+   9,
+   5
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 11,
+   "W+": 39.5,
+   "p": 0.591796875
+  }
+ },
+ "dla-default": {
+  "episodes": 20,
+  "arrival_share": 0.7150000000000001,
+  "normalized_reward": 0.8865550000000001,
+  "total_arrival_delay": 17.5,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.85,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.0,
+  "cost_usd_per_episode": 0.0
+ },
+ "fixed-milp": {
+  "episodes": 20,
+  "arrival_share": 0.755,
+  "normalized_reward": 0.90266,
+  "total_arrival_delay": 17.45,
+  "deadlocked_trains": 0.0,
+  "decisions": 7.8,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.021939999999999998,
+  "cost_usd_per_episode": 0.0,
+  "reward_gain_vs_dla": 14.45,
+  "wins_ties_losses": [
+   6,
+   5,
+   9
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 15,
+   "W+": 66.0,
+   "p": 0.750244140625
+  }
+ },
+ "jev": {
+  "episodes": 20,
+  "arrival_share": 0.76,
+  "normalized_reward": 0.9001849999999999,
+  "total_arrival_delay": 17.65,
+  "deadlocked_trains": 0.0,
+  "decisions": 9.1,
+  "fallbacks": 0,
+  "latency_s_per_episode": 2.2601050000000003,
+  "cost_usd_per_episode": 0.00032065,
+  "reward_gain_vs_dla": 10.05,
+  "wins_ties_losses": [
+   2,
+   11,
+   7
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 9,
+   "W+": 17.0,
+   "p": 0.55859375
+  }
+ },
+ "oracle": {
+  "episodes": 20,
+  "arrival_share": 0.7849999999999999,
+  "normalized_reward": 0.9110799999999999,
+  "total_arrival_delay": 16.9,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.55,
+  "fallbacks": 0,
+  "latency_s_per_episode": 2.87434,
+  "cost_usd_per_episode": 0.0,
+  "reward_gain_vs_dla": 21.05,
+  "wins_ties_losses": [
+   8,
+   12,
+   0
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 8,
+   "W+": 36.0,
+   "p": 0.0078125
+  }
+ },
+ "random": {
+  "episodes": 20,
+  "arrival_share": 0.72,
+  "normalized_reward": 0.881335,
+  "total_arrival_delay": 20.1,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.7,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.0,
+  "cost_usd_per_episode": 0.0,
+  "reward_gain_vs_dla": -3.45,
+  "wins_ties_losses": [
+   4,
+   7,
+   9
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 13,
+   "W+": 37.0,
+   "p": 0.587158203125
+  }
+ },
+ "rule-slack": {
+  "episodes": 20,
+  "arrival_share": 0.73,
+  "normalized_reward": 0.89158,
+  "total_arrival_delay": 17.95,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.95,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.0,
+  "cost_usd_per_episode": 0.0,
+  "reward_gain_vs_dla": 3.5,
+  "wins_ties_losses": [
+   1,
+   13,
+   6
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 7,
+   "W+": 7.0,
+   "p": 0.21875
+  }
+ }
+}

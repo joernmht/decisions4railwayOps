@@ -213,8 +213,8 @@ class DeepSeekEngine:
         self.model = model
         self.thinking = thinking
         self.variant = variant
-        self.cache = cache or ResponseCache(None)
-        self.chat = chat or DeepSeekChat()
+        self.cache = cache if cache is not None else ResponseCache(None)
+        self.chat = chat if chat is not None else DeepSeekChat()
         mode = "think" if thinking else "fast"
         self.name = f"{model}[{mode}{'' if variant == 'bucketed' else ',raw'}]"
 

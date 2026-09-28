@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import threading
 from pathlib import Path
 from typing import Any
 
@@ -30,6 +31,7 @@ class ResponseCache:
     def __init__(self, path: str | Path | None) -> None:
         self.path = Path(path) if path else None
         self._mem: dict[str, dict[str, Any]] = {}
+        self._lock = threading.Lock()
         if self.path and self.path.exists():
             with self.path.open(encoding="utf-8") as f:
                 for line in f:
@@ -42,11 +44,13 @@ class ResponseCache:
         return self._mem.get(key)
 
     def put(self, key: str, value: dict[str, Any]) -> None:
-        self._mem[key] = value
-        if self.path:
-            self.path.parent.mkdir(parents=True, exist_ok=True)
-            with self.path.open("a", encoding="utf-8") as f:
-                f.write(json.dumps({"key": key, "value": value}, ensure_ascii=False) + "\n")
+        line = json.dumps({"key": key, "value": value}, ensure_ascii=False) + "\n"
+        with self._lock:
+            self._mem[key] = value
+            if self.path:
+                self.path.parent.mkdir(parents=True, exist_ok=True)
+                with self.path.open("a", encoding="utf-8") as f:
+                    f.write(line)
 
     def __len__(self) -> int:
         return len(self._mem)

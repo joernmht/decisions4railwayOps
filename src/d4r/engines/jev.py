@@ -59,7 +59,7 @@ class JevEngine:
     ) -> None:
         self.model = model
         self.variant = variant
-        self.cache = cache or ResponseCache(None)
+        self.cache = cache if cache is not None else ResponseCache(None)
         self.timeout_s = timeout_s
         self.name = f"jev[{model}{'' if variant == 'bucketed' else ',raw'}]"
         self._client: Any = None

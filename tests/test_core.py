@@ -145,3 +145,15 @@ def test_rollout_values_are_reproducible() -> None:
             return
         ctl.commit([])
     pytest.skip("no decision point in this episode")
+
+
+def test_engines_keep_an_empty_file_backed_cache(tmp_path) -> None:
+    """Regression: an empty ResponseCache is falsy (``__len__``); engines must not replace it."""
+    from d4r.engines.jev import JevEngine
+    from d4r.engines.llm import DeepSeekEngine
+    from d4r.engines.milp import DeepSeekLPEngine
+
+    c = ResponseCache(tmp_path / "x.jsonl")
+    assert len(c) == 0
+    for eng in (JevEngine(cache=c), DeepSeekEngine(cache=c), DeepSeekLPEngine(cache=c)):
+        assert eng.cache is c
