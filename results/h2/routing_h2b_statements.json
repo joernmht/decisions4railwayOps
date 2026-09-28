@@ -1,0 +1,4749 @@
+{
+ "seed": 20260928,
+ "families": [
+  "assignment_covering",
+  "flow_conservation",
+  "capacity_resource",
+  "precedence_ordering",
+  "headway_separation",
+  "timing_window",
+  "coupling_linking_definition",
+  "periodic_modulo_pesp",
+  "subtour_connectivity",
+  "variable_bound_fix",
+  "objective_defining"
+ ],
+ "descriptions": {
+  "modelling": {
+   "assignment_covering": "Assignment and covering: every element of one set is matched to elements of another, exactly once or at least once. Examples: each train or trip receives one platform, track, route alternative, vehicle or crew; every task or service is covered.",
+   "flow_conservation": "Flow conservation: at every node and time, what flows in equals what flows out or stays. Examples: rolling-stock or vehicle balance at stations and depots, circulation of units over the day, passenger flow through transfer nodes.",
+   "capacity_resource": "Capacity of a shared resource: the number of trains, units or staff using a resource at the same time is limited. Examples: tracks in a station, siding length, parking positions in a depot, available drivers or vehicles.",
+   "precedence_ordering": "Precedence and ordering: the sequence of trains or events. Examples: which train uses a shared track or junction first, keeping or changing the planned sequence, rules about overtaking, one event taking place before another.",
+   "headway_separation": "Headway and separation: two consecutive trains on the same track, block section or platform keep a minimum distance in time or space, for example a buffer or signalling headway.",
+   "timing_window": "Time windows: an event time must fall inside an interval. Examples: no departure ahead of the timetable, arrival before a deadline, entry to a line only within a slot, an upper limit on the delay of an event.",
+   "coupling_linking_definition": "Coupling, linking and definition: one variable is defined from others, or decisions are logically linked. Examples: delay defined as realised minus planned time, cancelling a train cancels its remaining stops, keeping a connection makes the connecting train wait, a route usable only if its switch is set.",
+   "periodic_modulo_pesp": "Periodic timetabling (PESP): events repeat with a fixed cycle time and time differences are taken modulo the period. Examples: a 30- or 60-minute clock-face pattern, cyclic departure minutes, a symmetric periodic node.",
+   "subtour_connectivity": "Subtour elimination and connectivity: tours, rotations or paths form one connected chain. Examples: a vehicle rotation or crew duty begins and ends at its home depot without isolated cycles, a train's path is a gap-free sequence of track sections.",
+   "variable_bound_fix": "Variable bounds and fixings: particular decisions are settled in advance. Examples: events that already happened keep their times, a given train keeps its planned platform or route, an option is forbidden or forced so its decision variable is fixed to 0 or 1.",
+   "objective_defining": "Objective-defining constraints: auxiliary constraints that measure the quantity being optimised. Examples: an upper envelope of all delays when the maximum delay is minimised, the lateness above a tolerance that is penalised, a count of late trains that enters the objective."
+  },
+  "requirement": {
+   "assignment_covering": "every train, trip or duty to receive exactly one (or at least one) resource such as a platform, route, vehicle or driver",
+   "flow_conservation": "vehicles, units or passengers to be balanced, so that what arrives at a place either leaves again or stays there",
+   "capacity_resource": "a limit on how many trains, units or staff may use a resource at the same time",
+   "precedence_ordering": "a particular order between trains or events, such as which train goes first or a rule about overtaking",
+   "headway_separation": "a minimum time or distance between two consecutive trains on the same track",
+   "timing_window": "an event to happen not before, not after, or within a given time, or a limit on the delay of an event",
+   "coupling_linking_definition": "a logical link between decisions (if one thing happens, another must follow) or a quantity defined from other quantities",
+   "periodic_modulo_pesp": "a timetable pattern that repeats with a fixed period, such as every 30 or 60 minutes",
+   "subtour_connectivity": "tours, vehicle rotations, crew duties or paths to form one connected chain or closed cycle",
+   "variable_bound_fix": "a specific decision to be settled in advance: kept at its current or planned value, forbidden, or forced",
+   "objective_defining": "something to be minimised or penalised, such as the largest delay or the number of late trains"
+  }
+ },
+ "dev": [
+  {
+   "sid": "dev-000",
+   "split": "dev",
+   "text": "The 30-minute rhythm must not be broken by the new timetable. The last timetable change took place in December 1895.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "periodic_modulo_pesp:flip:0",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "dev-001",
+   "split": "dev",
+   "text": "The delay of each train is its actual arrival minus its planned arrival at Doebeln. There is no deadline for the empty stock move to Chemnitz depot. No rotation may form a separate loop that never returns to Dresden-Altstadt depot. Train IC 2443 must pass Bischofswerda before train RB 31.",
+   "gold": [
+    "precedence_ordering",
+    "coupling_linking_definition",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [
+    "timing_window"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:pos:0",
+    "coupling_linking_definition:pos:1",
+    "subtour_connectivity:flip:0",
+    "timing_window:waiver:0"
+   ]
+  },
+  {
+   "sid": "dev-002",
+   "split": "dev",
+   "text": "Station Pirna was opened in 1980. Train RB 31 has already left Meissen; its departure time is fixed. A cancelled train must not serve any of its remaining stops.",
+   "gold": [
+    "coupling_linking_definition",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:flip:0",
+    "variable_bound_fix:pos:0",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "dev-003",
+   "split": "dev",
+   "text": "If train RE 50 is cancelled, all of its later stops are cancelled as well. At the end of the day, each depot must hold the same number of units as in the morning.",
+   "gold": [
+    "flow_conservation",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:0",
+    "coupling_linking_definition:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-004",
+   "split": "dev",
+   "text": "About 22,500 passengers use Doebeln on a typical weekday. Minimise the largest delay of any train. Vehicle rotations do not need to close at the depot today. The 60-minute rhythm must not be broken by the new timetable.",
+   "gold": [
+    "periodic_modulo_pesp",
+    "objective_defining"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "periodic_modulo_pesp:flip:0",
+    "objective_defining:pos:0",
+    "subtour_connectivity:waiver:0",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "dev-005",
+   "split": "dev",
+   "text": "Train IC 2045 must pass Freiberg before train IC 2443. The delay of each train is its actual arrival minus its planned arrival at Doebeln.",
+   "gold": [
+    "precedence_ordering",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:pos:0",
+    "coupling_linking_definition:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-006",
+   "split": "dev",
+   "text": "A minimum headway of 6 minutes applies on the line to Grossenhain.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "headway_separation:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-007",
+   "split": "dev",
+   "text": "No trip may be left without a driver. Train ICE 1537 has already left Doebeln; its departure time is fixed. The incident was reported at 16:35 by the driver of train RE 50. The line from Coswig to Riesa is 82 km long.",
+   "gold": [
+    "assignment_covering",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:flip:0",
+    "variable_bound_fix:pos:0",
+    "distractor:5",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "dev-008",
+   "split": "dev",
+   "text": "The freight train can only enter the line between 21:00 and 23:00. Each trip in the new timetable has to be operated by one of the available units. Every train set that arrives at Coswig either departs again or stays parked there overnight.",
+   "gold": [
+    "assignment_covering",
+    "flow_conservation",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:1",
+    "flow_conservation:pos:1",
+    "timing_window:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-009",
+   "split": "dev",
+   "text": "Keep the planned order of trains on the line between Dresden-Neustadt and Riesa. The dispatcher on duty has 5 years of experience. The siding at Meissen holds only two trains.",
+   "gold": [
+    "capacity_resource",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:1",
+    "precedence_ordering:pos:1",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "dev-010",
+   "split": "dev",
+   "text": "The last timetable change took place in December 2012. Each crew duty has to form one continuous sequence of trips beginning and ending at the home base.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:1",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "dev-011",
+   "split": "dev",
+   "text": "The request was filed under ticket number 11074. Station Coswig was opened in 1986. At most 3 trains can stand in Grossenhain at the same time. Every train set that arrives at Dresden-Neustadt either departs again or stays parked there overnight.",
+   "gold": [
+    "flow_conservation",
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "flow_conservation:pos:1",
+    "capacity_resource:pos:0",
+    "distractor:1",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "dev-012",
+   "split": "dev",
+   "text": "Every train arriving at Doebeln must be given exactly one platform. About 23,500 passengers use Riesa on a typical weekday. A minimum headway of 4 minutes applies on the line to Riesa. The line from Coswig to Grossenhain is 115 km long.",
+   "gold": [
+    "assignment_covering",
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:0",
+    "headway_separation:pos:1",
+    "distractor:4",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "dev-013",
+   "split": "dev",
+   "text": "Keep at least 8 minutes between two trains on the same track. No overtaking at Meissen.",
+   "gold": [
+    "precedence_ordering",
+    "headway_separation"
+   ],
+   "flipped": [
+    "precedence_ordering"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:flip:0",
+    "headway_separation:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-014",
+   "split": "dev",
+   "text": "Train RE 3 must pass Dresden-Neustadt before train ICE 1537. The incident was reported at 09:30 by the driver of train IC 2045. The rescheduled timetable must still repeat every 120 minutes. At the end of the day, each depot must hold the same number of units as in the morning.",
+   "gold": [
+    "flow_conservation",
+    "precedence_ordering",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:pos:0",
+    "precedence_ordering:pos:0",
+    "periodic_modulo_pesp:pos:0",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "dev-015",
+   "split": "dev",
+   "text": "No train may depart earlier than timetabled. The rescheduled timetable must still repeat every 60 minutes. No rotation may form a separate loop that never returns to Leipzig West depot.",
+   "gold": [
+    "timing_window",
+    "periodic_modulo_pesp",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "timing_window",
+    "subtour_connectivity"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:flip:0",
+    "periodic_modulo_pesp:pos:0",
+    "subtour_connectivity:flip:0"
+   ]
+  },
+  {
+   "sid": "dev-016",
+   "split": "dev",
+   "text": "Train ICE 1537 has to arrive at Dresden-Neustadt by 21:10. Every vehicle rotation must start and end at Dresden-Altstadt depot.",
+   "gold": [
+    "timing_window",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:pos:0",
+    "subtour_connectivity:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-017",
+   "split": "dev",
+   "text": "Outside it is -7 degrees and dry. Keep at least 5 minutes between two trains on the same track.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:0",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "dev-018",
+   "split": "dev",
+   "text": "Station Coswig was opened in 1878. Keep the planned order of trains on the line between Pirna and Bischofswerda. The last timetable change took place in December 1881.",
+   "gold": [
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "precedence_ordering:pos:1",
+    "distractor:1",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "dev-019",
+   "split": "dev",
+   "text": "If train S 1 is cancelled, all of its later stops are cancelled as well. Keep at least 9 minutes between two trains on the same track. The siding at Bischofswerda holds only two trains.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:1",
+    "headway_separation:pos:0",
+    "coupling_linking_definition:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-020",
+   "split": "dev",
+   "text": "The request was filed under ticket number 99635. The freight train can only enter the line between 21:00 and 23:00. A minimum headway of 7 minutes applies on the line to Doebeln.",
+   "gold": [
+    "headway_separation",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:1",
+    "timing_window:pos:1",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "dev-021",
+   "split": "dev",
+   "text": "The dispatcher on duty has 3 years of experience. Train RB 31 keeps its planned platform 3 at Coswig. Minimise the largest delay of any train. No train may follow another closer than 7 minutes. Outside it is 30 degrees and dry.",
+   "gold": [
+    "headway_separation",
+    "variable_bound_fix",
+    "objective_defining"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "headway_separation:flip:0",
+    "variable_bound_fix:pos:1",
+    "objective_defining:pos:0",
+    "distractor:3",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "dev-022",
+   "split": "dev",
+   "text": "Each trip in the new timetable has to be operated by one of the available units. Only delay beyond 10 minutes should be penalised in the objective.",
+   "gold": [
+    "assignment_covering",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:1",
+    "objective_defining:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-023",
+   "split": "dev",
+   "text": "Outside it is 31 degrees and dry. Keep the clock-face pattern: trains on line RB 31 leave at the same minute every hour. No overtaking at Dresden-Neustadt.",
+   "gold": [
+    "precedence_ordering",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "precedence_ordering"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "precedence_ordering:flip:0",
+    "periodic_modulo_pesp:pos:1",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "dev-024",
+   "split": "dev",
+   "text": "About 19,500 passengers use Pirna on a typical weekday. The delay of each train is its actual arrival minus its planned arrival at Bischofswerda.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:1",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "dev-025",
+   "split": "dev",
+   "text": "Train IC 2045 has already left Freiberg; its departure time is fixed. No more than 3 trains may wait at Doebeln at once. Each trip in the new timetable has to be operated by one of the available units.",
+   "gold": [
+    "assignment_covering",
+    "capacity_resource",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "capacity_resource"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:1",
+    "capacity_resource:flip:0",
+    "variable_bound_fix:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-026",
+   "split": "dev",
+   "text": "Minimise the largest delay of any train. Every train set that arrives at Bischofswerda either departs again or stays parked there overnight.",
+   "gold": [
+    "flow_conservation",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:1",
+    "objective_defining:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-027",
+   "split": "dev",
+   "text": "The dispatcher on duty has 3 years of experience. Train IC 2045 keeps its planned platform 3 at Dresden-Neustadt. The last timetable change took place in December 1977. At most 5 trains can stand in Pirna at the same time. A minimum headway of 7 minutes applies on the line to Meissen.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:0",
+    "headway_separation:pos:1",
+    "variable_bound_fix:pos:1",
+    "distractor:8",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "dev-028",
+   "split": "dev",
+   "text": "About 3,500 passengers use Doebeln on a typical weekday. Keep at least 10 minutes between two trains on the same track. Platform capacity at Pirna is not an issue today and need not be checked.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [
+    "capacity_resource"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:0",
+    "capacity_resource:waiver:0",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "dev-029",
+   "split": "dev",
+   "text": "The 30-minute rhythm must not be broken by the new timetable. About 23,000 passengers use Grossenhain on a typical weekday.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "periodic_modulo_pesp:flip:0",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "dev-030",
+   "split": "dev",
+   "text": "The dispatcher on duty has 2 years of experience. Train IC 2443 is formed of 5 coaches today. A cancelled train must not serve any of its remaining stops.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "coupling_linking_definition:flip:0",
+    "distractor:6",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "dev-031",
+   "split": "dev",
+   "text": "About 18,500 passengers use Radebeul Ost on a typical weekday. The siding at Pirna holds only two trains. Nothing is fixed in advance; every train remains open to rescheduling.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [
+    "variable_bound_fix"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:1",
+    "variable_bound_fix:waiver:0",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "dev-032",
+   "split": "dev",
+   "text": "Trains may not be cancelled. No more than 2 trains may wait at Freiberg at once.",
+   "gold": [
+    "capacity_resource",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "capacity_resource",
+    "variable_bound_fix"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:flip:0",
+    "variable_bound_fix:flip:0"
+   ]
+  },
+  {
+   "sid": "dev-033",
+   "split": "dev",
+   "text": "Train RE 3 keeps its planned platform 4 at Freiberg.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "variable_bound_fix:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-034",
+   "split": "dev",
+   "text": "The incident was reported at 05:35 by the driver of train RB 31. The line from Grossenhain to Coswig is 117 km long. A minimum headway of 3 minutes applies on the line to Meissen. Units must not appear or disappear at any station: arrivals and departures have to balance. Platform capacity at Meissen is not an issue today and need not be checked.",
+   "gold": [
+    "flow_conservation",
+    "headway_separation"
+   ],
+   "flipped": [
+    "flow_conservation"
+   ],
+   "waived": [
+    "capacity_resource"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "flow_conservation:flip:0",
+    "headway_separation:pos:1",
+    "capacity_resource:waiver:0",
+    "distractor:5",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "dev-035",
+   "split": "dev",
+   "text": "Train IC 2443 has already left Dresden-Neustadt; its departure time is fixed. A cancelled train must not serve any of its remaining stops.",
+   "gold": [
+    "coupling_linking_definition",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:flip:0",
+    "variable_bound_fix:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-036",
+   "split": "dev",
+   "text": "The incident was reported at 16:40 by the driver of train S 1. The last timetable change took place in December 2007. At most 6 trains can stand in Freiberg at the same time. The freight train can only enter the line between 06:00 and 08:00. Keep at least 2 minutes between two trains on the same track.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:0",
+    "headway_separation:pos:0",
+    "timing_window:pos:1",
+    "distractor:5",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "dev-037",
+   "split": "dev",
+   "text": "Train IC 2045 must pass Meissen before train RE 3. At the end of the day, each depot must hold the same number of units as in the morning.",
+   "gold": [
+    "flow_conservation",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:0",
+    "precedence_ordering:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-038",
+   "split": "dev",
+   "text": "About 10,500 passengers use Coswig on a typical weekday. At the end of the day, each depot must hold the same number of units as in the morning. Train S 1 has to arrive at Dresden-Neustadt by 05:35.",
+   "gold": [
+    "flow_conservation",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:pos:0",
+    "timing_window:pos:0",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "dev-039",
+   "split": "dev",
+   "text": "The freight train can only enter the line between 05:00 and 07:00. Train S 1 is formed of 12 coaches today.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:pos:1",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "dev-040",
+   "split": "dev",
+   "text": "The incident was reported at 11:55 by the driver of train IC 2443. Keep the clock-face pattern: trains on line RE 50 leave at the same minute every hour. The line from Radebeul Ost to Meissen is 80 km long.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:1",
+    "distractor:5",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "dev-041",
+   "split": "dev",
+   "text": "Minimise the largest delay of any train.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "objective_defining:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-042",
+   "split": "dev",
+   "text": "The siding at Bischofswerda holds only two trains. The overnight position of the rolling stock does not matter and does not have to balance. Every vehicle rotation must start and end at Leipzig West depot.",
+   "gold": [
+    "capacity_resource",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "flow_conservation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:1",
+    "subtour_connectivity:pos:0",
+    "flow_conservation:waiver:0"
+   ]
+  },
+  {
+   "sid": "dev-043",
+   "split": "dev",
+   "text": "Each crew duty has to form one continuous sequence of trips beginning and ending at the home base. The delay of each train is its actual arrival minus its planned arrival at Pirna. Keep at least 3 minutes between two trains on the same track.",
+   "gold": [
+    "headway_separation",
+    "coupling_linking_definition",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "headway_separation:pos:0",
+    "coupling_linking_definition:pos:1",
+    "subtour_connectivity:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-044",
+   "split": "dev",
+   "text": "The siding at Bischofswerda holds only two trains. The incident was reported at 18:50 by the driver of train IC 2443. Keep at least 3 minutes between two trains on the same track.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:1",
+    "headway_separation:pos:0",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "dev-045",
+   "split": "dev",
+   "text": "The rescheduled timetable must still repeat every 60 minutes. The delay of each train is its actual arrival minus its planned arrival at Pirna. Every vehicle rotation must start and end at Chemnitz depot. Station Meissen was opened in 1852.",
+   "gold": [
+    "coupling_linking_definition",
+    "periodic_modulo_pesp",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:1",
+    "periodic_modulo_pesp:pos:0",
+    "subtour_connectivity:pos:0",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "dev-046",
+   "split": "dev",
+   "text": "Minimise the largest delay of any train. Headways do not need to be modelled on the depot tracks. The request was filed under ticket number 64322. About 9,000 passengers use Coswig on a typical weekday.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "objective_defining:pos:0",
+    "headway_separation:waiver:0",
+    "distractor:7",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "dev-047",
+   "split": "dev",
+   "text": "No rotation may form a separate loop that never returns to Riesa yard. At the end of the day, each depot must hold the same number of units as in the morning. Outside it is 25 degrees and dry. Keep at least 6 minutes between two trains on the same track.",
+   "gold": [
+    "flow_conservation",
+    "headway_separation",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:pos:0",
+    "headway_separation:pos:0",
+    "subtour_connectivity:flip:0",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "dev-048",
+   "split": "dev",
+   "text": "Train RB 31 is formed of 6 coaches today. Each trip in the new timetable has to be operated by one of the available units. Headways do not need to be modelled on the depot tracks. The siding at Radebeul Ost holds only two trains. The dispatcher on duty has 2 years of experience. Trains may not be cancelled.",
+   "gold": [
+    "assignment_covering",
+    "capacity_resource",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "variable_bound_fix"
+   ],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:1",
+    "capacity_resource:pos:1",
+    "variable_bound_fix:flip:0",
+    "headway_separation:waiver:0",
+    "distractor:6",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "dev-049",
+   "split": "dev",
+   "text": "Headways do not need to be modelled on the depot tracks. No overtaking at Grossenhain. No rotation may form a separate loop that never returns to Riesa yard.",
+   "gold": [
+    "precedence_ordering",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "precedence_ordering",
+    "subtour_connectivity"
+   ],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:flip:0",
+    "subtour_connectivity:flip:0",
+    "headway_separation:waiver:0"
+   ]
+  },
+  {
+   "sid": "dev-050",
+   "split": "dev",
+   "text": "Station Dresden-Neustadt was opened in 1853. No train may depart earlier than timetabled. Train ICE 1537 keeps its planned platform 4 at Freiberg.",
+   "gold": [
+    "timing_window",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:flip:0",
+    "variable_bound_fix:pos:1",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "dev-051",
+   "split": "dev",
+   "text": "At most 3 trains can stand in Freiberg at the same time. Station Freiberg was opened in 1863.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:0",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "dev-052",
+   "split": "dev",
+   "text": "Each crew duty has to form one continuous sequence of trips beginning and ending at the home base. Train ICE 1537 has to arrive at Dresden-Neustadt by 09:15. Minimise the largest delay of any train.",
+   "gold": [
+    "timing_window",
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:pos:0",
+    "subtour_connectivity:pos:1",
+    "objective_defining:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-053",
+   "split": "dev",
+   "text": "Every vehicle rotation must start and end at Chemnitz depot. At the end of the day, each depot must hold the same number of units as in the morning.",
+   "gold": [
+    "flow_conservation",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:0",
+    "subtour_connectivity:pos:0"
+   ]
+  },
+  {
+   "sid": "dev-054",
+   "split": "dev",
+   "text": "Outside it is 22 degrees and dry. The request was filed under ticket number 79338. The rescheduled timetable must still repeat every 30 minutes. Each crew duty has to form one continuous sequence of trips beginning and ending at the home base. Train ICE 1537 has already left Meissen; its departure time is fixed.",
+   "gold": [
+    "periodic_modulo_pesp",
+    "subtour_connectivity",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:0",
+    "subtour_connectivity:pos:1",
+    "variable_bound_fix:pos:0",
+    "distractor:7",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "dev-055",
+   "split": "dev",
+   "text": "The siding at Doebeln holds only two trains.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-056",
+   "split": "dev",
+   "text": "Only delay beyond 9 minutes should be penalised in the objective. No more than 5 trains may wait at Grossenhain at once. Each crew duty has to form one continuous sequence of trips beginning and ending at the home base.",
+   "gold": [
+    "capacity_resource",
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [
+    "capacity_resource"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:flip:0",
+    "subtour_connectivity:pos:1",
+    "objective_defining:pos:1"
+   ]
+  },
+  {
+   "sid": "dev-057",
+   "split": "dev",
+   "text": "No more than 5 trains may wait at Doebeln at once.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [
+    "capacity_resource"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:flip:0"
+   ]
+  },
+  {
+   "sid": "dev-058",
+   "split": "dev",
+   "text": "The freight train can only enter the line between 15:00 and 17:00. The request was filed under ticket number 55471. The siding at Grossenhain holds only two trains. Vehicle rotations do not need to close at the depot today.",
+   "gold": [
+    "capacity_resource",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:1",
+    "timing_window:pos:1",
+    "subtour_connectivity:waiver:0",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "dev-059",
+   "split": "dev",
+   "text": "Keep the clock-face pattern: trains on line RE 50 leave at the same minute every hour.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:1"
+   ]
+  }
+ ],
+ "test": [
+  {
+   "sid": "test-000",
+   "split": "test",
+   "text": "Do not let any train's delay exceed what is unavoidable: minimise the maximum delay. Outside it is 27 degrees and dry.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "objective_defining:flip:1",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-001",
+   "split": "test",
+   "text": "Train S 1 must not arrive at Grossenhain later than 11:00.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:flip:1"
+   ]
+  },
+  {
+   "sid": "test-002",
+   "split": "test",
+   "text": "Minimum spacing between trains can be ignored on the freight line. Track how many carriages are in Dresden-Neustadt over time; each arrival adds to the stock and each departure removes from it. The rerouted path of train RB 31 must be a connected sequence of track sections from Grossenhain to Doebeln.",
+   "gold": [
+    "flow_conservation",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "subtour_connectivity:pos:2",
+    "headway_separation:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-003",
+   "split": "test",
+   "text": "Train RE 50 needs exactly one of its alternative routes through the Pirna interlocking. The request was filed under ticket number 18777. Decide which of the two trains uses the junction at Dresden-Neustadt first.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "precedence_ordering:pos:2",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-004",
+   "split": "test",
+   "text": "Count a passenger connection as missed whenever the feeder train arrives too late for the transfer. Driver shifts have to return to Radebeul Ost at the end.",
+   "gold": [
+    "coupling_linking_definition",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:pos:4",
+    "subtour_connectivity:pos:4"
+   ]
+  },
+  {
+   "sid": "test-005",
+   "split": "test",
+   "text": "Consecutive trains must never be less than one block section apart. No decision has been taken yet for train IC 2443; all its options are still open. The request was filed under ticket number 74490.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [
+    "variable_bound_fix"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:flip:2",
+    "variable_bound_fix:waiver:1",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-006",
+   "split": "test",
+   "text": "Outside it is 30 degrees and dry. Train RB 71 needs exactly one of its alternative routes through the Meissen interlocking. No decision has been taken yet for train S 1; all its options are still open. Departure minutes may not differ from one hour to the next.",
+   "gold": [
+    "assignment_covering",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [
+    "variable_bound_fix"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "periodic_modulo_pesp:flip:1",
+    "variable_bound_fix:waiver:1",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-007",
+   "split": "test",
+   "text": "A locomotive's trips have to link up into one unbroken chain. Delay does not have to be computed as a separate quantity. Following trains must be spaced by at least one free block section.",
+   "gold": [
+    "headway_separation",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "headway_separation:pos:2",
+    "subtour_connectivity:pos:5",
+    "coupling_linking_definition:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-008",
+   "split": "test",
+   "text": "Station Freiberg was opened in 1974. Outside it is 11 degrees and dry. All duties of the evening shift must be covered by a driver. The freight train may not pass the regional train ICE 1537 between Dresden-Neustadt and Radebeul Ost. When the connection at Meissen is maintained, train IC 2443 must wait for train RB 71.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering",
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "precedence_ordering"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "precedence_ordering:flip:2",
+    "coupling_linking_definition:pos:2",
+    "distractor:3",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-009",
+   "split": "test",
+   "text": "Station Radebeul Ost was opened in 1980. Departure minutes may not differ from one hour to the next. Trains leaving Chemnitz depot must enter the main line in the order of their numbers.",
+   "gold": [
+    "precedence_ordering",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "precedence_ordering:pos:4",
+    "periodic_modulo_pesp:flip:1",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-010",
+   "split": "test",
+   "text": "The dispatcher on duty has 4 years of experience. Assign every service on line RB 31 to one of the 4 available train sets.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-011",
+   "split": "test",
+   "text": "The request was filed under ticket number 31868. The incident was reported at 19:55 by the driver of train RE 50. Trains arriving more than 8 minutes late should not go unpenalised. Periodicity can be dropped for the rest of the day. The depot at Chemnitz depot has space for 4 units only.",
+   "gold": [
+    "capacity_resource",
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "objective_defining:flip:2",
+    "periodic_modulo_pesp:waiver:1",
+    "distractor:7",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-012",
+   "split": "test",
+   "text": "Delay does not have to be computed as a separate quantity. Driver shifts have to return to Radebeul Ost at the end. The hourly cycle at Radebeul Ost has to be preserved in the new plan.",
+   "gold": [
+    "periodic_modulo_pesp",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:2",
+    "subtour_connectivity:pos:4",
+    "coupling_linking_definition:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-013",
+   "split": "test",
+   "text": "You do not have to decide which unit runs which trip. Freeze the timetable of all trains that have already started their journey. The delay of any train at its final stop may be at most 5 minutes.",
+   "gold": [
+    "timing_window",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "assignment_covering"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:pos:4",
+    "variable_bound_fix:pos:4",
+    "assignment_covering:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-014",
+   "split": "test",
+   "text": "The freight train should follow the regional train RB 71 into Radebeul Ost, not the other way round. The incident was reported at 05:40 by the driver of train IC 2045. No decision has been taken yet for train IC 2045; all its options are still open.",
+   "gold": [
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [
+    "variable_bound_fix"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "precedence_ordering:pos:3",
+    "variable_bound_fix:waiver:1",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-015",
+   "split": "test",
+   "text": "Station Bischofswerda was opened in 1915. The incident was reported at 21:40 by the driver of train ICE 1537. The depot at Chemnitz depot has space for 6 units only. The connecting bus leaves at 12:10; train IC 2045 has to reach Coswig before that.",
+   "gold": [
+    "capacity_resource",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "timing_window:pos:5",
+    "distractor:1",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-016",
+   "split": "test",
+   "text": "The sequence of trains through the single-track section may be changed if that reduces delay.",
+   "gold": [
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:pos:5"
+   ]
+  },
+  {
+   "sid": "test-017",
+   "split": "test",
+   "text": "The rerouted path of train RB 31 must be a connected sequence of track sections from Dresden-Neustadt to Grossenhain. The line from Meissen to Riesa is 73 km long.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:2",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-018",
+   "split": "test",
+   "text": "Passenger flows through Bischofswerda can be ignored in this study. The freight train may not enter the line before 17:00. The line from Riesa to Dresden-Neustadt is 74 km long. The sequence of trains through the single-track section may be changed if that reduces delay.",
+   "gold": [
+    "precedence_ordering",
+    "timing_window"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [
+    "flow_conservation"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "precedence_ordering:pos:5",
+    "timing_window:flip:2",
+    "flow_conservation:waiver:2",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-019",
+   "split": "test",
+   "text": "Platform 3 is short and can take only one train at a time. The incident was reported at 08:00 by the driver of train RE 50. Plan a cyclic timetable with a period of 60 minutes for the replacement service. Train IC 2045 is formed of 4 coaches today.",
+   "gold": [
+    "capacity_resource",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:4",
+    "periodic_modulo_pesp:pos:3",
+    "distractor:6",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-020",
+   "split": "test",
+   "text": "The delay of any train at its final stop may be at most 4 minutes. The goal is to minimise the number of trains arriving more than 6 minutes late. The last timetable change took place in December 1890.",
+   "gold": [
+    "timing_window",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:pos:4",
+    "objective_defining:pos:2",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-021",
+   "split": "test",
+   "text": "Short-turning train ICE 1537 at Freiberg means it also skips the stops beyond Freiberg.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:pos:5"
+   ]
+  },
+  {
+   "sid": "test-022",
+   "split": "test",
+   "text": "The incident was reported at 16:35 by the driver of train IC 2443. Train RB 71 should leave Meissen within 10 minutes of its scheduled time.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:pos:2",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-023",
+   "split": "test",
+   "text": "Train RE 3 needs exactly one of its alternative routes through the Grossenhain interlocking. About 9,000 passengers use Dresden-Neustadt on a typical weekday.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-024",
+   "split": "test",
+   "text": "The request was filed under ticket number 82583. Rolling stock cannot appear out of nowhere: the units leaving Dresden-Altstadt depot equal those that arrived there plus the ones already parked. The sequence of trains through the single-track section may be changed if that reduces delay. If the connection at Grossenhain is kept, train RE 50 must not leave before train IC 2045 has arrived.",
+   "gold": [
+    "flow_conservation",
+    "precedence_ordering",
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:pos:3",
+    "precedence_ordering:pos:5",
+    "coupling_linking_definition:flip:1",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-025",
+   "split": "test",
+   "text": "No train may change its platform at Meissen. A crew duty must not break into disconnected pieces.",
+   "gold": [
+    "subtour_connectivity",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "subtour_connectivity",
+    "variable_bound_fix"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "subtour_connectivity:flip:1",
+    "variable_bound_fix:flip:2"
+   ]
+  },
+  {
+   "sid": "test-026",
+   "split": "test",
+   "text": "Assign every service on line RE 18 to one of the 5 available train sets. Count a passenger connection as missed whenever the feeder train arrives too late for the transfer.",
+   "gold": [
+    "assignment_covering",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "coupling_linking_definition:pos:4"
+   ]
+  },
+  {
+   "sid": "test-027",
+   "split": "test",
+   "text": "Count a passenger connection as missed whenever the feeder train arrives too late for the transfer. The goal is to minimise the number of trains arriving more than 4 minutes late. The dispatcher on duty has 3 years of experience. Platform 7 must never hold more than one train.",
+   "gold": [
+    "capacity_resource",
+    "coupling_linking_definition",
+    "objective_defining"
+   ],
+   "flipped": [
+    "capacity_resource"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:flip:1",
+    "coupling_linking_definition:pos:4",
+    "objective_defining:pos:2",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-028",
+   "split": "test",
+   "text": "Train RB 71 is to be cancelled; that decision is already taken. The depot at Dresden-Altstadt depot has space for 5 units only. It does not matter whether a unit's trips link up into a closed cycle.",
+   "gold": [
+    "capacity_resource",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "variable_bound_fix:pos:3",
+    "subtour_connectivity:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-029",
+   "split": "test",
+   "text": "A train cannot run on the diversion via Doebeln unless the diversion is opened. The line from Pirna to Meissen is 64 km long.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:flip:2",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-030",
+   "split": "test",
+   "text": "Which train goes first at the junction does not need to be decided here. Maintain the periodic node structure at Pirna with a 60-minute cycle. About 13,000 passengers use Riesa on a typical weekday.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [
+    "precedence_ordering"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:5",
+    "precedence_ordering:waiver:1",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-031",
+   "split": "test",
+   "text": "The last timetable change took place in December 1889. Train ICE 1537 is to be cancelled; that decision is already taken. The size of the worst delay does not matter here. Only 2 drivers are available for the replacement services. The track possession ends at 10:45, so work trains must be clear of the line by then.",
+   "gold": [
+    "capacity_resource",
+    "timing_window",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "objective_defining"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:3",
+    "timing_window:pos:3",
+    "variable_bound_fix:pos:3",
+    "objective_defining:waiver:1",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-032",
+   "split": "test",
+   "text": "The freight train should follow the regional train RB 31 into Bischofswerda, not the other way round. Early departures are acceptable today; trains need not wait for their scheduled time. Train RB 71 is to be cancelled; that decision is already taken. The incident was reported at 05:05 by the driver of train IC 2443. Platform 3 is short and can take only one train at a time.",
+   "gold": [
+    "capacity_resource",
+    "precedence_ordering",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "timing_window"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:4",
+    "precedence_ordering:pos:3",
+    "variable_bound_fix:pos:3",
+    "timing_window:waiver:1",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-033",
+   "split": "test",
+   "text": "We do not care whether crews return to their home base. Departure minutes may not differ from one hour to the next.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "periodic_modulo_pesp:flip:1",
+    "subtour_connectivity:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-034",
+   "split": "test",
+   "text": "A crew duty must not break into disconnected pieces. All duties of the evening shift must be covered by a driver.",
+   "gold": [
+    "assignment_covering",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "subtour_connectivity:flip:1"
+   ]
+  },
+  {
+   "sid": "test-035",
+   "split": "test",
+   "text": "Track how many carriages are in Freiberg over time; each arrival adds to the stock and each departure removes from it. No train may change its platform at Radebeul Ost.",
+   "gold": [
+    "flow_conservation",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "variable_bound_fix"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "variable_bound_fix:flip:2"
+   ]
+  },
+  {
+   "sid": "test-036",
+   "split": "test",
+   "text": "Maintain the periodic node structure at Freiberg with a 30-minute cycle. Train IC 2045 is formed of 11 coaches today.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:5",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-037",
+   "split": "test",
+   "text": "Driver shifts have to return to Coswig at the end.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "subtour_connectivity:pos:4"
+   ]
+  },
+  {
+   "sid": "test-038",
+   "split": "test",
+   "text": "The rerouted path of train RB 71 must be a connected sequence of track sections from Radebeul Ost to Bischofswerda. The incident was reported at 07:55 by the driver of train IC 2443. Minimum spacing between trains can be ignored on the freight line. The dispatcher on duty has 4 years of experience.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "subtour_connectivity:pos:2",
+    "headway_separation:waiver:1",
+    "distractor:5",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-039",
+   "split": "test",
+   "text": "Outside it is 27 degrees and dry. The connecting bus leaves at 19:40; train S 1 has to reach Meissen before that.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:pos:5",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-040",
+   "split": "test",
+   "text": "It does not matter whether a unit's trips link up into a closed cycle. Train IC 2443 is formed of 4 coaches today. The freight train may not enter the line before 15:00.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:flip:2",
+    "subtour_connectivity:waiver:2",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-041",
+   "split": "test",
+   "text": "The last timetable change took place in December 1978. The request was filed under ticket number 32156. Do not let any train's delay exceed what is unavoidable: minimise the maximum delay.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "objective_defining:flip:1",
+    "distractor:7",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-042",
+   "split": "test",
+   "text": "The rerouted path of train IC 2443 must be a connected sequence of track sections from Radebeul Ost to Freiberg. Train ICE 1537 is formed of 9 coaches today. The request was filed under ticket number 68636. Train S 1 should leave Meissen within 2 minutes of its scheduled time.",
+   "gold": [
+    "timing_window",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "timing_window:pos:2",
+    "subtour_connectivity:pos:2",
+    "distractor:7",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-043",
+   "split": "test",
+   "text": "A train can only use the diversion via Bischofswerda if the diversion is opened. The last timetable change took place in December 1946. Train RE 50 must not be diverted from its planned route. Delays do not need to be penalised in this run.",
+   "gold": [
+    "coupling_linking_definition",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "variable_bound_fix"
+   ],
+   "waived": [
+    "objective_defining"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:3",
+    "variable_bound_fix:flip:1",
+    "objective_defining:waiver:2",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-044",
+   "split": "test",
+   "text": "Do not let any train's delay exceed what is unavoidable: minimise the maximum delay. Trains leaving Dresden-Altstadt depot must enter the main line in the order of their numbers. Periodicity can be dropped for the rest of the day. Train RB 31 needs exactly one of its alternative routes through the Freiberg interlocking.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering",
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "precedence_ordering:pos:4",
+    "objective_defining:flip:1",
+    "periodic_modulo_pesp:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-045",
+   "split": "test",
+   "text": "Each departing train should be allocated to a single track in the yard at Riesa.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:5"
+   ]
+  },
+  {
+   "sid": "test-046",
+   "split": "test",
+   "text": "The timetable does not need to repeat every 30 minutes. Do not let any train's delay exceed what is unavoidable: minimise the maximum delay. Count a passenger connection as missed whenever the feeder train arrives too late for the transfer.",
+   "gold": [
+    "coupling_linking_definition",
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:pos:4",
+    "objective_defining:flip:1",
+    "periodic_modulo_pesp:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-047",
+   "split": "test",
+   "text": "Assign every service on line RB 31 to one of the 5 available train sets. Rolling stock cannot appear out of nowhere: the units leaving Riesa yard equal those that arrived there plus the ones already parked.",
+   "gold": [
+    "assignment_covering",
+    "flow_conservation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "flow_conservation:pos:3"
+   ]
+  },
+  {
+   "sid": "test-048",
+   "split": "test",
+   "text": "Penalise each minute that train IC 2443 runs behind schedule at its final stop, with double weight for the express. The last timetable change took place in December 1931. Train IC 2045 is formed of 10 coaches today. The delay of any train at its final stop may be at most 2 minutes.",
+   "gold": [
+    "timing_window",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "timing_window:pos:4",
+    "objective_defining:pos:4",
+    "distractor:6",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-049",
+   "split": "test",
+   "text": "The depot at Riesa yard has space for 2 units only. Train S 1 should leave Doebeln within 3 minutes of its scheduled time. Train RB 31 is formed of 7 coaches today.",
+   "gold": [
+    "capacity_resource",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "timing_window:pos:2",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-050",
+   "split": "test",
+   "text": "Build the circulation so that each unit follows a single closed cycle through the network. Reduce the maximum passenger delay across all trains to a minimum. Keep the circulation balanced so that the 3 units end up where tomorrow's timetable expects them. There is no need to link the cancellation of a train to its return trip.",
+   "gold": [
+    "flow_conservation",
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:4",
+    "subtour_connectivity:pos:3",
+    "objective_defining:pos:5",
+    "coupling_linking_definition:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-051",
+   "split": "test",
+   "text": "Passengers arriving at Riesa must not vanish from the model; each one transfers or leaves the station. The last timetable change took place in December 1919.",
+   "gold": [
+    "flow_conservation"
+   ],
+   "flipped": [
+    "flow_conservation"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:flip:2",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-052",
+   "split": "test",
+   "text": "The line from Doebeln to Riesa is 66 km long. Freeze the timetable of all trains that have already started their journey. Decide which of the two trains uses the junction at Doebeln first. The incident was reported at 17:10 by the driver of train S 1.",
+   "gold": [
+    "precedence_ordering",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "precedence_ordering:pos:2",
+    "variable_bound_fix:pos:4",
+    "distractor:5",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-053",
+   "split": "test",
+   "text": "Train IC 2045 is formed of 8 coaches today. Maintain the periodic node structure at Meissen with a 60-minute cycle. Station Doebeln was opened in 1936. Delays do not need to be penalised in this run.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [
+    "objective_defining"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:5",
+    "objective_defining:waiver:2",
+    "distractor:6",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-054",
+   "split": "test",
+   "text": "The incident was reported at 16:30 by the driver of train ICE 1537. Track how many carriages are in Meissen over time; each arrival adds to the stock and each departure removes from it.",
+   "gold": [
+    "flow_conservation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-055",
+   "split": "test",
+   "text": "The last timetable change took place in December 1980. All duties of the evening shift must be covered by a driver. Plan a cyclic timetable with a period of 30 minutes for the replacement service. The delay of any train at its final stop may be at most 3 minutes.",
+   "gold": [
+    "assignment_covering",
+    "timing_window",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "timing_window:pos:4",
+    "periodic_modulo_pesp:pos:3",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-056",
+   "split": "test",
+   "text": "We do not care whether crews return to their home base. Train S 1 needs exactly one of its alternative routes through the Freiberg interlocking. Decide which of the two trains uses the junction at Radebeul Ost first. The request was filed under ticket number 51571. The line from Grossenhain to Pirna is 29 km long. Do not let any train's delay exceed what is unavoidable: minimise the maximum delay.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering",
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "precedence_ordering:pos:2",
+    "objective_defining:flip:1",
+    "subtour_connectivity:waiver:1",
+    "distractor:7",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-057",
+   "split": "test",
+   "text": "No train may be given more than one platform at Dresden-Neustadt. The depot at Riesa yard has space for 2 units only. Outside it is 0 degrees and dry.",
+   "gold": [
+    "assignment_covering",
+    "capacity_resource"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:flip:1",
+    "capacity_resource:pos:2",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-058",
+   "split": "test",
+   "text": "The dispatcher on duty has 5 years of experience. The freight train may not enter the line before 08:00. Train IC 2045 must not overtake train RB 31 before Coswig. Station Dresden-Neustadt was opened in 1853. The depot at Chemnitz depot must not receive more than 4 units.",
+   "gold": [
+    "capacity_resource",
+    "precedence_ordering",
+    "timing_window"
+   ],
+   "flipped": [
+    "capacity_resource",
+    "precedence_ordering",
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:flip:2",
+    "precedence_ordering:flip:1",
+    "timing_window:flip:2",
+    "distractor:1",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-059",
+   "split": "test",
+   "text": "The depot at Riesa yard must not receive more than 3 units. A crew duty must not break into disconnected pieces. We do not need to track how many units are parked at Dresden-Altstadt depot. Respect the signalling distance between successive trains from Coswig to Freiberg. About 20,500 passengers use Bischofswerda on a typical weekday.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "capacity_resource",
+    "subtour_connectivity"
+   ],
+   "waived": [
+    "flow_conservation"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:flip:2",
+    "headway_separation:pos:5",
+    "subtour_connectivity:flip:1",
+    "flow_conservation:waiver:1",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-060",
+   "split": "test",
+   "text": "A train can only use the diversion via Grossenhain if the diversion is opened. The last timetable change took place in December 1977. Train S 1 is formed of 6 coaches today. Train ICE 1537 must not arrive at Coswig later than 14:35.",
+   "gold": [
+    "timing_window",
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "timing_window:flip:1",
+    "coupling_linking_definition:pos:3",
+    "distractor:6",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-061",
+   "split": "test",
+   "text": "Train S 1 is formed of 6 coaches today. If the connection at Freiberg is kept, train ICE 1537 must not leave before train IC 2443 has arrived. Platform 4 must never hold more than one train.",
+   "gold": [
+    "capacity_resource",
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "capacity_resource",
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:flip:1",
+    "coupling_linking_definition:flip:1",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-062",
+   "split": "test",
+   "text": "Reduce the maximum passenger delay across all trains to a minimum.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "objective_defining:pos:5"
+   ]
+  },
+  {
+   "sid": "test-063",
+   "split": "test",
+   "text": "No train may change its platform at Coswig. Driver shifts have to return to Dresden-Neustadt at the end.",
+   "gold": [
+    "subtour_connectivity",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "variable_bound_fix"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "subtour_connectivity:pos:4",
+    "variable_bound_fix:flip:2"
+   ]
+  },
+  {
+   "sid": "test-064",
+   "split": "test",
+   "text": "The freight train should follow the regional train RE 3 into Radebeul Ost, not the other way round. Station Pirna was opened in 1905. All duties of the evening shift must be covered by a driver. Train IC 2045 is formed of 11 coaches today.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "precedence_ordering:pos:3",
+    "distractor:1",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-065",
+   "split": "test",
+   "text": "Do not let any train's delay exceed what is unavoidable: minimise the maximum delay. Parking space at Leipzig West depot does not need to be considered. When the connection at Grossenhain is maintained, train RE 3 must wait for train RB 71.",
+   "gold": [
+    "coupling_linking_definition",
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [
+    "capacity_resource"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:pos:2",
+    "objective_defining:flip:1",
+    "capacity_resource:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-066",
+   "split": "test",
+   "text": "Train ICE 1537 must not arrive at Radebeul Ost later than 13:50. Trains must not run less than 8 minutes apart on the section to Bischofswerda. Assign every service on line S3 to one of the 5 available train sets.",
+   "gold": [
+    "assignment_covering",
+    "headway_separation",
+    "timing_window"
+   ],
+   "flipped": [
+    "headway_separation",
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "headway_separation:flip:1",
+    "timing_window:flip:1"
+   ]
+  },
+  {
+   "sid": "test-067",
+   "split": "test",
+   "text": "The diverted path of train RE 3 must not have gaps between track sections. Platforms need not be allocated; the station manager will handle that separately. The request was filed under ticket number 19904.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [
+    "assignment_covering"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:flip:2",
+    "assignment_covering:waiver:2",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-068",
+   "split": "test",
+   "text": "The line from Bischofswerda to Coswig is 11 km long. The depot at Leipzig West depot has space for 5 units only. Periodicity can be dropped for the rest of the day. The sequence of trains through the single-track section may be changed if that reduces delay.",
+   "gold": [
+    "capacity_resource",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "precedence_ordering:pos:5",
+    "periodic_modulo_pesp:waiver:1",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-069",
+   "split": "test",
+   "text": "Platform 5 is short and can take only one train at a time. Rolling stock cannot appear out of nowhere: the units leaving Chemnitz depot equal those that arrived there plus the ones already parked. Train RB 71 must not arrive at Freiberg later than 16:20.",
+   "gold": [
+    "flow_conservation",
+    "capacity_resource",
+    "timing_window"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:3",
+    "capacity_resource:pos:4",
+    "timing_window:flip:1"
+   ]
+  },
+  {
+   "sid": "test-070",
+   "split": "test",
+   "text": "Keep the circulation balanced so that the 6 units end up where tomorrow's timetable expects them. No train may change its platform at Meissen.",
+   "gold": [
+    "flow_conservation",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "variable_bound_fix"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:4",
+    "variable_bound_fix:flip:2"
+   ]
+  },
+  {
+   "sid": "test-071",
+   "split": "test",
+   "text": "Keep the worst delay at Riesa as small as possible. If the connection at Dresden-Neustadt is kept, train IC 2443 must not leave before train IC 2045 has arrived.",
+   "gold": [
+    "coupling_linking_definition",
+    "objective_defining"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:flip:1",
+    "objective_defining:pos:3"
+   ]
+  },
+  {
+   "sid": "test-072",
+   "split": "test",
+   "text": "The dispatcher on duty has 5 years of experience. Consecutive trains must never be less than one block section apart. Train IC 2045 is formed of 3 coaches today.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "headway_separation:flip:2",
+    "distractor:6",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-073",
+   "split": "test",
+   "text": "Delays do not need to be penalised in this run. No more than 2 train sets may be in use during the peak hour. A locomotive's trips have to link up into one unbroken chain. Station Grossenhain was opened in 2004. The line from Bischofswerda to Pirna is 16 km long.",
+   "gold": [
+    "capacity_resource",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "objective_defining"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "subtour_connectivity:pos:5",
+    "objective_defining:waiver:2",
+    "distractor:0",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-074",
+   "split": "test",
+   "text": "The dispatcher on duty has 5 years of experience. Consecutive trains must never be less than one block section apart. The line from Radebeul Ost to Riesa is 36 km long.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "headway_separation:flip:2",
+    "distractor:2",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-075",
+   "split": "test",
+   "text": "Train RB 71 is formed of 10 coaches today. Count a passenger connection as missed whenever the feeder train arrives too late for the transfer.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:4",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-076",
+   "split": "test",
+   "text": "Build the circulation so that each unit follows a single closed cycle through the network. Delay does not have to be computed as a separate quantity. Train RE 50 is formed of 12 coaches today.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:3",
+    "coupling_linking_definition:waiver:1",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-077",
+   "split": "test",
+   "text": "There is no need to link the cancellation of a train to its return trip. Departure minutes may not differ from one hour to the next.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "periodic_modulo_pesp:flip:1",
+    "coupling_linking_definition:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-078",
+   "split": "test",
+   "text": "Respect the signalling distance between successive trains from Doebeln to Meissen. Train RE 50 needs exactly one of its alternative routes through the Pirna interlocking.",
+   "gold": [
+    "assignment_covering",
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "headway_separation:pos:5"
+   ]
+  },
+  {
+   "sid": "test-079",
+   "split": "test",
+   "text": "The international train IC 2045 must run on its planned route. The last timetable change took place in December 1872. When the connection at Grossenhain is maintained, train ICE 1537 must wait for train RE 3. The line from Dresden-Neustadt to Riesa is 89 km long.",
+   "gold": [
+    "coupling_linking_definition",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "coupling_linking_definition:pos:2",
+    "variable_bound_fix:pos:2",
+    "distractor:0",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-080",
+   "split": "test",
+   "text": "About 14,000 passengers use Meissen on a typical weekday. Platform 8 is short and can take only one train at a time.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:4",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-081",
+   "split": "test",
+   "text": "Departure minutes must be identical in every period of the day. The rerouted path of train S 1 must be a connected sequence of track sections from Freiberg to Doebeln. A train can only use the diversion via Grossenhain if the diversion is opened. About 2,000 passengers use Dresden-Neustadt on a typical weekday. Minimum spacing between trains can be ignored on the freight line.",
+   "gold": [
+    "coupling_linking_definition",
+    "periodic_modulo_pesp",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:3",
+    "periodic_modulo_pesp:pos:4",
+    "subtour_connectivity:pos:2",
+    "headway_separation:waiver:1",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-082",
+   "split": "test",
+   "text": "A locomotive's trips have to link up into one unbroken chain. Minimum spacing between trains can be ignored on the freight line. The incident was reported at 21:40 by the driver of train RB 71.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:5",
+    "headway_separation:waiver:1",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-083",
+   "split": "test",
+   "text": "Maintain the periodic node structure at Riesa with a 30-minute cycle.",
+   "gold": [
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:5"
+   ]
+  },
+  {
+   "sid": "test-084",
+   "split": "test",
+   "text": "About 29,500 passengers use Dresden-Neustadt on a typical weekday. Train RE 3 must not arrive at Meissen later than 17:45. We do not care whether crews return to their home base.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:flip:1",
+    "subtour_connectivity:waiver:1",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-085",
+   "split": "test",
+   "text": "The request was filed under ticket number 81598. Count a passenger connection as missed whenever the feeder train arrives too late for the transfer.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:4",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-086",
+   "split": "test",
+   "text": "No departure may leave the clock-face pattern of line S3. The route via Dresden-Neustadt is closed, so that option is fixed to unused. About 18,500 passengers use Pirna on a typical weekday. The dispatcher on duty has 2 years of experience.",
+   "gold": [
+    "periodic_modulo_pesp",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "periodic_modulo_pesp"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "periodic_modulo_pesp:flip:2",
+    "variable_bound_fix:pos:5",
+    "distractor:4",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-087",
+   "split": "test",
+   "text": "After a train leaves platform 6, the next one may enter only 5 minutes later. The international train RE 3 must run on its planned route. Driver shifts have to return to Coswig at the end.",
+   "gold": [
+    "headway_separation",
+    "subtour_connectivity",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "headway_separation:pos:3",
+    "subtour_connectivity:pos:4",
+    "variable_bound_fix:pos:2"
+   ]
+  },
+  {
+   "sid": "test-088",
+   "split": "test",
+   "text": "Delay does not have to be computed as a separate quantity. No more than 6 train sets may be in use during the peak hour. The hourly cycle at Riesa has to be preserved in the new plan.",
+   "gold": [
+    "capacity_resource",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "periodic_modulo_pesp:pos:2",
+    "coupling_linking_definition:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-089",
+   "split": "test",
+   "text": "Passenger flows through Pirna can be ignored in this study. Driver shifts have to return to Meissen at the end.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "flow_conservation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "subtour_connectivity:pos:4",
+    "flow_conservation:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-090",
+   "split": "test",
+   "text": "Buffer times between consecutive trains are not required in this study. If the connection at Radebeul Ost is kept, train RE 3 must not leave before train S 1 has arrived.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:flip:1",
+    "headway_separation:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-091",
+   "split": "test",
+   "text": "Driver shifts have to return to Freiberg at the end. Outside it is 3 degrees and dry. You do not have to decide which unit runs which trip. Keep the worst delay at Bischofswerda as small as possible.",
+   "gold": [
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [
+    "assignment_covering"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:4",
+    "objective_defining:pos:3",
+    "assignment_covering:waiver:1",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-092",
+   "split": "test",
+   "text": "Train S 1 is formed of 12 coaches today. The timetable does not need to repeat every 30 minutes. The dispatcher on duty has 2 years of experience. No duty of the night shift may remain uncovered. Rolling stock cannot appear out of nowhere: the units leaving Leipzig West depot equal those that arrived there plus the ones already parked.",
+   "gold": [
+    "assignment_covering",
+    "flow_conservation"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:flip:2",
+    "flow_conservation:pos:3",
+    "periodic_modulo_pesp:waiver:2",
+    "distractor:2",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-093",
+   "split": "test",
+   "text": "Buffer times between consecutive trains are not required in this study. The connecting bus leaves at 08:55; train RB 31 has to reach Dresden-Neustadt before that.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:pos:5",
+    "headway_separation:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-094",
+   "split": "test",
+   "text": "Keep the circulation balanced so that the 6 units end up where tomorrow's timetable expects them. Plan a cyclic timetable with a period of 60 minutes for the replacement service. Train S 1 is formed of 6 coaches today. Station Freiberg was opened in 1987.",
+   "gold": [
+    "flow_conservation",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "flow_conservation:pos:4",
+    "periodic_modulo_pesp:pos:3",
+    "distractor:1",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-095",
+   "split": "test",
+   "text": "Freeze the timetable of all trains that have already started their journey. Train RB 31 is formed of 8 coaches today. The last timetable change took place in December 1945. Minimum spacing between trains can be ignored on the freight line. If the connection at Pirna is kept, train RB 71 must not leave before train S 1 has arrived.",
+   "gold": [
+    "coupling_linking_definition",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "coupling_linking_definition:flip:1",
+    "variable_bound_fix:pos:4",
+    "headway_separation:waiver:1",
+    "distractor:8",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-096",
+   "split": "test",
+   "text": "The delay of any train at its final stop may be at most 5 minutes. Maintain the periodic node structure at Coswig with a 60-minute cycle.",
+   "gold": [
+    "timing_window",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:pos:4",
+    "periodic_modulo_pesp:pos:5"
+   ]
+  },
+  {
+   "sid": "test-097",
+   "split": "test",
+   "text": "None of the current decisions has to be frozen. The freight train may not pass the regional train RE 50 between Coswig and Pirna.",
+   "gold": [
+    "precedence_ordering"
+   ],
+   "flipped": [
+    "precedence_ordering"
+   ],
+   "waived": [
+    "variable_bound_fix"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:flip:2",
+    "variable_bound_fix:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-098",
+   "split": "test",
+   "text": "None of the current decisions has to be frozen. Station Doebeln was opened in 1967. Outside it is 14 degrees and dry. The diverted path of train IC 2443 must not have gaps between track sections.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [
+    "variable_bound_fix"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "subtour_connectivity:flip:2",
+    "variable_bound_fix:waiver:2",
+    "distractor:1",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-099",
+   "split": "test",
+   "text": "The route via Pirna is closed, so that option is fixed to unused. A train cannot run on the diversion via Doebeln unless the diversion is opened.",
+   "gold": [
+    "coupling_linking_definition",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:flip:2",
+    "variable_bound_fix:pos:5"
+   ]
+  },
+  {
+   "sid": "test-100",
+   "split": "test",
+   "text": "Departure minutes must be identical in every period of the day. Assign every service on line S1 to one of the 5 available train sets. About 13,500 passengers use Bischofswerda on a typical weekday. Passengers who leave one train at Meissen must continue on another train or exit the station.",
+   "gold": [
+    "assignment_covering",
+    "flow_conservation",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "flow_conservation:pos:2",
+    "periodic_modulo_pesp:pos:4",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-101",
+   "split": "test",
+   "text": "Outside it is 10 degrees and dry. The timetable does not need to repeat every 60 minutes. Platform 1 is short and can take only one train at a time.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:4",
+    "periodic_modulo_pesp:waiver:2",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-102",
+   "split": "test",
+   "text": "The international train RE 3 must run on its planned route. Passengers arriving at Dresden-Neustadt must not vanish from the model; each one transfers or leaves the station.",
+   "gold": [
+    "flow_conservation",
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "flow_conservation"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:flip:2",
+    "variable_bound_fix:pos:2"
+   ]
+  },
+  {
+   "sid": "test-103",
+   "split": "test",
+   "text": "The depot at Dresden-Altstadt depot must not receive more than 2 units. Build the circulation so that each unit follows a single closed cycle through the network. Consecutive trains must never be less than one block section apart.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "capacity_resource",
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:flip:2",
+    "headway_separation:flip:2",
+    "subtour_connectivity:pos:3"
+   ]
+  },
+  {
+   "sid": "test-104",
+   "split": "test",
+   "text": "A train can only use the diversion via Meissen if the diversion is opened. The dispatcher on duty has 4 years of experience.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:3",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-105",
+   "split": "test",
+   "text": "Trains leaving Leipzig West depot must enter the main line in the order of their numbers. Train S 1 needs exactly one of its alternative routes through the Pirna interlocking. Keep the circulation balanced so that the 4 units end up where tomorrow's timetable expects them.",
+   "gold": [
+    "assignment_covering",
+    "flow_conservation",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "flow_conservation:pos:4",
+    "precedence_ordering:pos:4"
+   ]
+  },
+  {
+   "sid": "test-106",
+   "split": "test",
+   "text": "No train may be given more than one platform at Freiberg. Driver shifts have to return to Bischofswerda at the end.",
+   "gold": [
+    "assignment_covering",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:flip:1",
+    "subtour_connectivity:pos:4"
+   ]
+  },
+  {
+   "sid": "test-107",
+   "split": "test",
+   "text": "There is no limit on the number of drivers we can use. Rolling stock cannot appear out of nowhere: the units leaving Chemnitz depot equal those that arrived there plus the ones already parked.",
+   "gold": [
+    "flow_conservation"
+   ],
+   "flipped": [],
+   "waived": [
+    "capacity_resource"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:3",
+    "capacity_resource:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-108",
+   "split": "test",
+   "text": "No train may be given more than one platform at Coswig.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:flip:1"
+   ]
+  },
+  {
+   "sid": "test-109",
+   "split": "test",
+   "text": "Buffer times between consecutive trains are not required in this study. The depot at Chemnitz depot has space for 3 units only.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "headway_separation:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-110",
+   "split": "test",
+   "text": "After a train leaves platform 6, the next one may enter only 9 minutes later. The hourly cycle at Radebeul Ost has to be preserved in the new plan. Station Bischofswerda was opened in 1947. Build the circulation so that each unit follows a single closed cycle through the network. There is no need to link the cancellation of a train to its return trip. About 25,000 passengers use Coswig on a typical weekday.",
+   "gold": [
+    "headway_separation",
+    "periodic_modulo_pesp",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "headway_separation:pos:3",
+    "periodic_modulo_pesp:pos:2",
+    "subtour_connectivity:pos:3",
+    "coupling_linking_definition:waiver:2",
+    "distractor:1",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-111",
+   "split": "test",
+   "text": "Count a passenger connection as missed whenever the feeder train arrives too late for the transfer. Decide which of the two trains uses the junction at Freiberg first.",
+   "gold": [
+    "precedence_ordering",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:pos:2",
+    "coupling_linking_definition:pos:4"
+   ]
+  },
+  {
+   "sid": "test-112",
+   "split": "test",
+   "text": "The last timetable change took place in December 1931. The international train IC 2443 must run on its planned route. The track possession ends at 18:30, so work trains must be clear of the line by then. No more than 5 train sets may be in use during the peak hour.",
+   "gold": [
+    "capacity_resource",
+    "timing_window",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "timing_window:pos:3",
+    "variable_bound_fix:pos:2",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-113",
+   "split": "test",
+   "text": "The track possession ends at 09:45, so work trains must be clear of the line by then. A locomotive's trips have to link up into one unbroken chain.",
+   "gold": [
+    "timing_window",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:pos:3",
+    "subtour_connectivity:pos:5"
+   ]
+  },
+  {
+   "sid": "test-114",
+   "split": "test",
+   "text": "Do not let any train's delay exceed what is unavoidable: minimise the maximum delay. Platform 2 is short and can take only one train at a time. The timetable does not need to repeat every 120 minutes. After a train leaves platform 7, the next one may enter only 2 minutes later.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation",
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:4",
+    "headway_separation:pos:3",
+    "objective_defining:flip:1",
+    "periodic_modulo_pesp:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-115",
+   "split": "test",
+   "text": "The route via Grossenhain is closed, so that option is fixed to unused. The last timetable change took place in December 1858.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "variable_bound_fix:pos:5",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-116",
+   "split": "test",
+   "text": "Build the circulation so that each unit follows a single closed cycle through the network. The dispatcher on duty has 4 years of experience.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:3",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-117",
+   "split": "test",
+   "text": "Buffer times between consecutive trains are not required in this study. The route via Doebeln is closed, so that option is fixed to unused.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "variable_bound_fix:pos:5",
+    "headway_separation:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-118",
+   "split": "test",
+   "text": "Train RE 3 is to be cancelled; that decision is already taken. The rerouted path of train S 1 must be a connected sequence of track sections from Meissen to Pirna.",
+   "gold": [
+    "subtour_connectivity",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "subtour_connectivity:pos:2",
+    "variable_bound_fix:pos:3"
+   ]
+  },
+  {
+   "sid": "test-119",
+   "split": "test",
+   "text": "Train S 1 is formed of 11 coaches today. When the connection at Dresden-Neustadt is maintained, train S 1 must wait for train RB 71.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:2",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-120",
+   "split": "test",
+   "text": "The last timetable change took place in December 2006. No more than 6 train sets may be in use during the peak hour. The line from Coswig to Riesa is 108 km long.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "distractor:0",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-121",
+   "split": "test",
+   "text": "The timetable does not need to repeat every 60 minutes. The international train RE 50 must run on its planned route.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "variable_bound_fix:pos:2",
+    "periodic_modulo_pesp:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-122",
+   "split": "test",
+   "text": "About 12,500 passengers use Bischofswerda on a typical weekday. Train S 1 is formed of 9 coaches today. Consecutive trains must never be less than one block section apart.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "headway_separation:flip:2",
+    "distractor:6",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-123",
+   "split": "test",
+   "text": "Rolling stock cannot appear out of nowhere: the units leaving Dresden-Altstadt depot equal those that arrived there plus the ones already parked. Minimum spacing between trains can be ignored on the freight line. The track possession ends at 08:25, so work trains must be clear of the line by then. The rerouted path of train RB 31 must be a connected sequence of track sections from Pirna to Dresden-Neustadt.",
+   "gold": [
+    "flow_conservation",
+    "timing_window",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:3",
+    "timing_window:pos:3",
+    "subtour_connectivity:pos:2",
+    "headway_separation:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-124",
+   "split": "test",
+   "text": "Track how many carriages are in Bischofswerda over time; each arrival adds to the stock and each departure removes from it. The rerouted path of train S 1 must be a connected sequence of track sections from Radebeul Ost to Coswig. The dispatcher on duty has 6 years of experience.",
+   "gold": [
+    "flow_conservation",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "subtour_connectivity:pos:2",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-125",
+   "split": "test",
+   "text": "The line from Coswig to Meissen is 106 km long. The international train IC 2443 must run on its planned route.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "variable_bound_fix:pos:2",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-126",
+   "split": "test",
+   "text": "Respect the signalling distance between successive trains from Grossenhain to Meissen. Freeze the timetable of all trains that have already started their journey. The dispatcher on duty has 6 years of experience.",
+   "gold": [
+    "headway_separation",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:5",
+    "variable_bound_fix:pos:4",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-127",
+   "split": "test",
+   "text": "Following trains must be spaced by at least one free block section. There is no need to link the cancellation of a train to its return trip.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "headway_separation:pos:2",
+    "coupling_linking_definition:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-128",
+   "split": "test",
+   "text": "The incident was reported at 15:25 by the driver of train S 1. Decide which of the two trains uses the junction at Doebeln first. The size of the worst delay does not matter here.",
+   "gold": [
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [
+    "objective_defining"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "precedence_ordering:pos:2",
+    "objective_defining:waiver:1",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-129",
+   "split": "test",
+   "text": "Only 5 drivers are available for the replacement services. Penalise each minute that train RE 50 runs behind schedule at its final stop, with double weight for the express.",
+   "gold": [
+    "capacity_resource",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:3",
+    "objective_defining:pos:4"
+   ]
+  },
+  {
+   "sid": "test-130",
+   "split": "test",
+   "text": "The incident was reported at 06:25 by the driver of train RB 31. The line from Riesa to Grossenhain is 76 km long. Track how many carriages are in Freiberg over time; each arrival adds to the stock and each departure removes from it. Following trains must be spaced by at least one free block section.",
+   "gold": [
+    "flow_conservation",
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "headway_separation:pos:2",
+    "distractor:5",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-131",
+   "split": "test",
+   "text": "Outside it is 23 degrees and dry. The request was filed under ticket number 44614. The track possession ends at 11:50, so work trains must be clear of the line by then.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "timing_window:pos:3",
+    "distractor:3",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-132",
+   "split": "test",
+   "text": "The last timetable change took place in December 1995. A train can only use the diversion via Dresden-Neustadt if the diversion is opened.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:3",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-133",
+   "split": "test",
+   "text": "The track possession ends at 14:30, so work trains must be clear of the line by then. Outside it is 28 degrees and dry. The incident was reported at 21:10 by the driver of train IC 2045. Each departing train should be allocated to a single track in the yard at Dresden-Neustadt.",
+   "gold": [
+    "assignment_covering",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:5",
+    "timing_window:pos:3",
+    "distractor:5",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-134",
+   "split": "test",
+   "text": "Periodicity can be dropped for the rest of the day. No more than 2 train sets may be in use during the peak hour. The connecting bus leaves at 10:20; train IC 2443 has to reach Coswig before that.",
+   "gold": [
+    "capacity_resource",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "timing_window:pos:5",
+    "periodic_modulo_pesp:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-135",
+   "split": "test",
+   "text": "Station Grossenhain was opened in 1899. Keep the worst delay at Bischofswerda as small as possible.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "objective_defining:pos:3",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-136",
+   "split": "test",
+   "text": "Each departing train should be allocated to a single track in the yard at Pirna. The freight train should follow the regional train RE 50 into Bischofswerda, not the other way round.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:5",
+    "precedence_ordering:pos:3"
+   ]
+  },
+  {
+   "sid": "test-137",
+   "split": "test",
+   "text": "A train can only use the diversion via Pirna if the diversion is opened. The dispatcher on duty has 3 years of experience. After a train leaves platform 4, the next one may enter only 9 minutes later.",
+   "gold": [
+    "headway_separation",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:3",
+    "coupling_linking_definition:pos:3",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-138",
+   "split": "test",
+   "text": "Driver shifts have to return to Bischofswerda at the end.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "subtour_connectivity:pos:4"
+   ]
+  },
+  {
+   "sid": "test-139",
+   "split": "test",
+   "text": "Station Coswig was opened in 1979. A locomotive's trips have to link up into one unbroken chain. Two trains running in the same direction need a buffer of 4 minutes between them.",
+   "gold": [
+    "headway_separation",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:4",
+    "subtour_connectivity:pos:5",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-140",
+   "split": "test",
+   "text": "Assign every service on line S1 to one of the 6 available train sets. Early departures are acceptable today; trains need not wait for their scheduled time. The route via Grossenhain is closed, so that option is fixed to unused.",
+   "gold": [
+    "assignment_covering",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "timing_window"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "variable_bound_fix:pos:5",
+    "timing_window:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-141",
+   "split": "test",
+   "text": "All duties of the evening shift must be covered by a driver. Periodicity can be dropped for the rest of the day. A train cannot run on the diversion via Coswig unless the diversion is opened.",
+   "gold": [
+    "assignment_covering",
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "coupling_linking_definition"
+   ],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "coupling_linking_definition:flip:2",
+    "periodic_modulo_pesp:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-142",
+   "split": "test",
+   "text": "Freeze the timetable of all trains that have already started their journey. Train RB 31 is formed of 4 coaches today. Plan a cyclic timetable with a period of 30 minutes for the replacement service.",
+   "gold": [
+    "periodic_modulo_pesp",
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "periodic_modulo_pesp:pos:3",
+    "variable_bound_fix:pos:4",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-143",
+   "split": "test",
+   "text": "The depot at Chemnitz depot has space for 6 units only. About 28,000 passengers use Dresden-Neustadt on a typical weekday. The freight train may not enter the line before 09:00. Train RE 50 is formed of 11 coaches today. Respect the signalling distance between successive trains from Doebeln to Riesa.",
+   "gold": [
+    "capacity_resource",
+    "headway_separation",
+    "timing_window"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "headway_separation:pos:5",
+    "timing_window:flip:2",
+    "distractor:4",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-144",
+   "split": "test",
+   "text": "Trains must not run less than 3 minutes apart on the section to Doebeln.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "headway_separation:flip:1"
+   ]
+  },
+  {
+   "sid": "test-145",
+   "split": "test",
+   "text": "The goal is to minimise the number of trains arriving more than 6 minutes late.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "objective_defining:pos:2"
+   ]
+  },
+  {
+   "sid": "test-146",
+   "split": "test",
+   "text": "We do not care whether crews return to their home base. Station Coswig was opened in 1879. Keep the worst delay at Bischofswerda as small as possible.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "objective_defining:pos:3",
+    "subtour_connectivity:waiver:1",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-147",
+   "split": "test",
+   "text": "The dispatcher on duty has 6 years of experience. Following trains must be spaced by at least one free block section. Track how many carriages are in Radebeul Ost over time; each arrival adds to the stock and each departure removes from it. The request was filed under ticket number 48505. Keep the worst delay at Dresden-Neustadt as small as possible.",
+   "gold": [
+    "flow_conservation",
+    "headway_separation",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "headway_separation:pos:2",
+    "objective_defining:pos:3",
+    "distractor:2",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-148",
+   "split": "test",
+   "text": "The line from Pirna to Bischofswerda is 93 km long. A train can only use the diversion via Dresden-Neustadt if the diversion is opened.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:3",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-149",
+   "split": "test",
+   "text": "Train RB 71 is formed of 9 coaches today. There is no need to link the cancellation of a train to its return trip. Train IC 2443 must not arrive at Grossenhain later than 21:30.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:flip:1",
+    "coupling_linking_definition:waiver:2",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-150",
+   "split": "test",
+   "text": "Train RE 50 is formed of 3 coaches today. The line from Bischofswerda to Meissen is 90 km long. Penalise each minute that train RB 71 runs behind schedule at its final stop, with double weight for the express. Each departing train should be allocated to a single track in the yard at Bischofswerda.",
+   "gold": [
+    "assignment_covering",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:5",
+    "objective_defining:pos:4",
+    "distractor:6",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-151",
+   "split": "test",
+   "text": "The depot at Leipzig West depot has space for 3 units only. Passengers arriving at Radebeul Ost must not vanish from the model; each one transfers or leaves the station. The request was filed under ticket number 82793. The goal is to minimise the number of trains arriving more than 5 minutes late.",
+   "gold": [
+    "flow_conservation",
+    "capacity_resource",
+    "objective_defining"
+   ],
+   "flipped": [
+    "flow_conservation"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:flip:2",
+    "capacity_resource:pos:2",
+    "objective_defining:pos:2",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-152",
+   "split": "test",
+   "text": "Train RE 50 needs exactly one of its alternative routes through the Dresden-Neustadt interlocking.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:3"
+   ]
+  },
+  {
+   "sid": "test-153",
+   "split": "test",
+   "text": "Keep the worst delay at Pirna as small as possible. A crew duty must not break into disconnected pieces. Station Meissen was opened in 2014. Outside it is 16 degrees and dry.",
+   "gold": [
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "subtour_connectivity:flip:1",
+    "objective_defining:pos:3",
+    "distractor:3",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-154",
+   "split": "test",
+   "text": "Assign every service on line RE 18 to one of the 3 available train sets.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:4"
+   ]
+  },
+  {
+   "sid": "test-155",
+   "split": "test",
+   "text": "The last timetable change took place in December 1897. Freeze the timetable of all trains that have already started their journey. About 23,000 passengers use Dresden-Neustadt on a typical weekday. The train sequence on the line to Radebeul Ost can be ignored.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [
+    "precedence_ordering"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "variable_bound_fix:pos:4",
+    "precedence_ordering:waiver:2",
+    "distractor:8",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-156",
+   "split": "test",
+   "text": "Build the circulation so that each unit follows a single closed cycle through the network. About 9,000 passengers use Coswig on a typical weekday. Keep the worst delay at Freiberg as small as possible.",
+   "gold": [
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:3",
+    "objective_defining:pos:3",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-157",
+   "split": "test",
+   "text": "The incident was reported at 09:55 by the driver of train RB 31. Assign every service on line S1 to one of the 3 available train sets.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-158",
+   "split": "test",
+   "text": "Station Meissen was opened in 2014. No duty of the night shift may remain uncovered.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:flip:2",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-159",
+   "split": "test",
+   "text": "Keep the circulation balanced so that the 3 units end up where tomorrow's timetable expects them. Delays do not need to be penalised in this run. The incident was reported at 19:35 by the driver of train IC 2443. Train ICE 1537 should leave Doebeln within 10 minutes of its scheduled time.",
+   "gold": [
+    "flow_conservation",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [
+    "objective_defining"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:pos:4",
+    "timing_window:pos:2",
+    "objective_defining:waiver:2",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-160",
+   "split": "test",
+   "text": "The line from Grossenhain to Doebeln is 69 km long. The goal is to minimise the number of trains arriving more than 9 minutes late. Trains must not run less than 10 minutes apart on the section to Radebeul Ost. We do not care whether crews return to their home base. Assign every service on line S3 to one of the 4 available train sets.",
+   "gold": [
+    "assignment_covering",
+    "headway_separation",
+    "objective_defining"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:4",
+    "headway_separation:flip:1",
+    "objective_defining:pos:2",
+    "subtour_connectivity:waiver:1",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-161",
+   "split": "test",
+   "text": "Passengers who leave one train at Grossenhain must continue on another train or exit the station. No more than 6 train sets may be in use during the peak hour. The diverted path of train RE 50 must not have gaps between track sections.",
+   "gold": [
+    "flow_conservation",
+    "capacity_resource",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:2",
+    "capacity_resource:pos:5",
+    "subtour_connectivity:flip:2"
+   ]
+  },
+  {
+   "sid": "test-162",
+   "split": "test",
+   "text": "No decision has been taken yet for train IC 2443; all its options are still open. All duties of the evening shift must be covered by a driver.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [
+    "variable_bound_fix"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "variable_bound_fix:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-163",
+   "split": "test",
+   "text": "The international train RE 50 must run on its planned route.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "variable_bound_fix:pos:2"
+   ]
+  },
+  {
+   "sid": "test-164",
+   "split": "test",
+   "text": "No more than 4 train sets may be in use during the peak hour. Count a passenger connection as missed whenever the feeder train arrives too late for the transfer.",
+   "gold": [
+    "capacity_resource",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "coupling_linking_definition:pos:4"
+   ]
+  },
+  {
+   "sid": "test-165",
+   "split": "test",
+   "text": "Only 2 drivers are available for the replacement services.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:3"
+   ]
+  },
+  {
+   "sid": "test-166",
+   "split": "test",
+   "text": "The goal is to minimise the number of trains arriving more than 8 minutes late. The international train RE 3 must run on its planned route. The request was filed under ticket number 74444. All duties of the evening shift must be covered by a driver.",
+   "gold": [
+    "assignment_covering",
+    "variable_bound_fix",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "variable_bound_fix:pos:2",
+    "objective_defining:pos:2",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-167",
+   "split": "test",
+   "text": "Train RB 71 should leave Coswig within 8 minutes of its scheduled time. The line from Dresden-Neustadt to Bischofswerda is 47 km long. Which train goes first at the junction does not need to be decided here. Station Meissen was opened in 1945.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [
+    "precedence_ordering"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "timing_window:pos:2",
+    "precedence_ordering:waiver:1",
+    "distractor:1",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-168",
+   "split": "test",
+   "text": "About 22,000 passengers use Meissen on a typical weekday. A train can only use the diversion via Meissen if the diversion is opened.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:3",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-169",
+   "split": "test",
+   "text": "Passengers arriving at Dresden-Neustadt must not vanish from the model; each one transfers or leaves the station. Delays do not need to be penalised in this run. The connecting bus leaves at 08:10; train S 1 has to reach Bischofswerda before that. Train S 1 is formed of 3 coaches today.",
+   "gold": [
+    "flow_conservation",
+    "timing_window"
+   ],
+   "flipped": [
+    "flow_conservation"
+   ],
+   "waived": [
+    "objective_defining"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "flow_conservation:flip:2",
+    "timing_window:pos:5",
+    "objective_defining:waiver:2",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-170",
+   "split": "test",
+   "text": "Count a passenger connection as missed whenever the feeder train arrives too late for the transfer. Reduce the maximum passenger delay across all trains to a minimum. You do not have to decide which unit runs which trip. A locomotive's trips have to link up into one unbroken chain. The request was filed under ticket number 45462.",
+   "gold": [
+    "coupling_linking_definition",
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [
+    "assignment_covering"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "coupling_linking_definition:pos:4",
+    "subtour_connectivity:pos:5",
+    "objective_defining:pos:5",
+    "assignment_covering:waiver:1",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-171",
+   "split": "test",
+   "text": "The incident was reported at 12:25 by the driver of train RE 50. Respect the signalling distance between successive trains from Coswig to Freiberg. The train sequence on the line to Radebeul Ost can be ignored.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [
+    "precedence_ordering"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:5",
+    "precedence_ordering:waiver:2",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-172",
+   "split": "test",
+   "text": "Trains arriving more than 4 minutes late should not go unpenalised. The freight train should follow the regional train ICE 1537 into Radebeul Ost, not the other way round. You do not have to decide which unit runs which trip. No more than 6 train sets may be in use during the peak hour.",
+   "gold": [
+    "capacity_resource",
+    "precedence_ordering",
+    "objective_defining"
+   ],
+   "flipped": [
+    "objective_defining"
+   ],
+   "waived": [
+    "assignment_covering"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "precedence_ordering:pos:3",
+    "objective_defining:flip:2",
+    "assignment_covering:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-173",
+   "split": "test",
+   "text": "Outside it is -2 degrees and dry. Short-turning train RB 71 at Meissen means it also skips the stops beyond Meissen. Trains must not run less than 3 minutes apart on the section to Coswig.",
+   "gold": [
+    "headway_separation",
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:flip:1",
+    "coupling_linking_definition:pos:5",
+    "distractor:3"
+   ]
+  },
+  {
+   "sid": "test-174",
+   "split": "test",
+   "text": "Platforms need not be allocated; the station manager will handle that separately. The depot at Leipzig West depot has space for 5 units only.",
+   "gold": [
+    "capacity_resource"
+   ],
+   "flipped": [],
+   "waived": [
+    "assignment_covering"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "assignment_covering:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-175",
+   "split": "test",
+   "text": "There is no need to link the cancellation of a train to its return trip. Departure minutes must be identical in every period of the day. Track how many carriages are in Grossenhain over time; each arrival adds to the stock and each departure removes from it.",
+   "gold": [
+    "flow_conservation",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [],
+   "waived": [
+    "coupling_linking_definition"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "periodic_modulo_pesp:pos:4",
+    "coupling_linking_definition:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-176",
+   "split": "test",
+   "text": "The delay of any train at its final stop may be at most 7 minutes. The line from Freiberg to Pirna is 63 km long. No more than 6 train sets may be in use during the peak hour.",
+   "gold": [
+    "capacity_resource",
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:5",
+    "timing_window:pos:4",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-177",
+   "split": "test",
+   "text": "About 16,000 passengers use Meissen on a typical weekday. Buffer times between consecutive trains are not required in this study. Station Coswig was opened in 1975. When the connection at Meissen is maintained, train RE 3 must wait for train ICE 1537.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [
+    "headway_separation"
+   ],
+   "n_distractors": 2,
+   "template_ids": [
+    "coupling_linking_definition:pos:2",
+    "headway_separation:waiver:2",
+    "distractor:1",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-178",
+   "split": "test",
+   "text": "The line from Meissen to Freiberg is 44 km long. Respect the signalling distance between successive trains from Freiberg to Doebeln.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "headway_separation:pos:5",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-179",
+   "split": "test",
+   "text": "Train RB 71 must not arrive at Freiberg later than 13:20. The last timetable change took place in December 1873. Train RB 71 needs exactly one of its alternative routes through the Coswig interlocking. Maintain the periodic node structure at Coswig with a 60-minute cycle.",
+   "gold": [
+    "assignment_covering",
+    "timing_window",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:3",
+    "timing_window:flip:1",
+    "periodic_modulo_pesp:pos:5",
+    "distractor:8"
+   ]
+  },
+  {
+   "sid": "test-180",
+   "split": "test",
+   "text": "The sequence of trains through the single-track section may be changed if that reduces delay. Build the circulation so that each unit follows a single closed cycle through the network. The depot at Leipzig West depot has space for 5 units only.",
+   "gold": [
+    "capacity_resource",
+    "precedence_ordering",
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "capacity_resource:pos:2",
+    "precedence_ordering:pos:5",
+    "subtour_connectivity:pos:3"
+   ]
+  },
+  {
+   "sid": "test-181",
+   "split": "test",
+   "text": "The dispatcher on duty has 5 years of experience. Train S 1 is formed of 11 coaches today. The connecting bus leaves at 20:25; train RB 71 has to reach Riesa before that. Train RE 50 must not overtake train RB 31 before Coswig.",
+   "gold": [
+    "precedence_ordering",
+    "timing_window"
+   ],
+   "flipped": [
+    "precedence_ordering"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "precedence_ordering:flip:1",
+    "timing_window:pos:5",
+    "distractor:6",
+    "distractor:2"
+   ]
+  },
+  {
+   "sid": "test-182",
+   "split": "test",
+   "text": "You do not have to decide which unit runs which trip. The freight train should follow the regional train S 1 into Radebeul Ost, not the other way round. A crew duty must not break into disconnected pieces. Penalise each minute that train IC 2443 runs behind schedule at its final stop, with double weight for the express.",
+   "gold": [
+    "precedence_ordering",
+    "subtour_connectivity",
+    "objective_defining"
+   ],
+   "flipped": [
+    "subtour_connectivity"
+   ],
+   "waived": [
+    "assignment_covering"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "precedence_ordering:pos:3",
+    "subtour_connectivity:flip:1",
+    "objective_defining:pos:4",
+    "assignment_covering:waiver:1"
+   ]
+  },
+  {
+   "sid": "test-183",
+   "split": "test",
+   "text": "Short-turning train RB 31 at Doebeln means it also skips the stops beyond Doebeln. The request was filed under ticket number 90503. The last timetable change took place in December 1943.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "coupling_linking_definition:pos:5",
+    "distractor:8",
+    "distractor:7"
+   ]
+  },
+  {
+   "sid": "test-184",
+   "split": "test",
+   "text": "No more than 4 train sets may be in use during the peak hour. When the connection at Riesa is maintained, train IC 2045 must wait for train S 1. No train may be given more than one platform at Freiberg. Station Dresden-Neustadt was opened in 1982.",
+   "gold": [
+    "assignment_covering",
+    "capacity_resource",
+    "coupling_linking_definition"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:flip:1",
+    "capacity_resource:pos:5",
+    "coupling_linking_definition:pos:2",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-185",
+   "split": "test",
+   "text": "Consecutive trains must never be less than one block section apart.",
+   "gold": [
+    "headway_separation"
+   ],
+   "flipped": [
+    "headway_separation"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "headway_separation:flip:2"
+   ]
+  },
+  {
+   "sid": "test-186",
+   "split": "test",
+   "text": "Platform 6 is short and can take only one train at a time. It does not matter whether a unit's trips link up into a closed cycle. Decide which of the two trains uses the junction at Riesa first. Count a passenger connection as missed whenever the feeder train arrives too late for the transfer. The line from Meissen to Dresden-Neustadt is 45 km long.",
+   "gold": [
+    "capacity_resource",
+    "precedence_ordering",
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:pos:4",
+    "precedence_ordering:pos:2",
+    "coupling_linking_definition:pos:4",
+    "subtour_connectivity:waiver:2",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-187",
+   "split": "test",
+   "text": "A train can only use the diversion via Riesa if the diversion is opened.",
+   "gold": [
+    "coupling_linking_definition"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "coupling_linking_definition:pos:3"
+   ]
+  },
+  {
+   "sid": "test-188",
+   "split": "test",
+   "text": "All duties of the evening shift must be covered by a driver. The dispatcher on duty has 4 years of experience. Train RE 50 is formed of 8 coaches today.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "distractor:2",
+    "distractor:6"
+   ]
+  },
+  {
+   "sid": "test-189",
+   "split": "test",
+   "text": "The incident was reported at 16:00 by the driver of train RE 3. A locomotive's trips have to link up into one unbroken chain. Station Radebeul Ost was opened in 1895.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "subtour_connectivity:pos:5",
+    "distractor:5",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-190",
+   "split": "test",
+   "text": "No train may be given more than one platform at Pirna.",
+   "gold": [
+    "assignment_covering"
+   ],
+   "flipped": [
+    "assignment_covering"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:flip:1"
+   ]
+  },
+  {
+   "sid": "test-191",
+   "split": "test",
+   "text": "Penalise each minute that train IC 2045 runs behind schedule at its final stop, with double weight for the express.",
+   "gold": [
+    "objective_defining"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "objective_defining:pos:4"
+   ]
+  },
+  {
+   "sid": "test-192",
+   "split": "test",
+   "text": "Track how many carriages are in Doebeln over time; each arrival adds to the stock and each departure removes from it. It does not matter whether a unit's trips link up into a closed cycle.",
+   "gold": [
+    "flow_conservation"
+   ],
+   "flipped": [],
+   "waived": [
+    "subtour_connectivity"
+   ],
+   "n_distractors": 0,
+   "template_ids": [
+    "flow_conservation:pos:5",
+    "subtour_connectivity:waiver:2"
+   ]
+  },
+  {
+   "sid": "test-193",
+   "split": "test",
+   "text": "Train ICE 1537 must not overtake train IC 2045 before Radebeul Ost. Plan a cyclic timetable with a period of 60 minutes for the replacement service. No duty of the night shift may remain uncovered.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering",
+    "periodic_modulo_pesp"
+   ],
+   "flipped": [
+    "assignment_covering",
+    "precedence_ordering"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "assignment_covering:flip:2",
+    "precedence_ordering:flip:1",
+    "periodic_modulo_pesp:pos:3"
+   ]
+  },
+  {
+   "sid": "test-194",
+   "split": "test",
+   "text": "The rerouted path of train RB 71 must be a connected sequence of track sections from Radebeul Ost to Meissen. The freight train may not enter the line before 21:00.",
+   "gold": [
+    "timing_window",
+    "subtour_connectivity"
+   ],
+   "flipped": [
+    "timing_window"
+   ],
+   "waived": [],
+   "n_distractors": 0,
+   "template_ids": [
+    "timing_window:flip:2",
+    "subtour_connectivity:pos:2"
+   ]
+  },
+  {
+   "sid": "test-195",
+   "split": "test",
+   "text": "About 6,000 passengers use Dresden-Neustadt on a typical weekday. The delay of any train at its final stop may be at most 7 minutes.",
+   "gold": [
+    "timing_window"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "timing_window:pos:4",
+    "distractor:4"
+   ]
+  },
+  {
+   "sid": "test-196",
+   "split": "test",
+   "text": "Reduce the maximum passenger delay across all trains to a minimum. The depot at Leipzig West depot must not receive more than 5 units. The timetable does not need to repeat every 30 minutes. The line from Freiberg to Meissen is 127 km long.",
+   "gold": [
+    "capacity_resource",
+    "objective_defining"
+   ],
+   "flipped": [
+    "capacity_resource"
+   ],
+   "waived": [
+    "periodic_modulo_pesp"
+   ],
+   "n_distractors": 1,
+   "template_ids": [
+    "capacity_resource:flip:2",
+    "objective_defining:pos:5",
+    "periodic_modulo_pesp:waiver:2",
+    "distractor:0"
+   ]
+  },
+  {
+   "sid": "test-197",
+   "split": "test",
+   "text": "Train RB 31 must not be diverted from its planned route. The incident was reported at 12:25 by the driver of train RE 50. Train RB 71 is formed of 10 coaches today.",
+   "gold": [
+    "variable_bound_fix"
+   ],
+   "flipped": [
+    "variable_bound_fix"
+   ],
+   "waived": [],
+   "n_distractors": 2,
+   "template_ids": [
+    "variable_bound_fix:flip:1",
+    "distractor:6",
+    "distractor:5"
+   ]
+  },
+  {
+   "sid": "test-198",
+   "split": "test",
+   "text": "All duties of the evening shift must be covered by a driver. Station Pirna was opened in 1849. Decide which of the two trains uses the junction at Freiberg first.",
+   "gold": [
+    "assignment_covering",
+    "precedence_ordering"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "assignment_covering:pos:2",
+    "precedence_ordering:pos:2",
+    "distractor:1"
+   ]
+  },
+  {
+   "sid": "test-199",
+   "split": "test",
+   "text": "The rerouted path of train RE 3 must be a connected sequence of track sections from Dresden-Neustadt to Meissen. The last timetable change took place in December 1978.",
+   "gold": [
+    "subtour_connectivity"
+   ],
+   "flipped": [],
+   "waived": [],
+   "n_distractors": 1,
+   "template_ids": [
+    "subtour_connectivity:pos:2",
+    "distractor:8"
+   ]
+  }
+ ]
+}

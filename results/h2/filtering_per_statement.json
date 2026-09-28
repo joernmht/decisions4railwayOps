@@ -1,0 +1,4914 @@
+[
+ {
+  "stmt_id": "h2f-2026-000",
+  "split": "dev",
+  "sentences": 18,
+  "needed": 14,
+  "data": 10,
+  "trap": 4,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 14,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-001",
+  "split": "dev",
+  "sentences": 23,
+  "needed": 17,
+  "data": 13,
+  "trap": 5,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-002",
+  "split": "dev",
+  "sentences": 15,
+  "needed": 12,
+  "data": 8,
+  "trap": 3,
+  "trains": 2,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 12,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 12,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 12,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "regex": {
+    "kept": 11,
+    "dropped_needed": 4,
+    "kept_noise": 3
+   },
+   "keep-all": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-003",
+  "split": "dev",
+  "sentences": 23,
+  "needed": 17,
+  "data": 13,
+  "trap": 6,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-004",
+  "split": "dev",
+  "sentences": 24,
+  "needed": 17,
+  "data": 13,
+  "trap": 7,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 20,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-005",
+  "split": "dev",
+  "sentences": 20,
+  "needed": 14,
+  "data": 10,
+  "trap": 5,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 15,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-006",
+  "split": "dev",
+  "sentences": 23,
+  "needed": 17,
+  "data": 13,
+  "trap": 5,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-007",
+  "split": "dev",
+  "sentences": 18,
+  "needed": 13,
+  "data": 9,
+  "trap": 5,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 14,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-008",
+  "split": "dev",
+  "sentences": 24,
+  "needed": 13,
+  "data": 9,
+  "trap": 10,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 10
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 11
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-009",
+  "split": "dev",
+  "sentences": 21,
+  "needed": 14,
+  "data": 10,
+  "trap": 7,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-010",
+  "split": "dev",
+  "sentences": 21,
+  "needed": 17,
+  "data": 13,
+  "trap": 4,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-011",
+  "split": "dev",
+  "sentences": 21,
+  "needed": 15,
+  "data": 11,
+  "trap": 6,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-012",
+  "split": "dev",
+  "sentences": 23,
+  "needed": 17,
+  "data": 13,
+  "trap": 6,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-013",
+  "split": "dev",
+  "sentences": 20,
+  "needed": 16,
+  "data": 12,
+  "trap": 4,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "regex": {
+    "kept": 16,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-014",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 18,
+  "data": 14,
+  "trap": 4,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-015",
+  "split": "dev",
+  "sentences": 25,
+  "needed": 18,
+  "data": 14,
+  "trap": 6,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 20,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-016",
+  "split": "dev",
+  "sentences": 25,
+  "needed": 19,
+  "data": 15,
+  "trap": 5,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 20,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-017",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 19,
+  "data": 15,
+  "trap": 3,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 3
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-018",
+  "split": "dev",
+  "sentences": 25,
+  "needed": 18,
+  "data": 14,
+  "trap": 7,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 21,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-019",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 17,
+  "data": 13,
+  "trap": 4,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-020",
+  "split": "dev",
+  "sentences": 19,
+  "needed": 14,
+  "data": 10,
+  "trap": 4,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "embed": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 14,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-021",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 18,
+  "data": 14,
+  "trap": 3,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 3
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-022",
+  "split": "dev",
+  "sentences": 20,
+  "needed": 14,
+  "data": 10,
+  "trap": 5,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "deepseek": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 15,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-023",
+  "split": "dev",
+  "sentences": 23,
+  "needed": 15,
+  "data": 11,
+  "trap": 7,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 8
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-024",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 15,
+  "data": 11,
+  "trap": 7,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-025",
+  "split": "dev",
+  "sentences": 24,
+  "needed": 17,
+  "data": 13,
+  "trap": 7,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "deepseek": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   },
+   "regex": {
+    "kept": 20,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-026",
+  "split": "dev",
+  "sentences": 20,
+  "needed": 16,
+  "data": 12,
+  "trap": 4,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 16,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-027",
+  "split": "dev",
+  "sentences": 23,
+  "needed": 17,
+  "data": 13,
+  "trap": 5,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-028",
+  "split": "dev",
+  "sentences": 24,
+  "needed": 18,
+  "data": 14,
+  "trap": 4,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-029",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 15,
+  "data": 11,
+  "trap": 6,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-030",
+  "split": "dev",
+  "sentences": 25,
+  "needed": 14,
+  "data": 10,
+  "trap": 10,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 20,
+    "dropped_needed": 4,
+    "kept_noise": 10
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 11
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-031",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 17,
+  "data": 13,
+  "trap": 5,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-032",
+  "split": "dev",
+  "sentences": 25,
+  "needed": 18,
+  "data": 14,
+  "trap": 7,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 21,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-033",
+  "split": "dev",
+  "sentences": 25,
+  "needed": 14,
+  "data": 10,
+  "trap": 11,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 21,
+    "dropped_needed": 4,
+    "kept_noise": 11
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 11
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-034",
+  "split": "dev",
+  "sentences": 24,
+  "needed": 17,
+  "data": 13,
+  "trap": 6,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-035",
+  "split": "dev",
+  "sentences": 16,
+  "needed": 13,
+  "data": 9,
+  "trap": 3,
+  "trains": 2,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "regex": {
+    "kept": 12,
+    "dropped_needed": 4,
+    "kept_noise": 3
+   },
+   "keep-all": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-036",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 14,
+  "data": 10,
+  "trap": 8,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 8
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 8
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-037",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 17,
+  "data": 13,
+  "trap": 5,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-038",
+  "split": "dev",
+  "sentences": 20,
+  "needed": 16,
+  "data": 12,
+  "trap": 3,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 15,
+    "dropped_needed": 4,
+    "kept_noise": 3
+   },
+   "keep-all": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-039",
+  "split": "dev",
+  "sentences": 22,
+  "needed": 15,
+  "data": 11,
+  "trap": 6,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-040",
+  "split": "test",
+  "sentences": 23,
+  "needed": 18,
+  "data": 14,
+  "trap": 5,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 41,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 7.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1346,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 41.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1264,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 41.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1264,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1220,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 41.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1264,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 41,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 41.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1371,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 40.9999999999998,
+     "attempts": 1,
+     "prompt_tokens_first": 1289,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 40.9999999999998,
+     "attempts": 1,
+     "prompt_tokens_first": 1289,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 41.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1245,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 40.9999999999998,
+     "attempts": 1,
+     "prompt_tokens_first": 1289,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-041",
+  "split": "test",
+  "sentences": 25,
+  "needed": 16,
+  "data": 12,
+  "trap": 9,
+  "trains": 4,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 21,
+    "dropped_needed": 4,
+    "kept_noise": 9
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 9
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 53,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 52.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1311,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 126.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1161,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 126.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1161,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 126.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1161,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 8.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1175,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 53,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 52.999999999999986,
+     "attempts": 1,
+     "prompt_tokens_first": 1336,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 52.999999999999986,
+     "attempts": 1,
+     "prompt_tokens_first": 1186,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 52.999999999999986,
+     "attempts": 1,
+     "prompt_tokens_first": 1186,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 52.999999999999986,
+     "attempts": 1,
+     "prompt_tokens_first": 1186,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 52.999999999999986,
+     "attempts": 1,
+     "prompt_tokens_first": 1200,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-042",
+  "split": "test",
+  "sentences": 23,
+  "needed": 16,
+  "data": 12,
+  "trap": 7,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 27,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1222,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1094,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1116,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1094,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1116,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 27,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1247,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1119,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1141,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1119,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1141,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-043",
+  "split": "test",
+  "sentences": 25,
+  "needed": 17,
+  "data": 13,
+  "trap": 7,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 1,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 20,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 8
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 231,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 239.999999,
+     "attempts": 1,
+     "prompt_tokens_first": 1363,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 1,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 304.99999999999994,
+     "attempts": 1,
+     "prompt_tokens_first": 1176,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 220.9999999999992,
+     "attempts": 1,
+     "prompt_tokens_first": 1217,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 220.9999999999992,
+     "attempts": 1,
+     "prompt_tokens_first": 1217,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 220.9999999999992,
+     "attempts": 1,
+     "prompt_tokens_first": 1217,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 231,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 230.99999999999812,
+     "attempts": 1,
+     "prompt_tokens_first": 1388,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 1,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 150.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1201,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 230.99999999999812,
+     "attempts": 1,
+     "prompt_tokens_first": 1242,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 230.99999999999812,
+     "attempts": 1,
+     "prompt_tokens_first": 1242,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 230.99999999999812,
+     "attempts": 1,
+     "prompt_tokens_first": 1242,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-044",
+  "split": "test",
+  "sentences": 23,
+  "needed": 18,
+  "data": 14,
+  "trap": 4,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "deepseek": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 32.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1252,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 23.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1175,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 23.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1175,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 8.000000000000007,
+     "attempts": 1,
+     "prompt_tokens_first": 1147,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 23.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1175,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1277,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1200,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1200,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1172,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1200,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-045",
+  "split": "test",
+  "sentences": 15,
+  "needed": 12,
+  "data": 8,
+  "trap": 3,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 12,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 12,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 12,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "regex": {
+    "kept": 11,
+    "dropped_needed": 4,
+    "kept_noise": 3
+   },
+   "keep-all": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 17,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1078,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1024,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1024,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1024,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1024,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 17,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1103,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1049,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1049,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1049,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 17.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1049,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-046",
+  "split": "test",
+  "sentences": 20,
+  "needed": 17,
+  "data": 13,
+  "trap": 2,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "regex": {
+    "kept": 15,
+    "dropped_needed": 4,
+    "kept_noise": 2
+   },
+   "keep-all": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 77,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 103.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1269,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 107.00000000000125,
+     "attempts": 1,
+     "prompt_tokens_first": 1213,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 107.00000000000125,
+     "attempts": 1,
+     "prompt_tokens_first": 1213,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 107.00000000000125,
+     "attempts": 1,
+     "prompt_tokens_first": 1213,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 107.00000000000125,
+     "attempts": 1,
+     "prompt_tokens_first": 1213,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 77,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 77.00000000000004,
+     "attempts": 1,
+     "prompt_tokens_first": 1294,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 76.99999999999942,
+     "attempts": 1,
+     "prompt_tokens_first": 1238,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 76.99999999999942,
+     "attempts": 1,
+     "prompt_tokens_first": 1238,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 76.99999999999942,
+     "attempts": 1,
+     "prompt_tokens_first": 1238,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 76.99999999999942,
+     "attempts": 1,
+     "prompt_tokens_first": 1238,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-047",
+  "split": "test",
+  "sentences": 25,
+  "needed": 16,
+  "data": 12,
+  "trap": 9,
+  "trains": 4,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   },
+   "regex": {
+    "kept": 21,
+    "dropped_needed": 4,
+    "kept_noise": 9
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 9
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 69,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 10.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1370,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1215,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1215,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1189,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1215,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 69,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 68.99999999999999,
+     "attempts": 1,
+     "prompt_tokens_first": 1395,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 69.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1240,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 69.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1240,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 69.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1214,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 69.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1240,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-048",
+  "split": "test",
+  "sentences": 23,
+  "needed": 14,
+  "data": 10,
+  "trap": 7,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 9
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 47,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 46.99999999999936,
+     "attempts": 1,
+     "prompt_tokens_first": 1261,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 46.999999,
+     "attempts": 1,
+     "prompt_tokens_first": 1117,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 47.00000000000062,
+     "attempts": 1,
+     "prompt_tokens_first": 1146,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 61.00000000000374,
+     "attempts": 1,
+     "prompt_tokens_first": 1088,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 47.00000000000062,
+     "attempts": 1,
+     "prompt_tokens_first": 1146,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 47,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 47.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1286,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 47.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1142,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 47.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1171,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 47.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1113,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 47.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1171,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-049",
+  "split": "test",
+  "sentences": 18,
+  "needed": 12,
+  "data": 8,
+  "trap": 4,
+  "trains": 2,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "deepseek": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 12,
+    "dropped_needed": 4,
+    "kept_noise": 4
+   },
+   "keep-all": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 18,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 30.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1158,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1085,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1085,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1060,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1085,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 18,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 18.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1183,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1110,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1110,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1085,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 9.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1110,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-050",
+  "split": "test",
+  "sentences": 24,
+  "needed": 17,
+  "data": 13,
+  "trap": 6,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 6
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 7
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 25,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 31.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1293,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 31.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1204,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 31.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1204,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1179,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1179,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 25,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 31.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1318,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1229,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1229,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1204,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1204,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-051",
+  "split": "test",
+  "sentences": 24,
+  "needed": 14,
+  "data": 10,
+  "trap": 10,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   },
+   "regex": {
+    "kept": 20,
+    "dropped_needed": 4,
+    "kept_noise": 10
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 10
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 96,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 101.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1241,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 99.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1065,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 99.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1065,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 99.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1065,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 99.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1065,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 96,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 95.99999999999996,
+     "attempts": 1,
+     "prompt_tokens_first": 1266,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 95.99999999999996,
+     "attempts": 1,
+     "prompt_tokens_first": 1090,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 95.99999999999996,
+     "attempts": 1,
+     "prompt_tokens_first": 1090,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 95.99999999999996,
+     "attempts": 1,
+     "prompt_tokens_first": 1090,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 95.99999999999996,
+     "attempts": 1,
+     "prompt_tokens_first": 1090,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-052",
+  "split": "test",
+  "sentences": 21,
+  "needed": 13,
+  "data": 9,
+  "trap": 7,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 16,
+    "dropped_needed": 4,
+    "kept_noise": 7
+   },
+   "keep-all": {
+    "kept": 21,
+    "dropped_needed": 0,
+    "kept_noise": 8
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1165,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1029,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1029,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1029,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1029,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1190,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1054,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1054,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1054,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1054,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-053",
+  "split": "test",
+  "sentences": 22,
+  "needed": 13,
+  "data": 9,
+  "trap": 8,
+  "trains": 2,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 2
+   },
+   "embed": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 17,
+    "dropped_needed": 4,
+    "kept_noise": 8
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 9
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 11,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1247,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1075,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 4.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1135,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1075,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 4.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1135,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 11,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1272,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1100,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1160,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1100,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1160,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-054",
+  "split": "test",
+  "sentences": 25,
+  "needed": 17,
+  "data": 13,
+  "trap": 8,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 6
+   },
+   "regex": {
+    "kept": 21,
+    "dropped_needed": 4,
+    "kept_noise": 8
+   },
+   "keep-all": {
+    "kept": 25,
+    "dropped_needed": 0,
+    "kept_noise": 8
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 36,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 35.999999,
+     "attempts": 1,
+     "prompt_tokens_first": 1327,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 38.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1183,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 38.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1183,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 38.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1183,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 38.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1183,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 36,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 36.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1352,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 35.99999999999997,
+     "attempts": 1,
+     "prompt_tokens_first": 1208,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 35.99999999999997,
+     "attempts": 1,
+     "prompt_tokens_first": 1208,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 35.99999999999997,
+     "attempts": 1,
+     "prompt_tokens_first": 1208,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 35.99999999999997,
+     "attempts": 1,
+     "prompt_tokens_first": 1208,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-055",
+  "split": "test",
+  "sentences": 22,
+  "needed": 17,
+  "data": 13,
+  "trap": 5,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 18,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 22,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 28,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1322,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 28.000000000000004,
+     "attempts": 1,
+     "prompt_tokens_first": 1245,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 28.000000000000004,
+     "attempts": 1,
+     "prompt_tokens_first": 1245,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 23.99999999981175,
+     "attempts": 1,
+     "prompt_tokens_first": 1203,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 28.000000000000004,
+     "attempts": 1,
+     "prompt_tokens_first": 1245,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 28,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.999999999999964,
+     "attempts": 1,
+     "prompt_tokens_first": 1347,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.999999999999964,
+     "attempts": 1,
+     "prompt_tokens_first": 1270,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.999999999999964,
+     "attempts": 1,
+     "prompt_tokens_first": 1270,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 28.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1228,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 27.999999999999964,
+     "attempts": 1,
+     "prompt_tokens_first": 1270,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-056",
+  "split": "test",
+  "sentences": 20,
+  "needed": 15,
+  "data": 11,
+  "trap": 5,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 18,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 16,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 20,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 8.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1265,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 20.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1179,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 20.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1179,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1151,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 20.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1179,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.999999000000003,
+     "attempts": 1,
+     "prompt_tokens_first": 1290,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.999999000000003,
+     "attempts": 1,
+     "prompt_tokens_first": 1204,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.999999000000003,
+     "attempts": 1,
+     "prompt_tokens_first": 1204,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.999999000000003,
+     "attempts": 1,
+     "prompt_tokens_first": 1176,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 11.999999000000003,
+     "attempts": 1,
+     "prompt_tokens_first": 1204,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-057",
+  "split": "test",
+  "sentences": 19,
+  "needed": 14,
+  "data": 10,
+  "trap": 5,
+  "trains": 2,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 14,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 15,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 3
+   },
+   "regex": {
+    "kept": 15,
+    "dropped_needed": 4,
+    "kept_noise": 5
+   },
+   "keep-all": {
+    "kept": 19,
+    "dropped_needed": 0,
+    "kept_noise": 5
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 33,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1209,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 38.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1098,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1138,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 38.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1098,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1138,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 33,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1234,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1123,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1163,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1123,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1163,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-058",
+  "split": "test",
+  "sentences": 24,
+  "needed": 15,
+  "data": 11,
+  "trap": 8,
+  "trains": 3,
+  "sections": 2,
+  "filters": {
+   "jev": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "jev-bare": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "deepseek": {
+    "kept": 16,
+    "dropped_needed": 0,
+    "kept_noise": 1
+   },
+   "embed": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 8
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 8
+   },
+   "keep-all": {
+    "kept": 24,
+    "dropped_needed": 0,
+    "kept_noise": 9
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 16.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1291,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 16.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1135,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 16.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1135,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 10.999999999999998,
+     "attempts": 1,
+     "prompt_tokens_first": 1105,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 16.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1135,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 12,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.000000000000018,
+     "attempts": 1,
+     "prompt_tokens_first": 1316,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.000000000000018,
+     "attempts": 1,
+     "prompt_tokens_first": 1160,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.000000000000018,
+     "attempts": 1,
+     "prompt_tokens_first": 1160,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1130,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 12.000000000000018,
+     "attempts": 1,
+     "prompt_tokens_first": 1160,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ },
+ {
+  "stmt_id": "h2f-2026-059",
+  "split": "test",
+  "sentences": 23,
+  "needed": 13,
+  "data": 9,
+  "trap": 10,
+  "trains": 3,
+  "sections": 3,
+  "filters": {
+   "jev": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "jev-bare": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "deepseek": {
+    "kept": 13,
+    "dropped_needed": 0,
+    "kept_noise": 0
+   },
+   "embed": {
+    "kept": 17,
+    "dropped_needed": 0,
+    "kept_noise": 4
+   },
+   "regex": {
+    "kept": 19,
+    "dropped_needed": 4,
+    "kept_noise": 10
+   },
+   "keep-all": {
+    "kept": 23,
+    "dropped_needed": 0,
+    "kept_noise": 10
+   }
+  },
+  "downstream": {
+   "fast": {
+    "reference_objective": 33,
+    "full": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": false,
+     "objective": null,
+     "attempts": 3,
+     "prompt_tokens_first": 1255,
+     "problems": [
+      "solver status Infeasible",
+      "solver status Infeasible",
+      "solver status Infeasible"
+     ],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1094,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1094,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1094,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": false,
+     "correct_first": false,
+     "optimal": true,
+     "objective": 25.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1094,
+     "problems": [],
+     "error": null
+    }
+   },
+   "think": {
+    "reference_objective": 33,
+    "full": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1280,
+     "problems": [],
+     "error": null
+    },
+    "jev": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1119,
+     "problems": [],
+     "error": null
+    },
+    "jev@0.3": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1119,
+     "problems": [],
+     "error": null
+    },
+    "gold": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1119,
+     "problems": [],
+     "error": null
+    },
+    "deepseek": {
+     "dropped_needed": 0,
+     "correct": true,
+     "correct_first": true,
+     "optimal": true,
+     "objective": 33.0,
+     "attempts": 1,
+     "prompt_tokens_first": 1119,
+     "problems": [],
+     "error": null
+    }
+   }
+  }
+ }
+]

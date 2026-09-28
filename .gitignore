@@ -23,3 +23,11 @@ runs/scratch/
 .ruff_cache/
 dist/
 build/
+
+# H2a routing caches: their requests/answers carry class labels of the private literature
+# catalogue (kept locally for offline replay, not published until the catalogue owner decides)
+runs/cache/h2-routing-jev.jsonl
+runs/cache/h2-routing-deepseek.jsonl
+runs/cache/h2-routing-emb.jsonl
+# offline replay output of experiments/h2/run_filtering.py --offline (a check, not a result)
+results/h2/offline/
