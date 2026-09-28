@@ -95,6 +95,16 @@ def wilcoxon_signed_rank(diffs: list[float]) -> dict[str, float]:
     return {"n": n, "W+": w_plus, "p": p}
 
 
+def _bootstrap_ci(diffs: list[float], n_boot: int = 10_000, seed: int = 0) -> tuple[float, float]:
+    """Percentile bootstrap 95 % CI of the mean (deterministic)."""
+    import random
+
+    rng = random.Random(seed)
+    n = len(diffs)
+    means = sorted(sum(diffs[rng.randrange(n)] for _ in range(n)) / n for _ in range(n_boot))
+    return means[int(0.025 * n_boot)], means[int(0.975 * n_boot) - 1]
+
+
 def _bench(tag: str, out: Path) -> dict[str, Any]:
     d = RUNS / "bench" / tag
     if not d.exists():
@@ -124,6 +134,40 @@ def _bench(tag: str, out: Path) -> dict[str, Any]:
 
     cal = {k: calibration_bins([r for r in v if r["spread"] > 0]) for k, v in recs.items()}
     (out / "calibration.json").write_text(json.dumps(cal, indent=1), encoding="utf-8")
+
+    # paired bootstrap CIs of mean regret differences against reference engines
+    pl = [
+        f"# Paired regret differences — {tag}",
+        "",
+        "Mean regret(engine) − regret(reference) on common consequential cards; 95 % percentile bootstrap CI (10 000 resamples, seed 0). Negative = engine better.",
+        "",
+    ]
+    for ref in [k for k in ("jev", "dla-default", "deepseek-lp") if k in recs]:
+        rref = {r["card_id"]: r for r in recs[ref] if r["spread"] > 0}
+        pl += [
+            f"## vs {ref}",
+            "",
+            "| engine | n | Δ mean regret | 95 % CI | by scenario |",
+            "|---|---:|---:|---|---|",
+        ]
+        for k in order:
+            if k == ref:
+                continue
+            rk = {r["card_id"]: r for r in recs[k] if r["spread"] > 0}
+            common = sorted(set(rk) & set(rref))
+            if not common:
+                continue
+            diffs = [rk[c]["regret"] - rref[c]["regret"] for c in common]
+            lo, hi = _bootstrap_ci(diffs)
+            by_sc: dict[str, list[float]] = {}
+            for c in common:
+                by_sc.setdefault(rk[c]["scenario"], []).append(rk[c]["regret"] - rref[c]["regret"])
+            sc = ", ".join(f"{s_}: {statistics.fmean(v):+.2f}" for s_, v in sorted(by_sc.items()))
+            pl.append(
+                f"| {k} | {len(common)} | {statistics.fmean(diffs):+.2f} | [{lo:+.2f}, {hi:+.2f}] | {sc} |"
+            )
+        pl.append("")
+    (out / "bench_pairs.md").write_text("\n".join(pl), encoding="utf-8")
 
     gl = [f"# Confidence-gated escalation — {tag}", ""]
     fast_ids = [k for k in recs if k.startswith("jev")]
