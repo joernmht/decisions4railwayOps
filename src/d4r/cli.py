@@ -78,7 +78,8 @@ def cmd_contest(a: argparse.Namespace) -> None:
     load_secrets()
     engine = make_engine(a.engine, RUNS / "cache")
     out = RUNS / "contest" / a.tag / f"{a.scenario}-{a.engine}.jsonl"
-    rows = run_contest(PRESETS[a.scenario], _seeds(a.seeds), engine, out)
+    kwargs = {"tau_s": a.tau} if a.tau else {}
+    rows = run_contest(PRESETS[a.scenario], _seeds(a.seeds), engine, out, **kwargs)
     arr = [r["result"]["arrival_share"] for r in rows]
     print(
         json.dumps(
@@ -124,6 +125,9 @@ def main(argv: list[str] | None = None) -> None:
     c.add_argument("--seeds", required=True)
     c.add_argument("--engine", required=True)
     c.add_argument("--tag", required=True)
+    c.add_argument(
+        "--tau", type=float, default=0.0, help="latency-charged clock: real seconds per step"
+    )
     c.set_defaults(fn=cmd_contest)
 
     r = sub.add_parser("report", help="tables for a tag (bench + contest)")

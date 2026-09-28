@@ -157,3 +157,40 @@ def test_engines_keep_an_empty_file_backed_cache(tmp_path) -> None:
     assert len(c) == 0
     for eng in (JevEngine(cache=c), DeepSeekEngine(cache=c), DeepSeekLPEngine(cache=c)):
         assert eng.cache is c
+
+
+class _SlowDefault:
+    """Default engine that reports a fixed latency (for the latency-charged clock)."""
+
+    name = "slow-default"
+
+    def __init__(self, latency_ms: float, option: str | None = None) -> None:
+        self.latency_ms = latency_ms
+        self.option = option
+
+    def decide(self, cards, ctx=None):
+        from d4r.engines.base import Decision
+
+        return [
+            Decision(c.card_id, self.option or c.default_option, latency_ms=self.latency_ms)
+            for c in cards
+        ]
+
+
+def test_latency_clock_zero_latency_equals_paused_clock() -> None:
+    r0, _ = run_episode(PRESETS["B"], 4, DefaultEngine())
+    r1, _ = run_episode(PRESETS["B"], 4, _SlowDefault(0.0), tau_s=1.0)
+    assert r0.total_reward == r1.total_reward
+
+
+def test_latency_clock_charges_slow_decisions() -> None:
+    """A slow dispatcher makes trains wait at their signal (a pending hold) before acting."""
+    r0, recs = run_episode(PRESETS["B"], 4, DefaultEngine())
+    assert recs, "scenario B seed 4 has decision points"
+    ctl = Controller(PRESETS["B"], 4, _SlowDefault(30_000.0), tau_s=1.0)
+    pending = 0
+    while not ctl.done:
+        ctl.step()
+        pending = max(pending, sum(1 for h in ctl.holds.values() if h.kind == "pending"))
+    assert pending >= 1
+    assert ctl.result().total_reward != r0.total_reward

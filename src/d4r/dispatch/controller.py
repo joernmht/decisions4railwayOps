@@ -24,6 +24,7 @@ can fork the whole state; the rollout oracle uses that to label decisions by sim
 from __future__ import annotations
 
 import copy
+import math
 import time
 import warnings
 from collections import Counter
@@ -61,6 +62,7 @@ class Hold:
     until_step: int
     kind: str
     awaited: frozenset[int] = frozenset()
+    then: str | None = None  # for kind "pending": the option to apply once the decision arrives
 
 
 @dataclass
@@ -146,6 +148,7 @@ class Controller:
         max_depart_asks: int = 3,
         kinds: tuple[str, ...] = ("depart", "meet"),
         meet_trigger_cells: int = 15,
+        tau_s: float | None = None,
         env: Any = None,
     ) -> None:
         from d4r.sim._vendor.dla import DeadLockAvoidancePolicy
@@ -158,6 +161,8 @@ class Controller:
         self.max_depart_asks = max_depart_asks
         self.kinds = kinds
         self.meet_trigger_cells = meet_trigger_cells
+        #: Real seconds per simulation step for the latency-charged clock (None = paused clock).
+        self.tau_s = tau_s
         self.env = env if env is not None else make_env(scenario, seed)
         self.dla = DeadLockAvoidancePolicy()
         self.holds: dict[int, Hold] = {}
@@ -428,14 +433,22 @@ class Controller:
         assert self._acts is not None, "prepare() must be called before commit()"
         acts = self._acts
         now = self.step_no
+        desk_ms = 0.0  # one dispatcher desk: decisions of a step are handled one after another
         for point, dec in zip(self._points, decisions, strict=True):
             valid = dec.option_id in point.card.option_ids()
             applied = dec.option_id if valid else point.card.default_option
             fallback = (not valid) or dec.error is not None
-            if applied == "WAIT":
-                self.holds[point.handle] = Hold(now + self.depart_wait, "depart")
-            elif applied == "HOLD":
-                self.holds[point.handle] = Hold(now + self.meet_hold_cap, "meet", point.awaited)
+            delay_steps = 0
+            if self.tau_s is not None:
+                desk_ms += max(0.0, dec.latency_ms)
+                delay_steps = math.ceil(desk_ms / 1000.0 / self.tau_s)
+            if delay_steps > 0:
+                # the train waits at its signal until the dispatcher's decision arrives
+                self.holds[point.handle] = Hold(
+                    now + delay_steps, "pending", point.awaited, applied
+                )
+            else:
+                self._start_option(point.handle, applied, point.awaited, now)
             if record:
                 self.records.append(DecisionRecord(point.card, dec, applied, fallback))
 
@@ -449,6 +462,14 @@ class Controller:
                 release = not still or not self._hold_is_safe(h)
             if release:
                 del self.holds[h]
+                if hold.kind == "pending" and hold.then and a.state != TrainState.DONE:
+                    self._start_option(h, hold.then, hold.awaited, now)
+                    if h in self.holds:
+                        acts[h] = _as_int(
+                            RailEnvActions.STOP_MOVING
+                            if a.position is not None
+                            else RailEnvActions.DO_NOTHING
+                        )
                 continue
             acts[h] = _as_int(
                 RailEnvActions.STOP_MOVING if a.position is not None else RailEnvActions.DO_NOTHING
@@ -478,6 +499,13 @@ class Controller:
         self._acts = None
         self._points = []
         self.done = bool(dones["__all__"])
+
+    def _start_option(self, h: int, option: str, awaited: frozenset[int], now: int) -> None:
+        """Begin the hold an option implies (no-op for the proceeding options)."""
+        if option == "WAIT":
+            self.holds[h] = Hold(now + self.depart_wait, "depart")
+        elif option == "HOLD":
+            self.holds[h] = Hold(now + self.meet_hold_cap, "meet", awaited)
 
     def step(self) -> None:
         """prepare → decide → commit."""
