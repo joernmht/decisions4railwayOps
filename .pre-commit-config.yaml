@@ -1,0 +1,13 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.12
+    hooks:
+      - id: ruff
+      - id: ruff-format
+  - repo: local
+    hooks:
+      - id: check-secrets
+        name: secret scan (public repo)
+        entry: scripts/check_secrets.sh --staged
+        language: script
+        pass_filenames: false

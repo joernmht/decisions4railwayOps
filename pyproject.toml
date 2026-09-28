@@ -1,0 +1,72 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "decisions4railwayops"
+version = "0.1.0"
+description = "Typed decision models (TypeSafe AI's Jev) applied to railway operations: a Flatland dispatching contest and MILP-assistant routing experiments."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Jörn Maurischat" },
+    { name = "Nikola Bešinović" },
+]
+keywords = [
+    "railway", "dispatching", "rescheduling", "flatland", "typed decisions",
+    "LLM", "MILP", "calibration", "TypeSafe", "Jev",
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "flatland-rl>=4.2,<5",
+    "numpy>=1.24,<2",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0",
+    "typesafe-sdk>=0.7",
+    "openai>=1.40",
+    "pulp>=3.0",
+    "highspy>=1.7",
+]
+
+[project.optional-dependencies]
+milp = ["lp2graph>=0.3"]
+analysis = ["pandas>=2.0", "matplotlib>=3.7"]
+dev = ["pytest>=8.0", "ruff>=0.15.12,<0.16", "mypy>=1.8"]
+
+[project.urls]
+Repository = "https://github.com/joernmht/decisions4railwayOps"
+
+[project.scripts]
+d4r = "d4r.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/d4r"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["live: calls a paid external API (needs keys); excluded from CI"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src"]
+extend-exclude = ["src/d4r/sim/_vendor"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["E501", "B008", "RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["d4r"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true

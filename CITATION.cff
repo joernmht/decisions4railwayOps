@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "decisions4railwayOps: typed decision models for railway operations"
+type: software
+authors:
+  - family-names: Maurischat
+    given-names: Jörn
+    affiliation: "TU Dresden, Chair of Railway Operations"
+  - family-names: Bešinović
+    given-names: Nikola
+    affiliation: "TU Dresden, Chair of Railway Operations"
+repository-code: "https://github.com/joernmht/decisions4railwayOps"
+license: MIT
+keywords:
+  - railway operations
+  - train dispatching
+  - rescheduling
+  - typed decision models
+  - large language models
+  - Flatland
+  - MILP

@@ -15,3 +15,11 @@ venv/
 
 # local run output
 outputs/local/
+
+# scratch runs (official runs under runs/<experiment>/ are committed for reproducibility)
+runs/scratch/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
