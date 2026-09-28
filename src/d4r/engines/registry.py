@@ -18,6 +18,9 @@ __all__ = ["ENGINE_IDS", "PAID", "make_engine"]
 #: Engines that call a paid API.
 PAID = frozenset(
     {
+        "jev-cost",
+        "jev-gate-lp",
+        "jev-gate-think",
         "jev",
         "jev-raw",
         "deepseek-fast",
@@ -29,6 +32,12 @@ PAID = frozenset(
 )
 
 
+#: Bayes threshold c_FP/(c_FP+c_FN) from scenario-A game-set labels (19.6 / (19.6 + 54.5)).
+JEV_COST_THETA = 0.265
+#: Escalation threshold on Jev's p_top, fitted on scenario A (escalation capped at 50 %).
+JEV_GATE_THETA = 0.61
+
+
 def _cache(cache_dir: Path | None, name: str, salt: str) -> ResponseCache:
     if cache_dir is None:
         return ResponseCache(None)
@@ -38,6 +47,7 @@ def _cache(cache_dir: Path | None, name: str, salt: str) -> ResponseCache:
 
 def make_engine(engine_id: str, cache_dir: Path | None = None, salt: str = "") -> Engine:
     """Instantiate an engine by id (see ``ENGINE_IDS``)."""
+    from d4r.engines.composite import CostSensitiveEngine, GatedEngine
     from d4r.engines.jev import JevEngine
     from d4r.engines.llm import DeepSeekEngine
     from d4r.engines.milp import DeepSeekLPEngine, FixedMilpEngine
@@ -58,6 +68,20 @@ def make_engine(engine_id: str, cache_dir: Path | None = None, salt: str = "") -
         "deepseek-think": lambda: DeepSeekEngine(thinking=True, cache=c),
         "deepseek-lp": lambda: DeepSeekLPEngine(thinking=False, cache=c),
         "deepseek-lp-think": lambda: DeepSeekLPEngine(thinking=True, cache=c),
+        # pilot2 composites; thresholds fixed on scenario A (lab notebook, 2026-09-28)
+        "jev-cost": lambda: CostSensitiveEngine(
+            JevEngine(cache=_cache(cache_dir, "jev", salt)), theta=JEV_COST_THETA
+        ),
+        "jev-gate-lp": lambda: GatedEngine(
+            JevEngine(cache=_cache(cache_dir, "jev", salt)),
+            DeepSeekLPEngine(thinking=False, cache=_cache(cache_dir, "deepseek-lp", salt)),
+            theta=JEV_GATE_THETA,
+        ),
+        "jev-gate-think": lambda: GatedEngine(
+            JevEngine(cache=_cache(cache_dir, "jev", salt)),
+            DeepSeekEngine(thinking=True, cache=_cache(cache_dir, "deepseek-think", salt)),
+            theta=JEV_GATE_THETA,
+        ),
     }
     if engine_id not in factories:
         raise KeyError(f"unknown engine {engine_id!r}; known: {sorted(factories)}")
@@ -78,5 +102,8 @@ ENGINE_IDS = (
     "deepseek-think",
     "deepseek-lp",
     "deepseek-lp-think",
+    "jev-cost",
+    "jev-gate-lp",
+    "jev-gate-think",
     "oracle",
 )

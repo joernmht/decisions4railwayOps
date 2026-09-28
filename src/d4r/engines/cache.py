@@ -8,6 +8,7 @@ never credentials.
 
 from __future__ import annotations
 
+import fcntl
 import hashlib
 import json
 import threading
@@ -50,7 +51,13 @@ class ResponseCache:
             if self.path:
                 self.path.parent.mkdir(parents=True, exist_ok=True)
                 with self.path.open("a", encoding="utf-8") as f:
-                    f.write(line)
+                    # several experiment processes may append to the same cache file
+                    fcntl.flock(f, fcntl.LOCK_EX)
+                    try:
+                        f.write(line)
+                        f.flush()
+                    finally:
+                        fcntl.flock(f, fcntl.LOCK_UN)
 
     def __len__(self) -> int:
         return len(self._mem)
