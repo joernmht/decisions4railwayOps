@@ -1,0 +1,17 @@
+# secrets: never commit keys (this repo is public)
+.env
+.env.*
+!.env.example
+*.key
+secrets*
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# local run output
+outputs/local/
