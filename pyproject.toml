@@ -23,7 +23,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "flatland-rl>=4.2,<5",
+    "flatland-rl==4.2.6",  # the ECML 2026 version; 4.3 renamed EnvAgent.position
     "numpy>=1.24,<2",
     "pydantic>=2.0",
     "python-dotenv>=1.0",
