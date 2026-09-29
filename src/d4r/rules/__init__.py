@@ -22,6 +22,7 @@ __all__ = [
     "outranks",
     "priority_key",
     "rulebook",
+    "rulebook_markdown",
     "rules_text",
 ]
 
@@ -120,3 +121,104 @@ def rules_text() -> str:
         lines.append(f"- {c['paraphrase']}")
     lines.append(f"- {rb['semantics'][0]['paraphrase']}")
     return "\n".join(lines)
+
+
+def rulebook_markdown() -> str:
+    """Render the derived rulebook as Markdown (docs/research/ril420-derived-rules.md)."""
+    rb = rulebook()
+
+    def cite(c: dict[str, Any]) -> str:
+        parts = [f"Ril {c['module']}"]
+        for k in ("section", "paragraph", "item", "entry"):
+            if c.get(k):
+                parts.append(f"{k} {c[k]}")
+        return ", ".join(parts) + f" (valid from {c['valid_from']})"
+
+    src = rb["source"]
+    out = [
+        "# Dispatching rules derived from DB InfraGO Ril 420.02",
+        "",
+        "Generated from `src/d4r/rules/ril420.json` by `d4r.rules.rulebook_markdown()`; do not edit",
+        "by hand.",
+        "",
+        f"**Source.** {src['document']}, {src['edition']}. Cite as `{src['citation_key']}`.",
+        "",
+        f"**Status.** {src['note']} The regulation itself is not part of this repository.",
+        "",
+        "## Semantics",
+        "",
+    ]
+    out += [f"- **{s['id']}** {s['paraphrase']} — {cite(s['cite'])}" for s in rb["semantics"]]
+    out += [
+        "",
+        "## Objectives",
+        "",
+        "| id | regime | paraphrase | formal reading | source |",
+        "|---|---|---|---|---|",
+    ]
+    out += [
+        f"| {o['id']} | {o.get('regime', 'overall')} | {o['paraphrase']} | {o.get('formal', '')} | {cite(o['cite'])} |"
+        for o in rb["objectives"]
+    ]
+    out += [
+        "",
+        "## Priority rules (order of trains)",
+        "",
+        "| id | paraphrase | classes | modelled | source |",
+        "|---|---|---|---|---|",
+    ]
+    out += [
+        f"| {p['id']} | {p['paraphrase']} | {', '.join(p.get('classes', [])) or p.get('tie_break', '')} | {'yes' if p.get('modelled', True) else 'no: ' + p.get('why_not', '')} | {cite(p['cite'])} |"
+        for p in rb["priority_rules"]
+    ]
+    out += [
+        "",
+        "## Constraints and process rules",
+        "",
+        "| id | paraphrase | formal reading | source |",
+        "|---|---|---|---|",
+    ]
+    out += [
+        f"| {c['id']} | {c['paraphrase']} | {c.get('formal', 'not modelled')} | {cite(c['cite'])} |"
+        for c in rb["constraints"]
+    ]
+    out += [
+        "",
+        "## Parameters",
+        "",
+        "| id | name | value | paraphrase | source |",
+        "|---|---|---:|---|---|",
+    ]
+    out += [
+        f"| {k['id']} | `{k['name']}` | {k['value']} {k['unit']} | {k['paraphrase']} | {cite(k['cite'])} |"
+        for k in rb["parameters"]
+    ]
+    m = rb["measures"]
+    out += [
+        "",
+        "## Catalogue of dispatching measures",
+        "",
+        f"{m['paraphrase']} — {cite(m['cite'])}",
+        "",
+    ]
+    for group in ("general", "with_railway_undertaking", "freight"):
+        out.append(f"- *{group.replace('_', ' ')}*: " + "; ".join(m[group]))
+    out += ["", "Coverage in the Flatland contest:", ""]
+    out += [f"- {k.replace('_', ' ')}: {v}" for k, v in m["contest_coverage"].items()]
+    out += [
+        "",
+        "## How the lab uses these rules",
+        "",
+        "- `rule-ril420` applies P1–P6 to the decision card (hold/wait for an oncoming train that goes",
+        "  first; ignore a train broken down longer than the hold cap, the kind of justified exception",
+        "  that S1 admits). P4 is read as ranking 'Fast' freight above other *freight* only; against a",
+        "  regional passenger train both are equal-standing and P6 (speed) decides.",
+        "- `jev-ril`, `deepseek-*-ril` receive the paraphrased rules (`rules_text()`) with the card.",
+        "- The rollout oracle scores O0 (unweighted delay of all trains). Mixed-traffic game sets also",
+        "  score a priority-weighted delay (weights in `SERVICE_WEIGHT`, an assumption of this study,",
+        "  not part of Ril 420) to measure the price of rule adherence under both views.",
+        "- C4/C5 (dispatchers decide, signallers execute; no access to route setting) are the",
+        "  regulatory counterpart of the lab's interlocking/dispatcher split (ADR-0003).",
+        "",
+    ]
+    return "\n".join(out)
