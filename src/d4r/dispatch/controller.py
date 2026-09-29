@@ -459,7 +459,8 @@ class Controller:
             delay_steps = 0
             if self.tau_s is not None:
                 desk_ms += max(0.0, dec.latency_ms)
-                delay_steps = math.ceil(desk_ms / 1000.0 / self.tau_s)
+                # decisions ready within the current step cost nothing; each full step waits
+                delay_steps = math.floor(desk_ms / 1000.0 / self.tau_s)
             if delay_steps > 0:
                 # the train waits at its signal until the dispatcher's decision arrives
                 self.holds[point.handle] = Hold(

@@ -28,7 +28,7 @@ the identical decision card, at **lower latency and lower cost per decision**.
 Non-inferiority margin: 3 percentage points of arrival share (paired over seeds).
 
 **P2-H1b ("fast" in railway time).** With a latency-charged clock (a queried train waits
-`ceil(latency / τ)` steps before its decision takes effect) and a sweep of τ, there is a crossover
+`floor(latency / τ)` full steps before its decision takes effect) and a sweep of τ, there is a crossover
 τ* below which the fast typed model beats the slow arms (thinking LLM, LLM + LP execution) on
 outcomes even where the slow arms win on a paused clock.
 
@@ -110,6 +110,7 @@ fresh seeds 151–200; any fitted component (the learned baseline) uses seeds 51
 
 ## Change log
 
+- 2026-09-29 — P2-H1b clock refined before its first run: a decision costs floor(latency/τ) full steps (a decision ready within the step costs nothing), and one dispatcher desk handles the decisions of a step one after another.
 - 2026-09-29 — added P2-H9 (Ril 420 rules, scenario M) before any scenario-M engine run.
 
 - 2026-09-28 — v0.1 drafted from the research sweep (docs, literature, endpoints, Flatland census).

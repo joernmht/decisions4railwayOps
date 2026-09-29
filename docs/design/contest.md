@@ -74,7 +74,7 @@ UTC time (DeepSeek prices depend on peak hours). Jev is pinned to `jev-1.13.0`.
    `dla-default` (Wilcoxon signed-rank).
 
 **Clock.** Default is a paused clock (decision quality only). P2-H1b adds a latency-charged clock:
-a queried train waits `ceil(latency / τ)` steps before its decision takes effect, swept over τ.
+a queried train waits `floor(latency / τ)` full steps before its decision takes effect, swept over τ.
 
 ## 6. Scenarios
 
