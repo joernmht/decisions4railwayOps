@@ -118,6 +118,9 @@ class EpisodeResult:
     output_tokens: int = 0
     cost_usd: float = 0.0
     wall_s: float = 0.0
+    #: mixed traffic only: Flatland reward per service class and priority-weighted total
+    class_reward: dict[str, float] = field(default_factory=dict)
+    weighted_reward: float | None = None
 
     @property
     def arrival_share(self) -> float:
@@ -600,7 +603,21 @@ class Controller:
             output_tokens=sum(r.decision.output_tokens for r in self.records),
             cost_usd=round(sum(r.decision.cost_usd for r in self.records), 6),
             wall_s=round(wall_s, 2),
+            **self._class_outcomes(),
         )
+
+    def _class_outcomes(self) -> dict[str, Any]:
+        if not self.services:
+            return {}
+        from d4r.rules import SERVICE_WEIGHT
+
+        by: dict[str, float] = {}
+        for h, cls in self.services.items():
+            by[cls] = round(by.get(cls, 0.0) + self.agent_reward.get(h, 0.0), 3)
+        weighted = sum(
+            SERVICE_WEIGHT[c] * self.agent_reward.get(h, 0.0) for h, c in self.services.items()
+        )
+        return {"class_reward": dict(sorted(by.items())), "weighted_reward": round(weighted, 3)}
 
 
 def run_episode(

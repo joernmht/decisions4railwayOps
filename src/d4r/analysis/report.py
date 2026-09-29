@@ -222,6 +222,13 @@ def _contest(tag: str, out: Path) -> dict[str, Any]:
             ),
             "cost_usd_per_episode": statistics.fmean(eps[k]["cost_usd"] for k in keys),
         }
+        if all(eps[k].get("weighted_reward") is not None for k in keys):
+            s["weighted_reward"] = statistics.fmean(eps[k]["weighted_reward"] for k in keys)
+            classes = sorted({c for k in keys for c in eps[k].get("class_reward", {})})
+            s["class_reward"] = {
+                c: statistics.fmean(eps[k]["class_reward"].get(c, 0.0) for k in keys)
+                for c in classes
+            }
         common = [k for k in keys if k in base]
         if common and eng != "dla-default":
             diffs = [eps[k]["total_reward"] - base[k]["total_reward"] for k in common]
@@ -248,6 +255,23 @@ def _contest(tag: str, out: Path) -> dict[str, Any]:
             f" | {'/'.join(map(str, s.get('wins_ties_losses', ()))) or '–'} | {_fmt(w.get('p'), '{:.3f}')} | {s['deadlocked_trains']:.2f}"
             f" | {s['decisions']:.1f} | {s['fallbacks']} | {s['latency_s_per_episode']:.1f} | {s['cost_usd_per_episode']:.4f} |"
         )
+    if any("weighted_reward" in summ[k] for k in summ):
+        classes = sorted({c for k in summ for c in summ[k].get("class_reward", {})})
+        lines += [
+            "",
+            "## Mixed traffic: reward by service class (mean per episode) and priority-weighted reward",
+            "",
+        ]
+        lines.append("| engine | weighted reward | " + " | ".join(classes) + " |")
+        lines.append("|---|---:|" + "|".join("---:" for _ in classes) + "|")
+        for k in order:
+            if "weighted_reward" in summ[k]:
+                cr = summ[k]["class_reward"]
+                lines.append(
+                    f"| {k} | {summ[k]['weighted_reward']:.1f} | "
+                    + " | ".join(f"{cr.get(c, 0.0):.1f}" for c in classes)
+                    + " |"
+                )
     (out / "contest_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     (out / "contest_summary.json").write_text(
         json.dumps(summ, indent=1, default=float), encoding="utf-8"
