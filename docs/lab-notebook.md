@@ -3,6 +3,30 @@
 Dated observations, newest first. One entry per session of work: what was run, what was seen, what
 it means, what is next. Numbers come from committed run records under `runs/`.
 
+## 2026-09-29 (later) — P2-H9 bench on scenario M; test–retest (P2-H5)
+
+**M bench (112 consequential cards, 86 where the Ril rules decide; regret O0 / weighted / adherence).**
+deepseek-lp 6.1 / 11.2 / 0.50; deepseek-think 8.7 / 14.5 / 0.79; jev-gate-lp 13.1 / 24.7 / 0.87;
+jev-ril 13.2 / 24.8 / 0.92; rule-ril420 13.6 / 25.2 / 1.00; jev 13.7 / 25.2 / 0.85; deepseek-fast-ril
+13.9 / 25.5 / 0.94; dla-default 14.2 / 25.8 / 0.49; deepseek-fast 14.4 / 26.9 / 0.88;
+deepseek-think-ril 18.2 / 30.5 / 0.91; random 19.0; rule-slack 19.4; fixed-milp 27.2.
+
+- **P2-H9a supported:** rule guidance raises adherence for every model (Jev 0.85→0.92, DeepSeek fast
+  0.88→0.94, reasoning 0.79→0.91). Unguided Jev already follows the rules on 85 % of decisive cards.
+- **P2-H9c supported:** jev-ril (13.2) is not worse than the coded rules (13.6).
+- **P2-H9b:** on the bench the rules are slightly better than the default under both objectives;
+  the price of the rules shows in the closed loop (rule-ril420 arrival 0.788 vs DLA 0.81).
+- **Mixed speeds turn the table.** Where the right choice depends on running times, the computing arms
+  win by far (LLM-written MILP 6.1, reasoning 8.7 vs ~13–14 for every fast engine). The code-built
+  lateness MILP ignores speed and collapses (27.2). Rule guidance *hurts* the reasoning model
+  (8.7 → 18.2): it over-applies the rules.
+
+**Test–retest (60 stratified A/B/C cards).** Jev, 5 runs: 13 % of cards flip at least once, pairwise
+flip rate 6 %, SD of p(non-default) 0.016, but regret per run 6.2–10.4 because flips land on
+high-stakes cards. DeepSeek fast at temperature 0, 5 runs: 2 % / 1 %, regret 11.9 every run.
+DeepSeek reasoning, 3 runs: 40 % / 27 %, regret 7.4–12.7. **P2-H5 holds only against the reasoning
+model; a temperature-0 non-reasoning LLM is more repeatable than Jev.**
+
 ## 2026-09-29 — Ril 420 rulebook, scenario M, learned baseline; pilot2 wrap-up
 
 **Ril 420.** Joern supplied DB InfraGO's Ril 420.02 (INB 2026). The regulation stays private (not in

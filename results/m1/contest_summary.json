@@ -1,0 +1,291 @@
+{
+ "deepseek-fast-ril": {
+  "episodes": 23,
+  "arrival_share": 0.8173913043478261,
+  "normalized_reward": 0.9018739130434782,
+  "total_arrival_delay": 82.43478260869566,
+  "deadlocked_trains": 0.0,
+  "decisions": 7.608695652173913,
+  "fallbacks": 0,
+  "latency_s_per_episode": 6.399191304347826,
+  "cost_usd_per_episode": 0.0012446521739130434,
+  "weighted_reward": -363.9347826086956,
+  "class_reward": {
+   "freight_express": -20.043478260869566,
+   "freight_fast": -13.26086956521739,
+   "freight_other": -31.391304347826086,
+   "passenger_express": -58.43478260869565,
+   "passenger_other": -97.26086956521739
+  },
+  "reward_gain_vs_dla": -41.73913043478261,
+  "wins_ties_losses": [
+   0,
+   11,
+   12
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 12,
+   "W+": 0,
+   "p": 0.00048828125
+  }
+ },
+ "deepseek-fast": {
+  "episodes": 50,
+  "arrival_share": 0.8079999999999999,
+  "normalized_reward": 0.910488,
+  "total_arrival_delay": 56.44,
+  "deadlocked_trains": 0.0,
+  "decisions": 7.98,
+  "fallbacks": 0,
+  "latency_s_per_episode": 6.595858,
+  "cost_usd_per_episode": 0.0012453,
+  "weighted_reward": -335.93,
+  "class_reward": {
+   "freight_express": -20.08,
+   "freight_fast": -17.26,
+   "freight_other": -31.62,
+   "passenger_express": -55.92,
+   "passenger_other": -70.5
+  },
+  "reward_gain_vs_dla": -7.3,
+  "wins_ties_losses": [
+   4,
+   24,
+   22
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 26,
+   "W+": 83.0,
+   "p": 0.019459268644685165
+  }
+ },
+ "dla-default": {
+  "episodes": 50,
+  "arrival_share": 0.81,
+  "normalized_reward": 0.911918,
+  "total_arrival_delay": 57.22,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.12,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.0,
+  "cost_usd_per_episode": 0.0,
+  "weighted_reward": -307.64,
+  "class_reward": {
+   "freight_express": -17.38,
+   "freight_fast": -14.36,
+   "freight_other": -29.7,
+   "passenger_express": -47.5,
+   "passenger_other": -79.14
+  }
+ },
+ "fixed-milp": {
+  "episodes": 50,
+  "arrival_share": 0.8240000000000001,
+  "normalized_reward": 0.9143859999999999,
+  "total_arrival_delay": 60.42,
+  "deadlocked_trains": 0.0,
+  "decisions": 7.96,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.019208,
+  "cost_usd_per_episode": 0.0,
+  "weighted_reward": -312.99,
+  "class_reward": {
+   "freight_express": -19.2,
+   "freight_fast": -16.74,
+   "freight_other": -27.26,
+   "passenger_express": -51.18,
+   "passenger_other": -68.68
+  },
+  "reward_gain_vs_dla": 5.02,
+  "wins_ties_losses": [
+   7,
+   24,
+   19
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 26,
+   "W+": 128.0,
+   "p": 0.23259341089041344
+  }
+ },
+ "jev-ril": {
+  "episodes": 50,
+  "arrival_share": 0.7979999999999999,
+  "normalized_reward": 0.905814,
+  "total_arrival_delay": 57.28,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.18,
+  "fallbacks": 0,
+  "latency_s_per_episode": 1.9772640000000001,
+  "cost_usd_per_episode": 0.00045496,
+  "weighted_reward": -347.58,
+  "class_reward": {
+   "freight_express": -21.88,
+   "freight_fast": -17.84,
+   "freight_other": -33.56,
+   "passenger_express": -56.26,
+   "passenger_other": -74.72
+  },
+  "reward_gain_vs_dla": -16.18,
+  "wins_ties_losses": [
+   1,
+   20,
+   29
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 30,
+   "W+": 29.0,
+   "p": 2.9749833489755417e-05
+  }
+ },
+ "jev": {
+  "episodes": 50,
+  "arrival_share": 0.7879999999999999,
+  "normalized_reward": 0.902702,
+  "total_arrival_delay": 56.26,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.06,
+  "fallbacks": 0,
+  "latency_s_per_episode": 2.014288,
+  "cost_usd_per_episode": 0.00030562,
+  "weighted_reward": -353.98,
+  "class_reward": {
+   "freight_express": -21.78,
+   "freight_fast": -17.52,
+   "freight_other": -34.94,
+   "passenger_express": -56.28,
+   "passenger_other": -80.36
+  },
+  "reward_gain_vs_dla": -22.8,
+  "wins_ties_losses": [
+   0,
+   25,
+   25
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 25,
+   "W+": 0,
+   "p": 1.3070605478013073e-05
+  }
+ },
+ "oracle": {
+  "episodes": 50,
+  "arrival_share": 0.8340000000000001,
+  "normalized_reward": 0.920076,
+  "total_arrival_delay": 57.52,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.06,
+  "fallbacks": 0,
+  "latency_s_per_episode": 3.410476,
+  "cost_usd_per_episode": 0.0,
+  "weighted_reward": -286.55,
+  "class_reward": {
+   "freight_express": -17.04,
+   "freight_fast": -13.9,
+   "freight_other": -26.7,
+   "passenger_express": -45.28,
+   "passenger_other": -69.08
+  },
+  "reward_gain_vs_dla": 16.08,
+  "wins_ties_losses": [
+   10,
+   40,
+   0
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 10,
+   "W+": 55.0,
+   "p": 0.001953125
+  }
+ },
+ "random": {
+  "episodes": 50,
+  "arrival_share": 0.83,
+  "normalized_reward": 0.9143640000000001,
+  "total_arrival_delay": 62.86,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.38,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.0,
+  "cost_usd_per_episode": 0.0,
+  "weighted_reward": -304.62,
+  "class_reward": {
+   "freight_express": -17.78,
+   "freight_fast": -17.08,
+   "freight_other": -28.66,
+   "passenger_express": -47.8,
+   "passenger_other": -71.38
+  },
+  "reward_gain_vs_dla": 5.38,
+  "wins_ties_losses": [
+   7,
+   17,
+   26
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 33,
+   "W+": 163.0,
+   "p": 0.03656967712671148
+  }
+ },
+ "rule-ril420": {
+  "episodes": 50,
+  "arrival_share": 0.7879999999999999,
+  "normalized_reward": 0.903562,
+  "total_arrival_delay": 55.16,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.1,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.0,
+  "cost_usd_per_episode": 0.0,
+  "weighted_reward": -353.22,
+  "class_reward": {
+   "freight_express": -20.28,
+   "freight_fast": -16.8,
+   "freight_other": -34.52,
+   "passenger_express": -57.68,
+   "passenger_other": -79.9
+  },
+  "reward_gain_vs_dla": -21.1,
+  "wins_ties_losses": [
+   0,
+   31,
+   19
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 19,
+   "W+": 0,
+   "p": 0.00014302007339316098
+  }
+ },
+ "rule-slack": {
+  "episodes": 50,
+  "arrival_share": 0.8140000000000001,
+  "normalized_reward": 0.91147,
+  "total_arrival_delay": 57.66,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.4,
+  "fallbacks": 0,
+  "latency_s_per_episode": 0.0,
+  "cost_usd_per_episode": 0.0,
+  "weighted_reward": -317.89,
+  "class_reward": {
+   "freight_express": -19.0,
+   "freight_fast": -14.82,
+   "freight_other": -30.22,
+   "passenger_express": -51.3,
+   "passenger_other": -73.54
+  },
+  "reward_gain_vs_dla": -0.8,
+  "wins_ties_losses": [
+   3,
+   23,
+   24
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 27,
+   "W+": 70.0,
+   "p": 0.00441385778107854
+  }
+ }
+}
