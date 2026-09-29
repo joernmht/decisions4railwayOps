@@ -77,6 +77,30 @@ limited to closed candidate sets (≤ 255 options per Choice, ≤ 32k tokens of 
 failure better than the keyword-overlap gate. Jev stays a *filter*: deterministic structural
 validation (LP2Graph) remains the validator.
 
+## H9 — codified dispatching rules (mixed traffic, scenario M)
+
+Registered 2026-09-29, before any scenario-M engine run. Rules: the paraphrased, cited
+DB InfraGO Ril 420.0201 priority order (`src/d4r/rules/ril420.json`, P1–P6), applied to a
+mixed-traffic Flatland family in which trains carry service classes consistent with their speed.
+
+**P2-H9a (adherence).** On *decisive* cards (the rules order the train against an oncoming train),
+rule-guided engines (`jev-ril`, `deepseek-fast-ril`, `deepseek-think-ril`) choose the
+Ril-conformant option more often than their unguided counterparts, which see the service classes
+but not the rules.
+
+**P2-H9b (price of the rules).** Under the directive's overarching objective O0 (unweighted delay of
+all trains), the code rule engine `rule-ril420` has positive regret against the rollout oracle;
+under a priority-weighted delay (weights `SERVICE_WEIGHT`, our assumption) its regret is smaller
+relative to the other engines. I.e. the rules trade total delay for the delay of high-priority
+trains.
+
+**P2-H9c (judgement within rules).** The guided typed model (`jev-ril`) does not have higher O0
+regret than `rule-ril420`: rules that apply "in principle" leave room for justified exceptions,
+which a judgement model can use.
+
+Protocol: game set M seeds 1–50 (bench, consequential under either objective); closed loop on
+fresh seeds 151–200; any fitted component (the learned baseline) uses seeds 51–150 only.
+
 ## What is *not* claimed
 
 - No human baseline (that is Paper 3). All comparisons are machine vs machine, in simulation.
@@ -85,5 +109,7 @@ validation (LP2Graph) remains the validator.
   is the planned real-data follow-up.
 
 ## Change log
+
+- 2026-09-29 — added P2-H9 (Ril 420 rules, scenario M) before any scenario-M engine run.
 
 - 2026-09-28 — v0.1 drafted from the research sweep (docs, literature, endpoints, Flatland census).
