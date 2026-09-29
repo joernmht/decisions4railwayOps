@@ -21,6 +21,9 @@ PAID = frozenset(
         "jev-cost",
         "jev-gate-lp",
         "jev-gate-think",
+        "jev-ril",
+        "deepseek-fast-ril",
+        "deepseek-think-ril",
         "jev",
         "jev-raw",
         "deepseek-fast",
@@ -52,7 +55,8 @@ def make_engine(engine_id: str, cache_dir: Path | None = None, salt: str = "") -
     from d4r.engines.llm import DeepSeekEngine
     from d4r.engines.milp import DeepSeekLPEngine, FixedMilpEngine
     from d4r.engines.oracle import RolloutOracle
-    from d4r.engines.rules import SlackPriorityEngine
+    from d4r.engines.rules import RilPriorityEngine, SlackPriorityEngine
+    from d4r.rules import rules_text
 
     c = _cache(cache_dir, engine_id, salt)
     factories: dict[str, Callable[[], Engine]] = {
@@ -68,6 +72,11 @@ def make_engine(engine_id: str, cache_dir: Path | None = None, salt: str = "") -
         "deepseek-think": lambda: DeepSeekEngine(thinking=True, cache=c),
         "deepseek-lp": lambda: DeepSeekLPEngine(thinking=False, cache=c),
         "deepseek-lp-think": lambda: DeepSeekLPEngine(thinking=True, cache=c),
+        # Ril 420 rule study (mixed traffic, P2-H9)
+        "rule-ril420": RilPriorityEngine,
+        "jev-ril": lambda: JevEngine(cache=c, guidance=rules_text()),
+        "deepseek-fast-ril": lambda: DeepSeekEngine(thinking=False, cache=c, guidance=rules_text()),
+        "deepseek-think-ril": lambda: DeepSeekEngine(thinking=True, cache=c, guidance=rules_text()),
         # pilot2 composites; thresholds fixed on scenario A (lab notebook, 2026-09-28)
         "jev-cost": lambda: CostSensitiveEngine(
             JevEngine(cache=_cache(cache_dir, "jev", salt)), theta=JEV_COST_THETA
@@ -105,5 +114,9 @@ ENGINE_IDS = (
     "jev-cost",
     "jev-gate-lp",
     "jev-gate-think",
+    "rule-ril420",
+    "jev-ril",
+    "deepseek-fast-ril",
+    "deepseek-think-ril",
     "oracle",
 )

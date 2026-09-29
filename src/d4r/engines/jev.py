@@ -26,9 +26,9 @@ __all__ = ["JEV_PRICE_PER_INPUT_TOKEN", "JevEngine", "jev_question"]
 JEV_PRICE_PER_INPUT_TOKEN = 0.042e-6
 
 
-def jev_question(card: DecisionCard) -> dict[str, Any]:
+def jev_question(card: DecisionCard, guided: bool = False) -> dict[str, Any]:
     """The Choice question for a card, in the SDK's dict form."""
-    return {
+    q = {
         "type": "choice",
         "instructions": {
             "question": (
@@ -45,6 +45,12 @@ def jev_question(card: DecisionCard) -> dict[str, Any]:
         },
         "criteria": {o.id: o.description for o in card.options},
     }
+    if guided:
+        q["instructions"]["rules"] = (
+            "Apply `dispatching_rules`: where they decide which train goes first, follow them unless"
+            " a justified exception applies; where they do not decide, follow `objective`."
+        )
+    return q
 
 
 class JevEngine:
@@ -56,12 +62,16 @@ class JevEngine:
         variant: Literal["bucketed", "raw"] = "bucketed",
         cache: ResponseCache | None = None,
         timeout_s: float = 10.0,
+        guidance: str | None = None,
     ) -> None:
         self.model = model
+        self.guidance = guidance
         self.variant = variant
         self.cache = cache if cache is not None else ResponseCache(None)
         self.timeout_s = timeout_s
-        self.name = f"jev[{model}{'' if variant == 'bucketed' else ',raw'}]"
+        self.name = (
+            f"jev[{model}{'' if variant == 'bucketed' else ',raw'}{',guided' if guidance else ''}]"
+        )
         self._client: Any = None
 
     def _client_or_init(self) -> Any:
@@ -74,7 +84,9 @@ class JevEngine:
 
     def decide_one(self, card: DecisionCard) -> Decision:
         state = render_state(card, self.variant)
-        question = jev_question(card)
+        question = jev_question(card, guided=self.guidance is not None)
+        if self.guidance:
+            state = {**state, "dispatching_rules": self.guidance}
         key = request_key("jev", self.model, {"state": state, "q": question})
         hit = self.cache.get(key)
         if hit is None:

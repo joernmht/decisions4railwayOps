@@ -209,10 +209,12 @@ class DeepSeekEngine:
         variant: Literal["bucketed", "raw"] = "bucketed",
         cache: ResponseCache | None = None,
         chat: DeepSeekChat | None = None,
+        guidance: str | None = None,
     ) -> None:
         self.model = model
         self.thinking = thinking
         self.variant = variant
+        self.guidance = guidance
         self.cache = cache if cache is not None else ResponseCache(None)
         self.chat = chat if chat is not None else DeepSeekChat()
         mode = "think" if thinking else "fast"
@@ -228,7 +230,13 @@ class DeepSeekEngine:
             + opts
             + '\n\nReply with the JSON object {"choice": ..., "confidence": ...} only.'
         )
-        return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}]
+        system = SYSTEM_PROMPT
+        if self.guidance:
+            system += (
+                "\n\n" + self.guidance + "\nWhere these rules decide which train goes first, follow"
+                " them unless a justified exception applies; otherwise follow the objective."
+            )
+        return [{"role": "system", "content": system}, {"role": "user", "content": user}]
 
     def decide_one(self, card: DecisionCard) -> Decision:
         msgs = self.messages(card)

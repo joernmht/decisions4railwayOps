@@ -35,7 +35,7 @@ from typing import Any
 from d4r.dispatch.cards import DecisionCard, Option, OtherTrain, TrainFacts
 from d4r.engines.base import Decision, DefaultEngine, Engine
 from d4r.sim.deadlock import deadlocked
-from d4r.sim.scenario import Scenario, make_env
+from d4r.sim.scenario import Scenario, assign_services, make_env
 
 __all__ = ["Controller", "DecisionPoint", "DecisionRecord", "EpisodeResult", "run_episode"]
 
@@ -165,11 +165,15 @@ class Controller:
         self.tau_s = tau_s
         self.env = env if env is not None else make_env(scenario, seed)
         self.dla = DeadLockAvoidancePolicy()
+        #: Ril 420 service class per train (mixed-traffic scenarios only).
+        self.services: dict[int, str] = assign_services(self.env, seed) if scenario.mixed else {}
         self.holds: dict[int, Hold] = {}
         self.asked: set[tuple] = set()
         self.depart_asks: Counter[int] = Counter()
         self.records: list[DecisionRecord] = []
         self.total_reward = 0.0
+        #: cumulative Flatland reward per train (for class-weighted objectives)
+        self.agent_reward: dict[int, float] = {a.handle: 0.0 for a in self.env.agents}
         self.first_dead: dict[int, int] = {}
         self.malfunctions = 0
         self._was_malfunctioning: dict[int, bool] = {a.handle: False for a in self.env.agents}
@@ -198,9 +202,16 @@ class Controller:
             return 0
         return len(p) - 1 if a.position is not None else len(p)
 
+    def _speed(self, h: int) -> float:
+        return float(self.env.agents[h].speed_counter.max_speed)
+
     def _slack(self, h: int) -> int:
         a = self.env.agents[h]
-        return int(a.latest_arrival) - self.step_no - self._remaining(h)
+        running = self._remaining(h)
+        speed = self._speed(h)
+        if speed < 0.99:  # slower trains need more steps per cell (speed-1 scenarios unchanged)
+            running = math.ceil(running / speed)
+        return int(a.latest_arrival) - self.step_no - running
 
     def _repair(self, h: int) -> int:
         a = self.env.agents[h]
@@ -286,6 +297,8 @@ class Controller:
                     repair_steps_left=self._repair(o),
                     shared_track_cells=shared,
                     trains_queued_behind=self._queued_behind(o),
+                    service=self.services.get(o),
+                    travel_speed=round(self._speed(o), 3) if self.services else None,
                 )
             )
         return tuple(out)
@@ -298,6 +311,8 @@ class Controller:
             remaining_cells=self._remaining(h),
             trains_queued_behind=self._queued_behind(h),
             repair_steps_left=self._repair(h),
+            service=self.services.get(h),
+            travel_speed=round(self._speed(h), 3) if self.services else None,
         )
 
     # ------------------------------------------------------------------ detection
@@ -491,6 +506,8 @@ class Controller:
             warnings.simplefilter("ignore")
             _, rewards, dones, _ = self.env.step(acts)
         self.total_reward += float(sum(rewards.values()))
+        for h, r in rewards.items():
+            self.agent_reward[h] = self.agent_reward.get(h, 0.0) + float(r)
         for a in self.env.agents:
             m = bool(a.malfunction_handler.in_malfunction)
             if m and not self._was_malfunctioning.get(a.handle, False):
@@ -596,19 +613,25 @@ def run_episode(
     return ctl.result(time.perf_counter() - t0), ctl.records
 
 
-def option_values(
-    ctl: Controller, point: DecisionPoint, others: Mapping[str, str] | None = None
-) -> dict[str, float]:
-    """Rollout value of each option of ``point``: total reward from now to the end of the episode.
+def option_outcomes(
+    ctl: Controller,
+    point: DecisionPoint,
+    others: Mapping[str, str] | None = None,
+    weights: Mapping[int, float] | None = None,
+) -> dict[str, dict[str, float]]:
+    """Rollout outcome of each option of ``point`` from now to the end of the episode.
 
     Every other decision in this step takes its default option (or ``others[card_id]``), and the
     rest of the episode runs under the DLA default. Deterministic: Flatland breakdowns depend only
-    on the seeded environment RNG, which the clone copies.
+    on the seeded environment RNG, which the clone copies. Returns per option the total reward
+    (``total``) and, if ``weights`` (per train handle) are given, the weighted reward
+    (``weighted``).
     """
-    values: dict[str, float] = {}
+    out: dict[str, dict[str, float]] = {}
     for opt in point.card.option_ids():
         fork = ctl.snapshot()
         base = fork.total_reward
+        base_agent = dict(fork.agent_reward)
         decisions = []
         for p in ctl._points:
             if p.card.card_id == point.card.card_id:
@@ -620,5 +643,21 @@ def option_values(
         fork._acts = dict(ctl._acts or {})
         fork.commit(decisions, record=False)
         fork.run_to_end()
-        values[opt] = round(fork.total_reward - base, 3)
-    return values
+        res = {"total": round(fork.total_reward - base, 3)}
+        if weights is not None:
+            res["weighted"] = round(
+                sum(
+                    weights.get(h, 1.0) * (r - base_agent.get(h, 0.0))
+                    for h, r in fork.agent_reward.items()
+                ),
+                3,
+            )
+        out[opt] = res
+    return out
+
+
+def option_values(
+    ctl: Controller, point: DecisionPoint, others: Mapping[str, str] | None = None
+) -> dict[str, float]:
+    """Rollout value (total reward from now to the end) of each option; see :func:`option_outcomes`."""
+    return {o: v["total"] for o, v in option_outcomes(ctl, point, others).items()}

@@ -38,6 +38,8 @@ _BENCH_COLS = [
     ("latency_ms_p95", "p95 ms", "{:.0f}"),
     ("cost_usd_per_decision", "$/decision", "{:.6f}"),
     ("errors", "errors", "{:d}"),
+    ("ril_adherence", "Ril adh.", "{:.2f}"),
+    ("mean_regret_weighted", "w-regret", "{:.2f}"),
 ]
 
 

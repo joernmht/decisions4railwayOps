@@ -1,0 +1,168 @@
+{
+  "source": {
+    "document": "DB InfraGO AG, Richtlinie 420.02 Betriebsleitstellen - Zusammenarbeit mit Eisenbahnverkehrsunternehmen, part of the Infrastrukturnutzungsbedingungen (INB) 2026",
+    "edition": "INB 2026 (Bekanntgabe 14, valid from 14.12.2025; correction to 15.04.2026)",
+    "citation_key": "dbinfrago2026ril420",
+    "note": "Derived, paraphrased rules for research use. No text of the regulation is reproduced; every entry cites module, section, paragraph and item. Consult the original for binding wording."
+  },
+  "semantics": [
+    {
+      "id": "S1",
+      "cite": {"module": "42002 (preface)", "section": "1", "paragraph": "(5)", "valid_from": "2025-12-14"},
+      "paraphrase": "Where a rule applies 'in principle' (German: grundsaetzlich), it holds as a rule; exceptions are admissible, but a deviation in a justified individual case requires weighing the interests of the parties involved."
+    }
+  ],
+  "objectives": [
+    {
+      "id": "O0",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(2)", "valid_from": "2021-12-12"},
+      "paraphrase": "The overarching aim of running trains is maximal operational quality, so that overall punctuality of all trains is high.",
+      "formal": "minimise the total (unweighted) deviation of all trains from their timetable"
+    },
+    {
+      "id": "O1",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3) a)", "valid_from": "2021-12-12"},
+      "regime": "regular dispatching (the planned operating programme is feasible)",
+      "paraphrase": "Keep, or restore, the punctuality of all trains.",
+      "formal": "minimise total delay of all trains"
+    },
+    {
+      "id": "O2",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3) b)", "valid_from": "2021-12-12"},
+      "regime": "disturbed dispatching (the planned programme is not feasible, or only with restrictions)",
+      "paraphrase": "Use the capacity of lines and nodes as fully as possible and return to regular operation as quickly as possible.",
+      "formal": "maximise throughput (trains arrived) and minimise time until the disturbance is absorbed"
+    },
+    {
+      "id": "O3",
+      "cite": {"module": "420.0200", "section": "2", "paragraph": "(1), (4)", "valid_from": "2024-12-15"},
+      "paraphrase": "The timetable is the production target: all dispatching aims at keeping to, or returning to, the timetable; control centres watch operations continuously and act anticipatorily to reduce delays and to avoid their transfer to other trains.",
+      "formal": "minimise knock-on (secondary) delay"
+    }
+  ],
+  "priority_rules": [
+    {
+      "id": "P1", "rank": 1,
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3)", "item": "rule 1", "valid_from": "2021-12-12"},
+      "paraphrase": "Urgent relief trains (sent to clear the consequences of an incident or to restore restricted infrastructure) go before all other trains.",
+      "classes": ["urgent_relief"]
+    },
+    {
+      "id": "P2", "rank": 2,
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3)", "item": "rule 2", "valid_from": "2021-12-12"},
+      "paraphrase": "Long-distance passenger trains of very high priority (market segment 'Express') go before all other trains except urgent relief trains.",
+      "classes": ["passenger_express"]
+    },
+    {
+      "id": "P3", "rank": 3,
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3)", "item": "rule 3", "valid_from": "2021-12-12"},
+      "paraphrase": "Freight trains of very high priority (market segment 'Express') go before all other trains except urgent relief trains and very-high-priority long-distance passenger trains.",
+      "classes": ["freight_express"]
+    },
+    {
+      "id": "P4", "rank": 4,
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3)", "item": "rule 4", "valid_from": "2021-12-12"},
+      "paraphrase": "Freight trains of high priority (market segment 'Fast') go before other freight trains, except those of very high priority.",
+      "classes": ["freight_fast"],
+      "scope": "relative to freight trains only"
+    },
+    {
+      "id": "P5", "rank": 5,
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3)", "item": "rule 5", "valid_from": "2021-12-12"},
+      "paraphrase": "All trains not named in rules 1 to 4 are of equal standing among themselves.",
+      "classes": ["passenger_other", "freight_other"]
+    },
+    {
+      "id": "P6",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3)", "item": "rule 6 incl. note", "valid_from": "2021-12-12"},
+      "paraphrase": "Among trains of equal standing, the faster train goes first in principle, where speed means the travel speed: the average speed between locations at which the order of trains can be changed, including all planned running and dwell times. Different travel speeds cause headway conflicts and additional delay.",
+      "tie_break": "higher travel speed first"
+    },
+    {
+      "id": "P7",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3)", "item": "rule 7", "valid_from": "2021-12-12"},
+      "paraphrase": "On lines dedicated to particular services, trains providing those services go before other trains, except urgent relief trains.",
+      "modelled": false,
+      "why_not": "Flatland has no dedicated lines."
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3), after rule 7", "valid_from": "2021-12-12"},
+      "paraphrase": "A train running ahead of its schedule shall in principle not delay other trains.",
+      "formal": "if a train is early, the order must not add delay to any punctual or late train"
+    },
+    {
+      "id": "C2",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(3), final sentence", "valid_from": "2021-12-12"},
+      "paraphrase": "Deviations from the dispatching rules are decided by the network coordinator of the control centre.",
+      "formal": "governance: rule exceptions require an escalation to a designated decision maker"
+    },
+    {
+      "id": "C3",
+      "cite": {"module": "420.0201", "section": "1", "paragraph": "(4)", "valid_from": "2021-12-12"},
+      "paraphrase": "A train loses its claim to high or very high priority (rules 2 to 4) if it deviates from its planned train characteristics in a way that harms keeping its running times; it is then dispatched under rules 5 and 6.",
+      "formal": "priority rank depends on compliance with planned characteristics"
+    },
+    {
+      "id": "C4",
+      "cite": {"module": "420.0200", "section": "2", "paragraph": "(5)", "valid_from": "2024-12-15"},
+      "paraphrase": "Dispatchers of the control centre may instruct signallers within their functional competence but must not interfere with the signallers' safety-related duties.",
+      "formal": "separation of dispatching (decide order and timing) from interlocking/signalling (execute safely)"
+    },
+    {
+      "id": "C5",
+      "cite": {"module": "42002 glossary", "entry": "Zugdisponent", "valid_from": "2025-12-14"},
+      "paraphrase": "The train dispatcher works with computer-aided systems but has no access to route setting; the dispatcher's decisions are implemented by signallers.",
+      "formal": "the dispatching engine outputs decisions, never control actions"
+    },
+    {
+      "id": "C6",
+      "cite": {"module": "420.0200", "section": "1", "paragraph": "(2) and section 4 note", "valid_from": "2024-12-15"},
+      "paraphrase": "Control centres aim to agree measures with the railway undertakings, but in a conflict the infrastructure manager's control centres coordinate and decide (final decision).",
+      "formal": "final decision authority rests with the infrastructure manager"
+    },
+    {
+      "id": "C7",
+      "cite": {"module": "420.0212", "section": "2", "paragraph": "(1)-(2)", "valid_from": "2024-12-15"},
+      "paraphrase": "When infrastructure becomes unavailable during operation, the area dispatcher may propose the full or partial cancellation of a train; the railway undertaking decides.",
+      "formal": "cancellation is not a unilateral dispatching action"
+    },
+    {
+      "id": "C8",
+      "cite": {"module": "420.0211", "section": "1", "paragraph": "(1)-(3)", "valid_from": "2021-12-12"},
+      "paraphrase": "Operational rerouting is always caused by the network (not by customer wish); the area dispatcher arranges it after consulting the affected railway undertakings, checks that the diversion route is admissible for the train's characteristics, and the train keeps its number.",
+      "formal": "reroute options must be admissible for the train class"
+    },
+    {
+      "id": "C9",
+      "cite": {"module": "420.0209", "section": "1", "paragraph": "(1)-(3)", "valid_from": "2026-04-15"},
+      "paraphrase": "On short-notice infrastructure restrictions, dispatchers may hold back trains without passengers on operational tracks (main through tracks and other main tracks such as overtaking or crossing tracks), in agreement with the railway undertaking; held trains are distinguished into tailback trains (network-caused) and parked trains (other causes).",
+      "formal": "long holds on operational tracks apply to trains without passengers"
+    },
+    {
+      "id": "C10",
+      "cite": {"module": "420.0213", "section": "2", "paragraph": "(1)", "valid_from": "2022-12-11"},
+      "paraphrase": "If a passenger train runs in two parts on a double-track line, the second part uses the running and dwell times of the first; the original train should run first where possible.",
+      "modelled": false
+    }
+  ],
+  "parameters": [
+    {"id": "K1", "cite": {"module": "420.0200", "section": "3", "paragraph": "(2)", "valid_from": "2024-12-15"}, "name": "train_ready_notice_passenger_min", "value": 3, "unit": "min", "paraphrase": "A passenger train is normally reported ready at the latest 3 minutes before its scheduled departure."},
+    {"id": "K2", "cite": {"module": "420.0200", "section": "3", "paragraph": "(2)", "valid_from": "2024-12-15"}, "name": "train_ready_notice_freight_min", "value": 5, "unit": "min", "paraphrase": "A freight train is normally reported ready at the latest 5 minutes before its scheduled departure."},
+    {"id": "K3", "cite": {"module": "420.0214", "section": "1-2", "paragraph": "(1)", "valid_from": "2023-12-10"}, "name": "timetable_void_after_delay_h", "value": 20, "unit": "h", "paraphrase": "A train path's timetable in principle loses validity at a delay of 20 hours or more; such a train is held and needs a new timetable."},
+    {"id": "K4", "cite": {"module": "420.0214", "section": "1 and 3", "paragraph": "(1)-(2)", "valid_from": "2023-12-10"}, "name": "max_early_running_h", "value": 3, "unit": "h", "paraphrase": "A train is in principle not taken over, not allowed to depart, and held at the next suitable station if it would run more than 3 hours ahead of schedule."},
+    {"id": "K5", "cite": {"module": "420.0209", "section": "1", "paragraph": "(6)", "valid_from": "2026-04-15"}, "name": "max_clearing_of_operational_tracks_h", "value": 48, "unit": "h", "paraphrase": "Operational tracks used for unplanned parking must be cleared promptly, within at most 48 hours."},
+    {"id": "K6", "cite": {"module": "420.0213", "section": "1", "paragraph": "(1)", "valid_from": "2022-12-11"}, "name": "short_notice_replacement_train_h", "value": 1, "unit": "h", "paraphrase": "If a replacement train or second part is ordered one hour or less before departure because of a disturbance, the control centre (not the timetable department) inserts it."},
+    {"id": "K7", "cite": {"module": "420.0280", "section": "2", "paragraph": "(3)", "valid_from": "2022-12-11"}, "name": "relief_train_traction_status_min", "value": 15, "unit": "min", "paraphrase": "The network coordinator obtains the expected traction time of an urgent relief train at the latest 15 minutes after commissioning it."}
+  ],
+  "measures": {
+    "cite": {"module": "420.0200", "section": "4", "paragraph": "(1), (3), (8)", "valid_from": "2024-12-15"},
+    "paraphrase": "Catalogue of dispatching measures to be checked case by case.",
+    "general": ["relieve lines and nodes of reduced capacity by excluding or reducing train paths", "interrupt construction and maintenance works", "provide replacement traction and staff", "change vehicle and staff rosters", "join trains", "order additional traction and staff"],
+    "with_railway_undertaking": ["evacuation", "prepared relief measures", "cancel or run through coaches", "special connection waiting-time rules", "replacement connections, extra stops", "early termination and turning of trains", "coordination of replacement measures on line closures"],
+    "freight": ["offer trains between infrastructure managers outside the planned procedure", "hold back freight trains stating reason and expected duration", "park trains", "clear stations when trains are not removed on time", "large-scale rerouting"],
+    "contest_coverage": {"hold_back_or_wait": "meet: HOLD", "retime_release": "depart: WAIT", "reorder": "meet decisions choose who goes first", "reroute": "not yet", "cancel": "not modelled (railway undertaking decides, C7)"}
+  }
+}

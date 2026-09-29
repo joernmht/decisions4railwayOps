@@ -29,6 +29,7 @@ __all__ = [
     "bucket_remaining",
     "bucket_repair",
     "bucket_slack",
+    "bucket_speed",
     "render_state",
 ]
 
@@ -66,6 +67,15 @@ def bucket_remaining(cells: int) -> str:
     return "long (30 or more cells)"
 
 
+def bucket_speed(speed: float) -> str:
+    """Travel speed of a train (Flatland cells per step)."""
+    if speed >= 0.99:
+        return "fast (1 cell per step)"
+    if speed >= 0.49:
+        return "medium (1 cell per 2 steps)"
+    return "slow (1 cell per 3 steps)"
+
+
 def bucket_repair(steps: int) -> str:
     """Remaining breakdown duration."""
     if steps <= 0:
@@ -95,6 +105,9 @@ class TrainFacts(_Frozen):
     remaining_cells: int
     trains_queued_behind: int
     repair_steps_left: int = 0
+    #: Mixed traffic only (None elsewhere, and then not rendered): Ril 420 service class and speed.
+    service: str | None = None
+    travel_speed: float | None = None
 
 
 class OtherTrain(_Frozen):
@@ -109,6 +122,8 @@ class OtherTrain(_Frozen):
     repair_steps_left: int
     shared_track_cells: int
     trains_queued_behind: int
+    service: str | None = None
+    travel_speed: float | None = None
 
 
 class DecisionCard(_Frozen):
@@ -187,6 +202,12 @@ def render_state(card: DecisionCard, variant: Literal["bucketed", "raw"] = "buck
     }
     if t.repair_steps_left:
         state["train"]["breakdown"] = rep(t.repair_steps_left)
+    if t.service is not None:
+        from d4r.rules import SERVICE_LABELS
+
+        state["train"]["service"] = SERVICE_LABELS[t.service]
+        speed = t.travel_speed or 1.0
+        state["train"]["travel_speed"] = bucket_speed(speed) if bucketed else round(speed, 3)
     if card.others:
         state["oncoming_trains"] = [
             {
@@ -198,6 +219,7 @@ def render_state(card: DecisionCard, variant: Literal["bucketed", "raw"] = "buck
                 "breakdown": rep(o.repair_steps_left),
                 "shared_track_ahead": dist(o.shared_track_cells),
                 "trains_queued_behind_it": o.trains_queued_behind,
+                **_service_fields(o.service, o.travel_speed, bucketed),
             }
             for o in card.others
         ]
@@ -212,6 +234,19 @@ def render_state(card: DecisionCard, variant: Literal["bucketed", "raw"] = "buck
     if bucketed:
         state["time"].pop("now_step")
     return state
+
+
+def _service_fields(service: str | None, speed: float | None, bucketed: bool) -> dict:
+    """Service class and travel speed of an oncoming train (mixed traffic only)."""
+    if service is None:
+        return {}
+    from d4r.rules import SERVICE_LABELS
+
+    sp = speed or 1.0
+    return {
+        "service": SERVICE_LABELS[service],
+        "travel_speed": bucket_speed(sp) if bucketed else round(sp, 3),
+    }
 
 
 def _share_bucket(step: int, max_steps: int) -> str:

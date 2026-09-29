@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from d4r.dispatch.cards import DecisionCard
-from d4r.dispatch.controller import Controller, option_values
+from d4r.dispatch.controller import Controller, option_outcomes
 from d4r.engines.base import Decision
 from d4r.sim.scenario import Scenario
 
@@ -29,12 +29,21 @@ class _Labeller:
 
     def __init__(self) -> None:
         self.labels: dict[str, dict[str, float]] = {}
+        self.labels_weighted: dict[str, dict[str, float]] = {}
 
     def decide(self, cards: Sequence[DecisionCard], ctx: Any = None) -> list[Decision]:
         points = {p.card.card_id: p for p in ctx._points}
+        weights = None
+        if ctx.services:
+            from d4r.rules import SERVICE_WEIGHT
+
+            weights = {h: SERVICE_WEIGHT[s] for h, s in ctx.services.items()}
         out = []
         for c in cards:
-            self.labels[c.card_id] = option_values(ctx, points[c.card_id])
+            res = option_outcomes(ctx, points[c.card_id], weights=weights)
+            self.labels[c.card_id] = {o: v["total"] for o, v in res.items()}
+            if weights is not None:
+                self.labels_weighted[c.card_id] = {o: v["weighted"] for o, v in res.items()}
             out.append(Decision(c.card_id, c.default_option))
         return out
 
@@ -68,6 +77,11 @@ def build_gameset(
                     values=values,
                     best=best,
                     spread=round(best_v - min(values.values()), 3),
+                    **(
+                        {"values_weighted": lab.labels_weighted[rec.card.card_id]}
+                        if rec.card.card_id in lab.labels_weighted
+                        else {}
+                    ),
                     episode={
                         k: episode[k]
                         for k in ("arrival_share", "total_reward", "deadlocked_trains")

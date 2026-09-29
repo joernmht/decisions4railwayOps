@@ -118,6 +118,13 @@ def summarize(records: Sequence[Record], consequential_only: bool = True) -> dic
         "input_tokens_mean": statistics.fmean([r.get("input_tokens", 0) for r in rs]),
         "output_tokens_mean": statistics.fmean([r.get("output_tokens", 0) for r in rs]),
     }
+    dec = [r for r in rs if r.get("ril_decisive")]
+    if dec:
+        out["ril_decisive_n"] = len(dec)
+        out["ril_adherence"] = sum(r["option"] == r["ril_option"] for r in dec) / len(dec)
+    rw = [r["regret_weighted"] for r in records if r.get("spread_weighted", 0) > 0]
+    if rw:
+        out["mean_regret_weighted"] = statistics.fmean(rw)
     probs = [(r, _probs(r)) for r in rs]
     probs = [(r, p) for r, p in probs if p is not None]
     if probs:

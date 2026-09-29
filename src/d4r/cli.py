@@ -57,7 +57,12 @@ def cmd_bench(a: argparse.Namespace) -> None:
     load_secrets()
     cards = [lc for g in a.gameset for lc in load_gameset(Path(g))]
     if not a.all_cards:
-        cards = [lc for lc in cards if lc["spread"] > 0]
+
+        def consequential(lc: dict) -> bool:
+            vw = lc.get("values_weighted")
+            return lc["spread"] > 0 or bool(vw and max(vw.values()) > min(vw.values()))
+
+        cards = [lc for lc in cards if consequential(lc)]
     if a.limit:
         cards = cards[: a.limit]
     engine = make_engine(a.engine, RUNS / "cache", salt=a.salt)

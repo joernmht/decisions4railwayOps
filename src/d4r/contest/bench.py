@@ -47,7 +47,24 @@ def bench_record(lc: LabelledCard, d: Decision, engine: str) -> dict[str, Any]:
         "model": d.model,
         "error": d.error,
         "meta": {k: v for k, v in d.meta.items() if k != "cache_key"},
+        **_ril_fields(lc, d.option_id),
     }
+
+
+def _ril_fields(lc: LabelledCard, option: str) -> dict[str, Any]:
+    """Ril 420 adherence and priority-weighted regret (mixed-traffic cards only)."""
+    card = lc.card
+    if card.train.service is None:
+        return {}
+    from d4r.engines.rules import RilPriorityEngine
+
+    ril = RilPriorityEngine()
+    out: dict[str, Any] = {"ril_option": ril.choose(card), "ril_decisive": ril.decisive(card)}
+    vw = lc.get("values_weighted")
+    if vw:
+        out["regret_weighted"] = round(max(vw.values()) - vw.get(option, min(vw.values())), 3)
+        out["spread_weighted"] = round(max(vw.values()) - min(vw.values()), 3)
+    return out
 
 
 def run_bench(
