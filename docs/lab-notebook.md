@@ -3,6 +3,38 @@
 Dated observations, newest first. One entry per session of work: what was run, what was seen, what
 it means, what is next. Numbers come from committed run records under `runs/`.
 
+## 2026-09-29 — Ril 420 rulebook, scenario M, learned baseline; pilot2 wrap-up
+
+**Ril 420.** Joern supplied DB InfraGO's Ril 420.02 (INB 2026). The regulation stays private (not in
+this repository). We derived a paraphrased, cited rulebook (`src/d4r/rules/ril420.json`, rendered to
+`docs/research/ril420-derived-rules.md`): objectives O0–O3 (unweighted punctuality of all trains;
+capacity use and fast recovery in disturbed operation), the order of trains P1–P7 (urgent relief →
+Express passenger → Express freight → Fast freight over other freight → all others equal, faster
+first), constraints C1–C10 (early trains must not delay others; dispatchers decide, signallers
+execute, no access to route setting; cancellation decided by the railway undertaking; …) and
+parameters K1–K7. C4/C5 are the regulatory counterpart of our interlocking/dispatcher split.
+
+**Scenario M (mixed traffic).** Flatland speeds 1, 1/2, 1/3 with service classes consistent with the
+speed (Express passenger at 1; regional passenger, Express and Fast freight at 1/2; standard freight at
+1/3). Cards carry service class and travel speed (only here; A/B/C requests are byte-identical, cache
+verified). New engines: `rule-ril420` (P1–P6 on the card), `jev-ril` and `deepseek-{fast,think}-ril`
+(rules given as text). Smoke test (10 seeds): arrival share DLA 0.80, rule-ril420 0.83, rule-slack
+0.82, random 0.73. P2-H9 pre-registered before any engine run; bench on M seeds 1–50 (112
+consequential cards), closed loop on fresh seeds 151–200.
+
+**Learned baseline (information ceiling).** Spread-weighted logistic regression on 19 card features,
+trained on A/B/C seeds 51–200 (828 consequential cards, 21 % non-default best), tested on the 273
+benchmark cards of seeds 1–50: regret 17.5–18.5 depending on L2 (DLA default 17.4, Jev 15.0). A model
+fitted to the labels does not beat doing nothing; zero-shot Jev beats it. **The local decision card,
+not the engine, is the bottleneck**: which hold pays off depends on network dynamics beyond the card.
+
+**Pilot2 wrap-up.** deepseek-think closed loop (B seeds 51–100): arrival 0.768 vs DLA 0.766.
+Game sets A/B were cut short by a session end (A at seed 110, B at 137); trimmed to complete seeds
+and regenerated in detached processes.
+
+**Latency clock.** Refined before its first run: floor(latency/τ) full steps (see hypotheses change
+log). Sweep τ = 10, 3, 1 s per step on B seeds 51–70 started.
+
 ## 2026-09-28 (evening) — pilot1: game-set bench (A+B) and closed loop (B, 20 seeds)
 
 **Ran.** Game sets, 50 seeds each: A 211 cards (53 consequential), B 372 (117), C 360 (103).
