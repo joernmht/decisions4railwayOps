@@ -3,6 +3,31 @@
 Dated observations, newest first. One entry per session of work: what was run, what was seen, what
 it means, what is next. Numbers come from committed run records under `runs/`.
 
+## 2026-09-29 (night) — adversarial claim verification; robustness bench; fresh closed loop
+
+**Verification.** Three independent agents re-derived all 148 numeric/causal claims of the paper draft
+from `runs/`; 82 confirmed, 38 problems (wrong, unsupported or misleading) fixed in the paper
+(Overleaf 0b6b487) and in `docs/results-summary.md`. The important corrections:
+- no decision-level difference between the typed model and any engine is significant (heavy tails);
+- Jev is calibrated on average but not discriminative (AUROC of p_top 0.51 on A–C);
+- the confidence gate's B gain came from the uncached first run and did not reproduce;
+- the M "computing arms win on mixed speeds" result is not a speed effect and is carried by one
+  deadlock seed (M13; without it Jev 3.4 vs LLM→MILP 6.6);
+- the reasoning LLM already loses at τ = 10 s (p = 0.004); τ > 10 s not tested;
+- the DLA interlocking is not deadlock-free (10 game-set episodes, 9 closed-loop episodes);
+- registered P2-H1 is a closed-loop non-inferiority test: holds vs DeepSeek fast on B, not vs reasoning.
+
+**Robustness bench (828 consequential cards, seeds 51–200).** Reasoning 13.9, Jev 15.0, gate 15.2,
+fixed MILP 15.5, fast 15.8, default 17.2, random 17.2, LLM→MILP 17.2 (37 failures), slack 17.3.
+Jev − default −2.1 (CI −4.7 … +0.2).
+
+**Learned reference, redone.** Seed-grouped 5-fold CV on seeds 51–200 (regret objective) selects no
+regularization: benchmark regret 13.3 (lowest; n.s. vs Jev −1.7, CI −6.9 … +3.0). Earlier note
+("no better than the default") used an arbitrary L2 and is superseded.
+
+**Fresh closed loop (B seeds 201–250).** Oracle +19.4 (13/37/0, p < 0.001); learned +15.0 (8/31/11,
+p = 0.42); Jev +7.2 (4/38/8, p = 0.90).
+
 ## 2026-09-29 (evening) — M closed loop, latency sweep, paper results
 
 **M closed loop (fresh seeds 151–200, 13 engines).** Only the oracle improves reliably (+16.1,
