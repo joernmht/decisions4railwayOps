@@ -7,6 +7,7 @@ calls for the test-retest experiment (P2-H5) from the main cache.
 
 from __future__ import annotations
 
+import json
 from collections.abc import Callable
 from pathlib import Path
 
@@ -52,6 +53,7 @@ def make_engine(engine_id: str, cache_dir: Path | None = None, salt: str = "") -
     """Instantiate an engine by id (see ``ENGINE_IDS``)."""
     from d4r.engines.composite import CostSensitiveEngine, GatedEngine
     from d4r.engines.jev import JevEngine
+    from d4r.engines.learned import LearnedEngine
     from d4r.engines.llm import DeepSeekEngine
     from d4r.engines.milp import DeepSeekLPEngine, FixedMilpEngine
     from d4r.engines.oracle import RolloutOracle
@@ -72,6 +74,10 @@ def make_engine(engine_id: str, cache_dir: Path | None = None, salt: str = "") -
         "deepseek-think": lambda: DeepSeekEngine(thinking=True, cache=c),
         "deepseek-lp": lambda: DeepSeekLPEngine(thinking=False, cache=c),
         "deepseek-lp-think": lambda: DeepSeekLPEngine(thinking=True, cache=c),
+        # learned reference (seed-grouped CV on A-C seeds 51-200; results/learned/abc_cv.json)
+        "learned-lr": lambda: LearnedEngine(
+            json.loads(Path("results/learned/abc_cv.json").read_text(encoding="utf-8"))["weights"]
+        ),
         # Ril 420 rule study (mixed traffic, P2-H9)
         "rule-ril420": RilPriorityEngine,
         "jev-ril": lambda: JevEngine(cache=c, guidance=rules_text()),
@@ -114,6 +120,7 @@ ENGINE_IDS = (
     "jev-cost",
     "jev-gate-lp",
     "jev-gate-think",
+    "learned-lr",
     "rule-ril420",
     "jev-ril",
     "deepseek-fast-ril",

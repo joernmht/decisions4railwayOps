@@ -38,6 +38,7 @@ DISPLAY: dict[str, str] = {
     "dla-default": "Interlocking only (default)",
     "random": "Random",
     "oracle": "Rollout oracle",
+    "learned-lr": "Learned (logistic regression)",
 }
 
 
@@ -56,11 +57,20 @@ def _order(summ: dict[str, dict[str, Any]], key: str) -> list[str]:
     return sorted(summ, key=lambda k: summ[k].get(key, 1e9))
 
 
-def bench_table(tag: str, engines: Sequence[str] | None = None) -> str:
-    """Decision-level table: regret overall and per scenario, agreement, calibration, latency, cost."""
+def _graded(records: Sequence[dict[str, Any]]) -> bool:
+    """Does the engine return graded (not one-hot) option probabilities?"""
+    return any(r.get("probabilities") and max(r["probabilities"].values()) < 0.999 for r in records)
+
+
+def bench_table(
+    tag: str, engines: Sequence[str] | None = None, robust_tag: str | None = None
+) -> str:
+    """Decision-level table: regret overall and per family, robustness set, agreement,
+    calibration (graded engines only), latency, cost."""
     recs = _load_bench(tag)
     if engines:
         recs = {k: v for k, v in recs.items() if k in engines}
+    robust = _load_bench(robust_tag) if robust_tag else {}
     summ = {k: summarize(v) for k, v in recs.items()}
     scen = sorted({r["scenario"] for v in recs.values() for r in v})
     rows = []
@@ -70,27 +80,27 @@ def bench_table(tag: str, engines: Sequence[str] | None = None) -> str:
         for sc in scen:
             rr = [r["regret"] for r in recs[k] if r["scenario"] == sc and r["spread"] > 0]
             per.append(_f(statistics.fmean(rr) if rr else None, "{:.1f}"))
-        rows.append(
-            " & ".join(
-                [
-                    DISPLAY.get(k, k),
-                    _f(s["mean_regret"], "{:.1f}"),
-                    *per,
-                    _f(s["hit_rate"], "{:.2f}"),
-                    _f(s["share_nondefault"], "{:.2f}"),
-                    _f(s.get("ece"), "{:.2f}"),
-                    _f(s["latency_ms_p50"] / 1000 if s["latency_ms_p50"] else 0.0, "{:.2f}"),
-                    _f(s["cost_usd_per_decision"] * 1000, "{:.3f}"),
-                ]
-            )
-            + r" \\"
-        )
+        rob = summarize(robust[k])["mean_regret"] if k in robust else None
+        graded = _graded(recs[k])
+        cells = [DISPLAY.get(k, k), _f(s["mean_regret"], "{:.1f}"), *per]
+        if robust_tag:
+            cells.append(_f(rob, "{:.1f}"))
+        cells += [
+            _f(s["hit_rate"], "{:.2f}"),
+            _f(s["share_nondefault"], "{:.2f}"),
+            _f(s.get("ece") if graded else None, "{:.2f}"),
+            _f(s.get("auroc_ptop_hit") if graded else None, "{:.2f}"),
+            _f(s["latency_ms_p50"] / 1000 if s["latency_ms_p50"] else 0.0, "{:.2f}"),
+            _f(s["cost_usd_per_decision"] * 1000, "{:.3f}"),
+        ]
+        rows.append(" & ".join(cells) + r" \\")
     head = (
         "Engine & Regret & "
         + " & ".join(f"{sc}" for sc in scen)
-        + r" & Agree & Hold & ECE & p50 [s] & \$/1k \\"
+        + (" & Seeds 51--200" if robust_tag else "")
+        + r" & Agree & Hold & ECE & AUROC & p50 [s] & \$/1k \\"
     )
-    cols = "l" + "r" * (7 + len(scen))
+    cols = "l" + "r" * (8 + len(scen) + (1 if robust_tag else 0))
     return "\n".join(
         [
             rf"\begin{{tabular}}{{{cols}}}",
@@ -254,6 +264,7 @@ def write_paper_tables(out: Path) -> list[str]:
         "tab_bench_abc.tex": lambda: bench_table(
             "pilot2",
             [
+                "learned-lr",
                 "jev",
                 "jev-gate-lp",
                 "fixed-milp",
@@ -267,8 +278,10 @@ def write_paper_tables(out: Path) -> list[str]:
                 "rule-slack",
                 "random",
             ],
+            robust_tag="big",
         ),
         "tab_contest_b.tex": lambda: contest_table("pilot2", "B"),
+        "tab_contest_fresh.tex": lambda: contest_table("fresh", "B"),
         "tab_rules_m.tex": lambda: rules_table("m1"),
         "tab_contest_m.tex": lambda: contest_table("m1", "M"),
         "tab_latency_b.tex": lambda: latency_table([10, 3, 1]),
