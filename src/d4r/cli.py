@@ -103,6 +103,12 @@ def cmd_report(a: argparse.Namespace) -> None:
     print(write_report(a.tag))
 
 
+def cmd_paper_tables(a: argparse.Namespace) -> None:
+    from d4r.analysis.latex import write_paper_tables
+
+    print(json.dumps({"out": a.out, "tables": write_paper_tables(Path(a.out))}))
+
+
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(
         prog="d4r", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -138,6 +144,10 @@ def main(argv: list[str] | None = None) -> None:
     r = sub.add_parser("report", help="tables for a tag (bench + contest)")
     r.add_argument("--tag", required=True)
     r.set_defaults(fn=cmd_report)
+
+    t = sub.add_parser("paper-tables", help="LaTeX tables for the paper from runs/")
+    t.add_argument("--out", required=True)
+    t.set_defaults(fn=cmd_paper_tables)
 
     a = p.parse_args(argv)
     a.fn(a)
