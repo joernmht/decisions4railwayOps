@@ -163,9 +163,17 @@ def contest_table(tag: str, scenario: str) -> str:
             diffs = [eps[s]["total_reward"] - base[s]["total_reward"] for s in common]
             w = wilcoxon_signed_rank(diffs)
             wtl = f"{sum(x > 0 for x in diffs)}/{sum(x == 0 for x in diffs)}/{sum(x < 0 for x in diffs)}"
-            cells += [f"{statistics.fmean(diffs):+.1f}", wtl, _f(w["p"], "{:.3f}")]
+            cells += [
+                f"{statistics.fmean(diffs):+.1f}",
+                _f(
+                    statistics.median([x for x in diffs if x != 0]) if any(diffs) else None,
+                    "{:+.1f}",
+                ),
+                wtl,
+                _f(w["p"], "{:.3f}"),
+            ]
         else:
-            cells += ["--", "--", "--"]
+            cells += ["--", "--", "--", "--"]
         if weighted:
             cells.append(f"{statistics.fmean(eps[s]['weighted_reward'] for s in seeds):.1f}")
         cells.append(
@@ -173,11 +181,11 @@ def contest_table(tag: str, scenario: str) -> str:
         )
         rows.append(" & ".join(cells) + r" \\")
     head = (
-        r"Engine & Episodes & Arrived & $\Delta$ reward & W/T/L & $p$"
+        r"Engine & Episodes & Arrived & mean $\Delta$ & median $\Delta{\neq}0$ & W/T/L & $p$"
         + (" & Weighted reward" if weighted else "")
         + r" & Engine [s/ep] \\"
     )
-    cols = "lrrrrr" + ("r" if weighted else "") + "r"
+    cols = "lrrrrrr" + ("r" if weighted else "") + "r"
     return "\n".join(
         [
             rf"\begin{{tabular}}{{{cols}}}",

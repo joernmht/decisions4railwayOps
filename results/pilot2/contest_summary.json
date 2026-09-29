@@ -10,6 +10,7 @@
   "latency_s_per_episode": 11.623861999999999,
   "cost_usd_per_episode": 0.0005629400000000001,
   "reward_gain_vs_dla": -1.92,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    4,
    25,
@@ -32,6 +33,7 @@
   "latency_s_per_episode": 22.093996,
   "cost_usd_per_episode": 0.00294678,
   "reward_gain_vs_dla": -2.22,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    6,
    22,
@@ -44,25 +46,26 @@
   }
  },
  "deepseek-think": {
-  "episodes": 2,
-  "arrival_share": 0.85,
-  "normalized_reward": 0.9190499999999999,
-  "total_arrival_delay": 13.0,
+  "episodes": 50,
+  "arrival_share": 0.768,
+  "normalized_reward": 0.893338,
+  "total_arrival_delay": 21.64,
   "deadlocked_trains": 0.0,
-  "decisions": 10.5,
-  "fallbacks": 1,
-  "latency_s_per_episode": 170.88984999999997,
-  "cost_usd_per_episode": 0.021388,
-  "reward_gain_vs_dla": 0.0,
+  "decisions": 8.06,
+  "fallbacks": 6,
+  "latency_s_per_episode": 116.435488,
+  "cost_usd_per_episode": 0.01493722,
+  "reward_gain_vs_dla": -1.0,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
-   0,
-   2,
-   0
+   6,
+   22,
+   22
   ],
   "wilcoxon_vs_dla": {
-   "n": 0,
-   "W+": 0.0,
-   "p": 1.0
+   "n": 28,
+   "W+": 116.0,
+   "p": 0.048869537953537455
   }
  },
  "dla-default": {
@@ -87,6 +90,7 @@
   "latency_s_per_episode": 0.020246,
   "cost_usd_per_episode": 0.0,
   "reward_gain_vs_dla": -1.76,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    7,
    20,
@@ -109,6 +113,7 @@
   "latency_s_per_episode": 1.8787260000000001,
   "cost_usd_per_episode": 0.00027237999999999996,
   "reward_gain_vs_dla": -7.68,
+  "median_gain_vs_dla": -2.0,
   "wins_ties_losses": [
    7,
    13,
@@ -131,6 +136,7 @@
   "latency_s_per_episode": 8.556706,
   "cost_usd_per_episode": 0.0014346799999999998,
   "reward_gain_vs_dla": 0.2,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    3,
    30,
@@ -153,6 +159,7 @@
   "latency_s_per_episode": 2.0154,
   "cost_usd_per_episode": 0.00029124,
   "reward_gain_vs_dla": 1.7,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    4,
    33,
@@ -175,6 +182,7 @@
   "latency_s_per_episode": 7.499281999999999,
   "cost_usd_per_episode": 0.0,
   "reward_gain_vs_dla": 11.58,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    12,
    38,
@@ -197,6 +205,7 @@
   "latency_s_per_episode": 0.0,
   "cost_usd_per_episode": 0.0,
   "reward_gain_vs_dla": 4.92,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    7,
    19,
@@ -219,6 +228,7 @@
   "latency_s_per_episode": 0.0,
   "cost_usd_per_episode": 0.0,
   "reward_gain_vs_dla": -9.54,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    3,
    31,

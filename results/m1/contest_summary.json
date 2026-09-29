@@ -1,32 +1,33 @@
 {
  "deepseek-fast-ril": {
-  "episodes": 23,
-  "arrival_share": 0.8173913043478261,
-  "normalized_reward": 0.9018739130434782,
-  "total_arrival_delay": 82.43478260869566,
+  "episodes": 50,
+  "arrival_share": 0.7879999999999999,
+  "normalized_reward": 0.902906,
+  "total_arrival_delay": 56.12,
   "deadlocked_trains": 0.0,
-  "decisions": 7.608695652173913,
+  "decisions": 8.0,
   "fallbacks": 0,
-  "latency_s_per_episode": 6.399191304347826,
-  "cost_usd_per_episode": 0.0012446521739130434,
-  "weighted_reward": -363.9347826086956,
+  "latency_s_per_episode": 6.501544,
+  "cost_usd_per_episode": 0.00127946,
+  "weighted_reward": -352.17,
   "class_reward": {
-   "freight_express": -20.043478260869566,
-   "freight_fast": -13.26086956521739,
-   "freight_other": -31.391304347826086,
-   "passenger_express": -58.43478260869565,
-   "passenger_other": -97.26086956521739
+   "freight_express": -21.48,
+   "freight_fast": -17.5,
+   "freight_other": -34.74,
+   "passenger_express": -56.04,
+   "passenger_other": -80.1
   },
-  "reward_gain_vs_dla": -41.73913043478261,
+  "reward_gain_vs_dla": -21.78,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
-   0,
-   11,
-   12
+   1,
+   25,
+   24
   ],
   "wilcoxon_vs_dla": {
-   "n": 12,
-   "W+": 0,
-   "p": 0.00048828125
+   "n": 25,
+   "W+": 10.5,
+   "p": 4.5738876055437315e-05
   }
  },
  "deepseek-fast": {
@@ -48,6 +49,7 @@
    "passenger_other": -70.5
   },
   "reward_gain_vs_dla": -7.3,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    4,
    24,
@@ -57,6 +59,99 @@
    "n": 26,
    "W+": 83.0,
    "p": 0.019459268644685165
+  }
+ },
+ "deepseek-lp": {
+  "episodes": 50,
+  "arrival_share": 0.83,
+  "normalized_reward": 0.91554,
+  "total_arrival_delay": 65.44,
+  "deadlocked_trains": 0.04,
+  "decisions": 8.16,
+  "fallbacks": 9,
+  "latency_s_per_episode": 15.778792000000001,
+  "cost_usd_per_episode": 0.0051462,
+  "weighted_reward": -305.06,
+  "class_reward": {
+   "freight_express": -17.94,
+   "freight_fast": -17.4,
+   "freight_other": -29.68,
+   "passenger_express": -48.5,
+   "passenger_other": -67.9
+  },
+  "reward_gain_vs_dla": 6.66,
+  "median_gain_vs_dla": -1.5,
+  "wins_ties_losses": [
+   7,
+   16,
+   27
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 34,
+   "W+": 179.0,
+   "p": 0.04365495675494393
+  }
+ },
+ "deepseek-think-ril": {
+  "episodes": 50,
+  "arrival_share": 0.8059999999999999,
+  "normalized_reward": 0.907666,
+  "total_arrival_delay": 60.32,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.28,
+  "fallbacks": 3,
+  "latency_s_per_episode": 104.93173800000001,
+  "cost_usd_per_episode": 0.025779,
+  "weighted_reward": -344.43,
+  "class_reward": {
+   "freight_express": -20.24,
+   "freight_fast": -18.38,
+   "freight_other": -33.34,
+   "passenger_express": -56.68,
+   "passenger_other": -73.0
+  },
+  "reward_gain_vs_dla": -13.56,
+  "median_gain_vs_dla": -1.5,
+  "wins_ties_losses": [
+   5,
+   18,
+   27
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 32,
+   "W+": 91.0,
+   "p": 0.0012572335434148684
+  }
+ },
+ "deepseek-think": {
+  "episodes": 50,
+  "arrival_share": 0.816,
+  "normalized_reward": 0.91023,
+  "total_arrival_delay": 62.52,
+  "deadlocked_trains": 0.0,
+  "decisions": 8.02,
+  "fallbacks": 12,
+  "latency_s_per_episode": 137.61903,
+  "cost_usd_per_episode": 0.01787048,
+  "weighted_reward": -314.82,
+  "class_reward": {
+   "freight_express": -17.32,
+   "freight_fast": -18.52,
+   "freight_other": -30.44,
+   "passenger_express": -48.78,
+   "passenger_other": -75.62
+  },
+  "reward_gain_vs_dla": -2.6,
+  "median_gain_vs_dla": -1.0,
+  "wins_ties_losses": [
+   4,
+   18,
+   28
+  ],
+  "wilcoxon_vs_dla": {
+   "n": 32,
+   "W+": 99.0,
+   "p": 0.0020981501623155243
   }
  },
  "dla-default": {
@@ -97,6 +192,7 @@
    "passenger_other": -68.68
   },
   "reward_gain_vs_dla": 5.02,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    7,
    24,
@@ -127,6 +223,7 @@
    "passenger_other": -74.72
   },
   "reward_gain_vs_dla": -16.18,
+  "median_gain_vs_dla": -2.0,
   "wins_ties_losses": [
    1,
    20,
@@ -157,6 +254,7 @@
    "passenger_other": -80.36
   },
   "reward_gain_vs_dla": -22.8,
+  "median_gain_vs_dla": -0.5,
   "wins_ties_losses": [
    0,
    25,
@@ -187,6 +285,7 @@
    "passenger_other": -69.08
   },
   "reward_gain_vs_dla": 16.08,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    10,
    40,
@@ -217,6 +316,7 @@
    "passenger_other": -71.38
   },
   "reward_gain_vs_dla": 5.38,
+  "median_gain_vs_dla": -1.0,
   "wins_ties_losses": [
    7,
    17,
@@ -247,6 +347,7 @@
    "passenger_other": -79.9
   },
   "reward_gain_vs_dla": -21.1,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    0,
    31,
@@ -277,6 +378,7 @@
    "passenger_other": -73.54
   },
   "reward_gain_vs_dla": -0.8,
+  "median_gain_vs_dla": 0.0,
   "wins_ties_losses": [
    3,
    23,

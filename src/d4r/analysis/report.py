@@ -233,6 +233,7 @@ def _contest(tag: str, out: Path) -> dict[str, Any]:
         if common and eng != "dla-default":
             diffs = [eps[k]["total_reward"] - base[k]["total_reward"] for k in common]
             s["reward_gain_vs_dla"] = statistics.fmean(diffs)
+            s["median_gain_vs_dla"] = statistics.median(diffs)
             s["wins_ties_losses"] = (
                 sum(x > 0 for x in diffs),
                 sum(x == 0 for x in diffs),
