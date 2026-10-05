@@ -68,7 +68,7 @@ reviewed yet.
 
 ## License and citation
 
-Code: MIT (see [LICENSE](LICENSE)). The vendored DLA heuristic is MIT, © 2025 Flatland Association.
+Code: Apache-2.0 (see [LICENSE](LICENSE) and [NOTICE](NOTICE)). The vendored DLA heuristic stays MIT, © 2025 Flatland Association.
 Please cite via [CITATION.cff](CITATION.cff).
 
 ## AI disclaimer

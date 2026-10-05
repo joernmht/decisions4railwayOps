@@ -10,7 +10,7 @@ authors:
     given-names: Nikola
     affiliation: "TU Dresden, Chair of Railway Operations"
 repository-code: "https://github.com/joernmht/decisions4railwayOps"
-license: MIT
+license: Apache-2.0
 keywords:
   - railway operations
   - train dispatching

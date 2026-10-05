@@ -1,0 +1,8 @@
+decisions4railwayOps
+Copyright 2026 Jörn Maurischat
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product includes the DLA deadlock-avoidance heuristic, vendored in
+src/d4r/sim/_vendor/dla/, Copyright (c) 2025 Flatland Association, licensed
+under the MIT License (see that directory's LICENSE).
